@@ -1,0 +1,1 @@
+# Local cloud testing configuration
