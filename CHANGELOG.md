@@ -1,4 +1,4 @@
-## [terraform-bgp-vm/v1.0.0] - 2025-10-12
+## [lxc/v1.0.0, vm/v1.0.0] - 2025-10-12
 
 ### 🚀 Features
 
@@ -18,3 +18,4 @@
 - *(tooling)* Add Claude AI agent configuration
 - *(tooling)* Add git-cliff and changelog
 - *(terraform)* Move modules to root dir
+- Update CHANGELOG for terraform-bgp-vm/v1.0.0 release, adding features and miscellaneous tasks
