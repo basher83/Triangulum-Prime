@@ -1,1 +1,0 @@
-# Local Proxmox testing configuration

@@ -1,1 +1,0 @@
-# Homelab Kubernetes cluster deployment
