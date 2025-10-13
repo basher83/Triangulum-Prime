@@ -1,0 +1,135 @@
+# ============================================================================
+# Scalr Management - Variable Values Example
+# ============================================================================
+#
+# Copy this file to terraform.tfvars (or *.auto.tfvars) and fill in your values.
+# DO NOT commit terraform.tfvars to git - it's already in .gitignore
+#
+# Usage:
+#   cp terraform.tfvars.example terraform.tfvars
+#   # Edit terraform.tfvars with your values
+#   tofu init && tofu plan
+
+# ============================================================================
+# Scalr Account Configuration
+# ============================================================================
+
+account_id = "acc-xxxxxxxxxxxx"  # Found in Scalr UI: Settings -> Account
+
+# ============================================================================
+# VCS Provider Configuration
+# ============================================================================
+
+vcs_provider_id = "vcs-xxxxxxxxxxxx"  # Found in Scalr UI: Settings -> VCS Providers
+                                       # Or leave as null if not using VCS-backed workspaces
+
+# ============================================================================
+# Agent Pool Configuration (Optional - for self-hosted agents)
+# ============================================================================
+#
+# If you have a self-hosted Scalr agent pool, you can configure it here.
+# The agent pool will ONLY be applied to workspaces in the specified environment.
+#
+# Example: If you set agent_pool_environment = "homelab", then:
+# - All homelab workspaces will use this agent pool
+# - Cloud workspaces will NOT use this agent pool (they'll use Scalr's default agents)
+#
+# To use an agent pool:
+# 1. Uncomment the lines below
+# 2. Set agent_pool_name to your agent pool's name (found in Scalr UI: Settings -> Agent Pools)
+# 3. Set agent_pool_environment to the environment where the pool should apply (e.g., "homelab")
+
+# agent_pool_name        = "bravo-143"    # Your agent pool name
+# agent_pool_environment = "homelab"      # Only homelab workspaces will use this agent pool
+
+# Per-workspace agent pool override:
+# You can also specify agent_pool_id directly in workspace YAML:
+#   - name: my-workspace
+#     agent_pool_id: apool-xxxxxxxxxxxx
+
+# ============================================================================
+# Proxmox Configuration (Multi-Cluster Support)
+# ============================================================================
+#
+# Define all your Proxmox clusters here. Each cluster will be available as
+# "proxmox-{name}" in your environment YAML files.
+#
+# API Token Authentication (Recommended for Production):
+# - Format: "username@realm!tokenid=uuid"
+# - Example: "terraform@pve!provider=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+#
+# Username/Password Authentication (Alternative for Dev/Testing):
+# - Provide both username (format: "username@realm") and password
+
+proxmox_clusters = {
+  # Production cluster - API token auth (recommended)
+  "prod" = {
+    endpoint  = "https://pve-prod.example.com:8006/"
+    api_token = "terraform@pve!provider=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    insecure  = false  # Set to true for self-signed certs
+    ssh_agent = true   # Optional: Enable SSH agent
+  }
+
+  # Development cluster - API token auth
+  "dev" = {
+    endpoint  = "https://pve-dev.example.com:8006/"
+    api_token = "terraform@pve!provider=yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+    insecure  = false
+    ssh_agent = true
+  }
+
+  # Lab cluster - username/password auth (for testing)
+  "lab" = {
+    endpoint  = "https://pve-lab.local:8006/"
+    username  = "root@pam"
+    password  = "your-password"
+    insecure  = true  # Allow self-signed certs
+    ssh_agent = true
+  }
+
+  # CI/CD cluster - SSH private key auth (for pipelines)
+  # Use this when SSH agent forwarding is not available
+  # "cicd" = {
+  #   endpoint        = "https://pve-cicd.example.com:8006/"
+  #   api_token       = "terraform@pve!cicd=zzzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz"
+  #   ssh_agent       = false
+  #   ssh_private_key = file("~/.ssh/id_rsa")  # Private key from file
+  #   # Or use absolute path:
+  #   # ssh_private_key = file("/path/to/ssh/private_key")
+  #   # Note: Private key must be unencrypted and in PEM format
+  # }
+}
+
+# These clusters will be available in YAML as:
+# - proxmox-prod
+# - proxmox-dev
+# - proxmox-lab
+# - proxmox-cicd (if uncommented)
+
+# ============================================================================
+# DigitalOcean Configuration (Optional - for cloud environment)
+# ============================================================================
+
+# digitalocean_token              = "dop_v1_xxxxxxxxxxxx"
+# digitalocean_spaces_access_key  = "xxxxxxxxxxxxxxxxxxxxx"
+# digitalocean_spaces_secret_key  = "xxxxxxxxxxxxxxxxxxxxx"
+
+# ============================================================================
+# Hetzner Cloud Configuration (Optional - for cloud environment)
+# ============================================================================
+
+# hetzner_token = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+# ============================================================================
+# Infisical Configuration (Optional - for secrets management)
+# ============================================================================
+
+# infisical_client_id     = "xxxxxxxxxxxx"
+# infisical_client_secret = "xxxxxxxxxxxx"
+# infisical_host          = "https://app.infisical.com"
+
+# ============================================================================
+# Data File Paths (Optional - only override if you've moved the files)
+# ============================================================================
+
+# environments_data_path = "./data/environments"

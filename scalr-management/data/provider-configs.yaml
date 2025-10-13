@@ -1,0 +1,50 @@
+# ============================================================================
+# Provider Configurations (Optional)
+# ============================================================================
+#
+# This file can be used to define additional provider configurations in YAML
+# format if you prefer a more declarative approach. However, the main
+# provider configurations are defined in provider-configurations.tf for
+# better type safety and IDE support.
+#
+# Uncomment and customize the examples below if you want to use this approach.
+
+# Example: Additional Proxmox cluster
+# proxmox-cluster-2:
+#   provider_name: bpg/proxmox
+#   arguments:
+#     - name: endpoint
+#       value: https://proxmox2.example.com:8006
+#       description: Proxmox cluster 2 API endpoint
+#     - name: api_token
+#       value: user@pam!token
+#       description: API token ID
+#       sensitive: true
+#     - name: insecure
+#       value: "false"
+#       description: Allow insecure SSL
+
+# Example: AWS Provider
+# aws-homelab:
+#   provider_name: hashicorp/aws
+#   arguments:
+#     - name: region
+#       value: us-east-1
+#       description: AWS region
+#     - name: access_key
+#       value: AKIAIOSFODNN7EXAMPLE
+#       description: AWS access key
+#       sensitive: true
+#     - name: secret_key
+#       value: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+#       description: AWS secret key
+#       sensitive: true
+
+# Example: Cloudflare Provider
+# cloudflare:
+#   provider_name: cloudflare/cloudflare
+#   arguments:
+#     - name: api_token
+#       value: your-cloudflare-api-token
+#       description: Cloudflare API token
+#       sensitive: true

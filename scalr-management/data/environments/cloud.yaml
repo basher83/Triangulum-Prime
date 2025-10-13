@@ -1,0 +1,122 @@
+---
+# ============================================================================
+# Cloud Environment Configuration
+# ============================================================================
+#
+# This environment manages cloud provider resources including:
+# - DigitalOcean droplets and spaces
+# - Hetzner Cloud instances
+# - AWS resources (if needed)
+# - Multi-cloud networking and VPNs
+#
+# This keeps cloud infrastructure separate from homelab for better organization
+# and cost tracking.
+
+name: cloud
+cost_estimation_enabled: false  # Cost estimation not available for this account
+
+# No default provider - each workspace will specify its own
+default_provider_configs: []
+
+workspaces:
+  # ==========================================================================
+  # DigitalOcean Droplets
+  # ==========================================================================
+  - name: digitalocean-droplets
+    description: DigitalOcean droplets for testing and development
+    auto_apply: false  # Disabled until ready for production use
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/cloud/digitalocean/droplets
+      branch: main
+    variables:
+      - key: region
+        value: nyc3
+        category: terraform
+        description: DigitalOcean region
+      - key: droplet_size
+        value: s-1vcpu-1gb
+        category: terraform
+        description: Droplet size slug
+      - key: droplet_count
+        value: "2"
+        category: terraform
+        description: Number of droplets
+
+  # ==========================================================================
+  # DigitalOcean Spaces (Object Storage)
+  # ==========================================================================
+  - name: digitalocean-spaces
+    description: DigitalOcean Spaces for object storage and backups
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/cloud/digitalocean/spaces
+      branch: main
+    variables:
+      - key: region
+        value: nyc3
+        category: terraform
+        description: Spaces region
+
+  # ==========================================================================
+  # Hetzner Cloud Instances
+  # ==========================================================================
+  - name: hetzner-instances
+    description: Hetzner Cloud instances for cost-effective compute
+    auto_apply: false  # Disabled until ready for production use
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/cloud/hetzner/instances
+      branch: main
+    variables:
+      - key: location
+        value: nbg1
+        category: terraform
+        description: Hetzner datacenter location (Nuremberg)
+      - key: server_type
+        value: cx11
+        category: terraform
+        description: Hetzner server type
+      - key: instance_count
+        value: "1"
+        category: terraform
+        description: Number of instances
+
+  # ==========================================================================
+  # Hetzner Cloud Networking
+  # ==========================================================================
+  - name: hetzner-networking
+    description: Hetzner Cloud networking (private networks, load balancers)
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/cloud/hetzner/networking
+      branch: main
+
+  # ==========================================================================
+  # Multi-Cloud VPN/Networking
+  # ==========================================================================
+  - name: multi-cloud-vpn
+    description: Site-to-site VPN between homelab and cloud providers
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/cloud/networking/vpn
+      branch: main
+    variables:
+      - key: homelab_public_ip
+        value: "0.0.0.0"  # Replace with actual IP
+        category: terraform
+        description: Homelab public IP for VPN endpoint
+        sensitive: true

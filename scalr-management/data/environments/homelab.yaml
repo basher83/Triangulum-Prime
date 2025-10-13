@@ -1,0 +1,294 @@
+---
+# ============================================================================
+# Homelab Environment Configuration
+# ============================================================================
+#
+# This environment manages all on-premise Proxmox infrastructure including:
+# - Single-purpose VMs
+# - Kubernetes clusters
+# - HashiCorp stack (Vault, Nomad, Consul)
+# - LXC containers
+#
+# All workspaces in this environment will use the proxmox-nexus provider
+# configuration by default.
+#
+# IMPORTANT: VCS Trigger Behavior
+# ================================
+# By default, each workspace will ONLY trigger on changes to its
+# working_directory. For example, the "infra-base" workspace only triggers
+# when files in "deployments/homelab/infrastructure/base" change.
+#
+# Option 1: trigger_prefixes (simple path list)
+#   vcs_repo:
+#     identifier: basher83/triangulum-prime
+#     path: deployments/homelab/infrastructure/base
+#     trigger_prefixes:
+#       - deployments/homelab/infrastructure/base
+#       - shared/modules/proxmox
+#
+# Option 2: trigger_patterns (gitignore-style, supports exclusions)
+#   vcs_repo:
+#     identifier: basher83/triangulum-prime
+#     path: deployments/homelab/infrastructure/base
+#     trigger_patterns:
+#       - "deployments/homelab/infrastructure/base/**/*"  # Include all files
+#       - "!**/*.md"          # Exclude markdown files
+#       - "!**/README*"       # Exclude README files
+#       - "!**/test/**"       # Exclude test directories
+#       - "!**/tests/**"      # Exclude tests directories
+#       - "!**/.gitkeep"      # Exclude placeholder files
+#
+# Note: trigger_patterns and trigger_prefixes are mutually exclusive!
+
+name: homelab
+cost_estimation_enabled: false
+
+# Default provider configurations for all workspaces in this environment
+# All three Proxmox clusters are available to homelab workspaces
+default_provider_configs:
+  - proxmox-nexus    # 192.168.30.30
+  - proxmox-matrix   # 192.168.3.5
+  - proxmox-quantum  # 192.168.10.2
+
+workspaces:
+  # ==========================================================================
+  # Infrastructure Base
+  # ==========================================================================
+  - name: infra-base
+    description: >-
+      Base Proxmox infrastructure, networking, and storage configuration
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/infrastructure/base
+      branch: main
+    variables:
+      - key: proxmox_node
+        value: pve-01
+        category: terraform
+        description: Primary Proxmox node
+
+  # ==========================================================================
+  # Single-Purpose VMs
+  # ==========================================================================
+  - name: single-vms
+    description: Single-purpose Proxmox VMs (DNS, monitoring, etc.)
+    auto_apply: false  # Disabled until ready for production use
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/vms/single
+      branch: main
+    variables:
+      - key: vm_template_id
+        value: "2006"
+        category: terraform
+        description: Ubuntu 22.04 template ID
+      - key: vm_count
+        value: "3"
+        category: terraform
+        description: Number of single-purpose VMs
+
+  # ==========================================================================
+  # Kubernetes Cluster
+  # ==========================================================================
+  - name: k8s-cluster
+    description: Kubernetes cluster on Proxmox using microk8s
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/clusters/k8s
+      branch: main
+    variables:
+      - key: cluster_size
+        value: "3"
+        category: terraform
+        description: Number of K8s nodes
+      - key: control_plane_count
+        value: "1"
+        category: terraform
+        description: Number of control plane nodes
+      - key: worker_count
+        value: "2"
+        category: terraform
+        description: Number of worker nodes
+
+  # ==========================================================================
+  # HashiCorp Vault Cluster
+  # ==========================================================================
+  - name: vault-cluster
+    description: HashiCorp Vault cluster for secrets management
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/clusters/vault
+      branch: main
+    variables:
+      - key: vault_version
+        value: "1.15.0"
+        category: terraform
+        description: Vault version to deploy
+      - key: cluster_size
+        value: "3"
+        category: terraform
+        description: Number of Vault nodes
+
+  # ==========================================================================
+  # HashiCorp Nomad + Consul Cluster
+  # ==========================================================================
+  - name: nomad-consul-cluster
+    description: HashiCorp Nomad scheduler with Consul service mesh
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/clusters/nomad-consul
+      branch: main
+    variables:
+      - key: nomad_version
+        value: "1.7.0"
+        category: terraform
+        description: Nomad version to deploy
+      - key: consul_version
+        value: "1.17.0"
+        category: terraform
+        description: Consul version to deploy
+      - key: server_count
+        value: "3"
+        category: terraform
+        description: Number of server nodes
+      - key: client_count
+        value: "3"
+        category: terraform
+        description: Number of client nodes
+
+  # ==========================================================================
+  # LXC Containers
+  # ==========================================================================
+  - name: lxc-containers
+    description: Proxmox LXC containers for lightweight services
+    auto_apply: false  # Disabled until ready for production use
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/lxc
+      branch: main
+    variables:
+      - key: lxc_template
+        value: "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
+        category: terraform
+        description: LXC template to use
+
+  # ==========================================================================
+  # VM Templates - Matrix Cluster
+  # ==========================================================================
+  - name: vm-templates-matrix
+    description: Deploy VM templates to Matrix cluster (192.168.3.5)
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/templates
+      branch: main
+      trigger_patterns: |
+        deployments/homelab/templates/**/*
+        !deployments/homelab/templates/README.md
+    provider_configs:
+      - proxmox-matrix  # Override default, only use Matrix cluster
+    variables:
+      - key: proxmox_node
+        value: foxtrot
+        category: terraform
+        description: Proxmox node in Matrix cluster
+      - key: proxmox_endpoint
+        value: "https://192.168.3.5:8006"
+        category: terraform
+        description: Matrix cluster endpoint
+      - key: ubuntu_version
+        value: "22.04"
+        category: terraform
+        description: Ubuntu version for templates
+      - key: debian_version
+        value: "12"
+        category: terraform
+        description: Debian version for templates
+
+  # ==========================================================================
+  # VM Templates - Nexus Cluster
+  # ==========================================================================
+  - name: vm-templates-nexus
+    description: Deploy VM templates to Nexus cluster (192.168.30.30)
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/templates
+      branch: main
+      trigger_patterns: |
+        deployments/homelab/templates/**/*
+        !deployments/homelab/templates/README.md
+    provider_configs:
+      - proxmox-nexus  # Override default, only use Nexus cluster
+    variables:
+      - key: proxmox_node
+        value: bravo
+        category: terraform
+        description: Proxmox node in Nexus cluster
+      - key: proxmox_endpoint
+        value: "https://192.168.30.30:8006"
+        category: terraform
+        description: Nexus cluster endpoint
+      - key: ubuntu_version
+        value: "22.04"
+        category: terraform
+        description: Ubuntu version for templates
+      - key: debian_version
+        value: "12"
+        category: terraform
+        description: Debian version for templates
+
+  # ==========================================================================
+  # VM Templates - Quantum Cluster
+  # ==========================================================================
+  - name: vm-templates-quantum
+    description: Deploy VM templates to Quantum cluster (192.168.10.2)
+    auto_apply: false
+    terraform_version: "1.10.0"
+    execution_mode: remote
+    vcs_repo:
+      identifier: basher83/triangulum-prime
+      path: deployments/homelab/templates
+      branch: main
+      trigger_patterns: |
+        deployments/homelab/templates/**/*
+        !deployments/homelab/templates/README.md
+    provider_configs:
+      - proxmox-quantum  # Override default, only use Quantum cluster
+    variables:
+      - key: proxmox_node
+        value: lloyd
+        category: terraform
+        description: Proxmox node in Quantum cluster
+      - key: proxmox_endpoint
+        value: "https://192.168.10.2:8006"
+        category: terraform
+        description: Quantum cluster endpoint
+      - key: ubuntu_version
+        value: "22.04"
+        category: terraform
+        description: Ubuntu version for templates
+      - key: debian_version
+        value: "12"
+        category: terraform
+        description: Debian version for templates
