@@ -1,1 +1,56 @@
-# Mise configuration for version management
+min_version = "2024.9.5"
+
+[settings]
+auto_install = true
+not_found_auto_install = true
+task_run_auto_install = true
+
+[settings.status]
+show_tools = true
+show_env = false
+truncate = true
+
+[tools]
+terraform-docs = "0.20.0"
+tflint = "0.59.1"
+pre-commit = "4.3.0"
+git-cliff = "2.10.1"
+
+# === Changelog tasks ===
+[tasks.changelog]
+description = "Update changelog using git-cliff"
+run = "git-cliff -o CHANGELOG.md"
+
+# === Formatting tasks ===
+[tasks.fmt-check]
+description = "Check formatting recursively (non-mutating, CI-friendly)"
+dir = "terraform"
+run = "tofu fmt --check --diff --recursive"
+
+[tasks.tofu-validate]
+description = "Validate OpenTofu configuration"
+dir = "terraform"
+run = "tofu init -backend=false -input=false >/dev/null && tofu validate"
+
+[tasks.docs-check]
+description = "Check if Terraform documentation is up-to-date"
+dir = "terraform"
+run = "terraform-docs --config ../.terraform-docs.yml --output-check ."
+
+[tasks.tflint]
+description = "Run TFLint on Terraform configuration"
+run = """
+tflint --init
+tflint --recursive --color
+"""
+
+[tasks.tflint-fix]
+description = "Run TFLint on Terraform configuration"
+run = """
+tflint --init
+tflint --recursive --color --fix
+"""
+
+[tasks.lint]
+description = "Run pre-commit"
+run = "pre-commit run -a"
