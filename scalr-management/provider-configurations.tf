@@ -78,6 +78,19 @@ resource "scalr_provider_configuration" "proxmox_clusters" {
       }
     }
 
+    # SSH Username configuration (required for template operations)
+    # This username is used for SSH connections to Proxmox hosts for image import
+    # Default: "terraform" - ensure this user exists on all Proxmox hosts
+    # with appropriate sudo permissions for qm/pvesm commands
+    dynamic "argument" {
+      for_each = each.value.ssh_agent != null || var.proxmox_ssh_key != null ? [1] : []
+      content {
+        name        = "ssh.username"
+        value       = "terraform"
+        description = "SSH username for Proxmox host connections"
+      }
+    }
+
     # API Token authentication (recommended for production)
     # Format: "username@realm!tokenid=uuid"
     # Example: "terraform@pve!provider=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
