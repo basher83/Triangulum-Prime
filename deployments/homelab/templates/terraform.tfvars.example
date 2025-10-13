@@ -1,0 +1,53 @@
+# =============================================================================
+# Example Terraform Variables for VM Templates
+# =============================================================================
+# Copy this file to terraform.tfvars and customize for your environment
+#
+# NOTE: When using Scalr workspaces, most variables are set via workspace
+# variables in the Scalr YAML configuration. This file is primarily for
+# local testing.
+
+# =============================================================================
+# Cluster Configuration (Set by Scalr Workspace)
+# =============================================================================
+
+proxmox_endpoint = "https://192.168.30.30:8006"
+proxmox_node     = "pve-nexus-01"
+proxmox_insecure = true
+
+# =============================================================================
+# SSH Configuration
+# =============================================================================
+
+ssh_username = "terraform"
+
+# =============================================================================
+# Storage Configuration
+# =============================================================================
+
+datastore             = "local-lvm"
+cloud_image_datastore = "local"
+cloud_init_datastore  = "local"
+
+# =============================================================================
+# Network Configuration
+# =============================================================================
+
+network_bridge = "vmbr0"
+dns_servers    = ["1.1.1.1", "8.8.8.8"]
+
+# =============================================================================
+# Ubuntu 22.04 Template Customization
+# =============================================================================
+
+ubuntu_22_template_id   = 9000
+ubuntu_22_template_name = "ubuntu22-cloudinit-template"
+ubuntu_22_disk_size     = 5
+
+# =============================================================================
+# Ubuntu 24.04 Template Customization
+# =============================================================================
+
+ubuntu_24_template_id   = 9001
+ubuntu_24_template_name = "ubuntu24-cloudinit-template"
+ubuntu_24_disk_size     = 5
