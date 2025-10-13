@@ -37,8 +37,8 @@ locals {
 output "droplet_summary" {
   description = "Summary of DigitalOcean droplets"
   value = {
-    region        = local.region
-    size          = local.droplet_size
-    count         = local.droplet_count
+    region = local.region
+    size   = local.droplet_size
+    count  = local.droplet_count
   }
 }

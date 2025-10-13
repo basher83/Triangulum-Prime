@@ -34,9 +34,9 @@ module "ubuntu_22_cloudinit" {
   cloud_image_checksum = var.ubuntu_22_cloud_image_checksum
 
   # Storage configuration
-  datastore              = var.datastore
-  cloud_image_datastore  = var.cloud_image_datastore
-  cloud_init_datastore   = var.cloud_init_datastore
+  datastore             = var.datastore
+  cloud_image_datastore = var.cloud_image_datastore
+  cloud_init_datastore  = var.cloud_init_datastore
 
   # Shared cloud-init configuration
   user_data_file         = var.user_data_file
@@ -75,9 +75,9 @@ module "ubuntu_24_cloudinit" {
   cloud_image_checksum = var.ubuntu_24_cloud_image_checksum
 
   # Storage configuration
-  datastore              = var.datastore
-  cloud_image_datastore  = var.cloud_image_datastore
-  cloud_init_datastore   = var.cloud_init_datastore
+  datastore             = var.datastore
+  cloud_image_datastore = var.cloud_image_datastore
+  cloud_init_datastore  = var.cloud_init_datastore
 
   # Shared cloud-init configuration
   user_data_file         = var.user_data_file

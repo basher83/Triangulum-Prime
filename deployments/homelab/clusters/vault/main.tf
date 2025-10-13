@@ -10,7 +10,7 @@
 #
 
 locals {
-  cluster_size = var.cluster_size
+  cluster_size  = var.cluster_size
   vault_version = var.vault_version
 
   tags = merge(
