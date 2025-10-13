@@ -213,6 +213,7 @@ resource "proxmox_virtual_environment_vm" "pve_vm" {
     # cannot use variables - they must be static. Set these in deployment configs as needed.
     ignore_changes = [
       initialization[0].user_account,
+      template,  # Ignore template conversion changes to prevent "inconsistent result" errors
     ]
 
     precondition {
