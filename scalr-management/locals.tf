@@ -91,7 +91,7 @@ locals {
           alias = startswith(provider_name, "proxmox-") ? trimprefix(provider_name, "proxmox-") : null
         }
         if contains(keys(local.provider_config_map), provider_name)
-      ] : [
+        ] : [
         for provider_name in local.environments[ws.environment_name].default_provider_configs : {
           id    = local.provider_config_map[provider_name]
           alias = startswith(provider_name, "proxmox-") ? trimprefix(provider_name, "proxmox-") : null
