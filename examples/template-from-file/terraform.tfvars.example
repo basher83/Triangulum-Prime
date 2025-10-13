@@ -1,0 +1,43 @@
+# =============================================================================
+# = Proxmox Connection =========================================================
+# =============================================================================
+
+proxmox_endpoint = "https://proxmox.example.com:8006"
+proxmox_insecure = true
+proxmox_node     = "lloyd"
+
+# =============================================================================
+# = Template Configuration =====================================================
+# =============================================================================
+
+template_name = "ubuntu-22-04-template"
+template_id   = 2007
+
+# =============================================================================
+# = Cloud Image File ===========================================================
+# =============================================================================
+# The cloud image must already exist on Proxmox storage before running this
+# You can download it manually or use scripts/build-template.sh
+
+# Datastore where cloud image is located (typically 'local' for ISO storage)
+cloud_image_datastore = "local"
+
+# Filename of the cloud image
+# File should be in: /var/lib/vz/template/iso/<filename>
+cloud_image_filename = "ubuntu-22.04-server-cloudimg-amd64.img"
+
+# Common cloud image file locations on Proxmox:
+# - ISO storage (local): /var/lib/vz/template/iso/
+# - To verify: ssh root@proxmox "ls /var/lib/vz/template/iso/"
+
+# =============================================================================
+# = Storage ====================================================================
+# =============================================================================
+
+datastore = "local-lvm"
+
+# =============================================================================
+# = Network ====================================================================
+# =============================================================================
+
+network_bridge = "vmbr0"
