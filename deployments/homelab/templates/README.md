@@ -1,9 +1,10 @@
 # Homelab VM Templates
 
 **Scalr Workspaces:**
-- `homelab/vm-templates-matrix` - Matrix cluster (192.168.3.5)
-- `homelab/vm-templates-nexus` - Nexus cluster (192.168.30.30)
-- `homelab/vm-templates-quantum` - Quantum cluster (192.168.10.2)
+
+-   `homelab/vm-templates-matrix` - Matrix cluster (192.168.3.5)
+-   `homelab/vm-templates-nexus` - Nexus cluster (192.168.30.30)
+-   `homelab/vm-templates-quantum` - Quantum cluster (192.168.10.2)
 
 **Execution Mode:** Remote (Scalr agent: bravo-143)
 **Auto Apply:** No
@@ -14,10 +15,10 @@ This directory contains a root orchestrator that deploys VM templates to Proxmox
 
 ### Templates Managed
 
-- **Ubuntu 22.04 LTS** - Template ID 9000
-- **Ubuntu 24.04 LTS** - Template ID 9001
-- Cloud-init enabled templates
-- Shared cloud-init user-data configuration
+-   **Ubuntu 22.04 LTS** - Template ID 9000
+-   **Ubuntu 24.04 LTS** - Template ID 9001
+-   Cloud-init enabled templates
+-   Shared cloud-init user-data configuration
 
 ### Directory Structure
 
@@ -59,6 +60,7 @@ Rocky: https://rockylinux.org/cloud-images
 ### Multi-Cluster Deployment
 
 Each workspace uses:
+
 1. **Same code** (`working_directory: deployments/homelab/templates`)
 2. **Different provider config** (via `provider_configs` in workspace YAML)
 3. **Cluster-specific variables** (via workspace variables)
@@ -68,20 +70,24 @@ Each workspace uses:
 Each workspace sets cluster-specific variables:
 
 **Matrix Workspace:**
-- `proxmox_endpoint` = "https://192.168.3.5:8006"
-- `proxmox_node` = "pve-matrix-01"
+
+-   `proxmox_endpoint` = "https://192.168.3.5:8006"
+-   `proxmox_node` = "foxtrot"
 
 **Nexus Workspace:**
-- `proxmox_endpoint` = "https://192.168.30.30:8006"
-- `proxmox_node` = "pve-nexus-01"
+
+-   `proxmox_endpoint` = "https://192.168.30.30:8006"
+-   `proxmox_node` = "bravo"
 
 **Quantum Workspace:**
-- `proxmox_endpoint` = "https://192.168.10.2:8006"
-- `proxmox_node` = "pve-quantum-01"
+
+-   `proxmox_endpoint` = "https://192.168.10.2:8006"
+-   `proxmox_node` = "lloyd"
 
 ### VCS Triggers
 
 All three workspaces trigger on changes to:
+
 ```
 deployments/homelab/templates/**/*
 !deployments/homelab/templates/README.md
@@ -93,10 +99,10 @@ This ensures template updates automatically deploy to all clusters.
 
 Standard template ID ranges:
 
-- `9000-9099`: Ubuntu templates
-- `9100-9199`: Debian templates
-- `9200-9299`: Rocky/Alma templates
-- `9300-9399`: Custom templates
+-   `9000-9099`: Ubuntu templates
+-   `9100-9199`: Debian templates
+-   `9200-9299`: Rocky/Alma templates
+-   `9300-9399`: Custom templates
 
 ## Usage in Other Workspaces
 
@@ -122,11 +128,11 @@ resource "proxmox_virtual_environment_vm" "example" {
 
 Templates should support cloud-init for:
 
-- SSH key injection
-- User creation
-- Package installation
-- Network configuration
-- Custom scripts
+-   SSH key injection
+-   User creation
+-   Package installation
+-   Network configuration
+-   Custom scripts
 
 ## Maintenance
 
