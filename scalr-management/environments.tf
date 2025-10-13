@@ -47,8 +47,8 @@ resource "scalr_environment" "environments" {
 resource "scalr_variable" "homelab_default_tags" {
   count = contains(keys(local.environments), "homelab") ? 1 : 0
 
-  key        = "TF_VAR_default_tags"
-  value      = jsonencode({
+  key = "TF_VAR_default_tags"
+  value = jsonencode({
     managed_by  = "scalr"
     environment = "homelab"
     project     = "triangulum-prime"
@@ -69,4 +69,17 @@ resource "scalr_variable" "homelab_datacenter" {
   account_id     = var.account_id
   environment_id = scalr_environment.environments["homelab"].id
   description    = "Proxmox datacenter name"
+}
+
+# Proxmox SSH private key for CI/CD template creation
+resource "scalr_variable" "homelab_proxmox_ssh_key" {
+  count = contains(keys(local.environments), "homelab") ? 1 : 0
+
+  key            = "TF_VAR_proxmox_ssh_key"
+  value          = var.proxmox_ssh_key
+  category       = "shell"
+  sensitive      = true
+  account_id     = var.account_id
+  environment_id = scalr_environment.environments["homelab"].id
+  description    = "SSH private key for Proxmox template creation (CI/CD)"
 }
