@@ -27,11 +27,11 @@
 resource "scalr_provider_configuration" "proxmox_clusters" {
   for_each = var.proxmox_clusters
 
-  name                  = "proxmox-${each.key}"
-  account_id            = var.account_id
+  name                   = "proxmox-${each.key}"
+  account_id             = var.account_id
   export_shell_variables = false
   # Link to environments so workspaces in those environments can use this provider config
-  environments          = [for env in scalr_environment.environments : env.id]
+  environments = [for env in scalr_environment.environments : env.id]
 
   custom {
     provider_name = "bpg/proxmox"
@@ -65,13 +65,14 @@ resource "scalr_provider_configuration" "proxmox_clusters" {
     }
 
     # SSH Private Key configuration (for CI/CD pipelines)
-    # Use this when SSH agent is not available
+    # Use this when SSH agent is not available (ssh_agent = false)
     # Private key must be unencrypted and in PEM format
+    # Set via var.proxmox_ssh_key (from terraform.auto.tfvars)
     dynamic "argument" {
-      for_each = each.value.ssh_private_key != null ? [1] : []
+      for_each = each.value.ssh_agent == false && var.proxmox_ssh_key != null ? [1] : []
       content {
         name        = "ssh.private_key"
-        value       = each.value.ssh_private_key
+        value       = var.proxmox_ssh_key
         description = "SSH private key for Proxmox connections (CI/CD)"
         sensitive   = true
       }
@@ -120,10 +121,10 @@ resource "scalr_provider_configuration" "proxmox_clusters" {
 resource "scalr_provider_configuration" "digitalocean" {
   count = var.digitalocean_token != null ? 1 : 0
 
-  name                  = "digitalocean"
-  account_id            = var.account_id
+  name                   = "digitalocean"
+  account_id             = var.account_id
   export_shell_variables = false
-  environments          = [for env in scalr_environment.environments : env.id]
+  environments           = [for env in scalr_environment.environments : env.id]
 
   custom {
     provider_name = "digitalocean/digitalocean"
@@ -163,10 +164,10 @@ resource "scalr_provider_configuration" "digitalocean" {
 resource "scalr_provider_configuration" "hetzner" {
   count = var.hetzner_token != null ? 1 : 0
 
-  name                  = "hetzner"
-  account_id            = var.account_id
+  name                   = "hetzner"
+  account_id             = var.account_id
   export_shell_variables = false
-  environments          = [for env in scalr_environment.environments : env.id]
+  environments           = [for env in scalr_environment.environments : env.id]
 
   custom {
     provider_name = "hetznercloud/hcloud"
@@ -186,10 +187,10 @@ resource "scalr_provider_configuration" "hetzner" {
 resource "scalr_provider_configuration" "infisical" {
   count = var.infisical_client_id != null ? 1 : 0
 
-  name                  = "infisical"
-  account_id            = var.account_id
+  name                   = "infisical"
+  account_id             = var.account_id
   export_shell_variables = false
-  environments          = [for env in scalr_environment.environments : env.id]
+  environments           = [for env in scalr_environment.environments : env.id]
 
   custom {
     provider_name = "infisical/infisical"

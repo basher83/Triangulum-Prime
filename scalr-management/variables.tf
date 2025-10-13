@@ -33,17 +33,16 @@ variable "proxmox_clusters" {
     Each cluster needs:
     - endpoint: API URL (required)
     - insecure: Allow self-signed certs (optional)
-    - ssh_agent: Enable SSH agent (optional, default: true if no private_key)
-    - ssh_private_key: SSH private key content or path (optional, for CI/CD)
+    - ssh_agent: Enable SSH agent (optional, true for local, false for CI/CD)
     - auth: Either api_token OR username/password
 
     API Token format: "username@realm!tokenid=uuid"
     Example: "terraform@pve!provider=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
     SSH Authentication:
-    - Use ssh_agent = true for local development (default)
-    - Use ssh_private_key for CI/CD pipelines (agent must be false)
-    - Private key must be unencrypted and in PEM format
+    - Use ssh_agent = true for local development (uses local SSH agent)
+    - Use ssh_agent = false for CI/CD (uses var.proxmox_ssh_key)
+    - SSH private key is set separately via var.proxmox_ssh_key
 
     Example:
     {
@@ -53,10 +52,9 @@ variable "proxmox_clusters" {
         ssh_agent  = true
       }
       "cicd" = {
-        endpoint        = "https://pve-cicd.example.com:8006/"
-        api_token       = "terraform@pve!cicd=yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
-        ssh_agent       = false
-        ssh_private_key = "/path/to/ssh/key"  # or use file() function
+        endpoint  = "https://pve-cicd.example.com:8006/"
+        api_token = "terraform@pve!cicd=yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
+        ssh_agent = false  # Will use var.proxmox_ssh_key
       }
       "dev" = {
         endpoint = "https://pve-dev.example.com:8006/"
@@ -68,17 +66,16 @@ variable "proxmox_clusters" {
   EOT
 
   type = map(object({
-    endpoint        = string
-    insecure        = optional(bool)
-    ssh_agent       = optional(bool)
-    ssh_private_key = optional(string)
-    api_token       = optional(string)
-    username        = optional(string)
-    password        = optional(string)
+    endpoint  = string
+    insecure  = optional(bool)
+    ssh_agent = optional(bool)
+    api_token = optional(string)
+    username  = optional(string)
+    password  = optional(string)
   }))
 
   # Note: Cannot mark as sensitive because it's used in for_each
-  # Individual sensitive fields (api_token, password, ssh_private_key) are marked sensitive in provider config
+  # Individual sensitive fields (api_token, password) are marked sensitive in provider config
   sensitive = false
 
   validation {
@@ -88,6 +85,25 @@ variable "proxmox_clusters" {
     ])
     error_message = "Each Proxmox cluster must have either 'api_token' OR both 'username' and 'password' configured."
   }
+}
+
+variable "proxmox_ssh_key" {
+  description = <<-EOT
+    SSH private key for Proxmox authentication (CI/CD mode).
+
+    Requirements:
+    - Must be unencrypted (no passphrase)
+    - Must be in PEM format (OpenSSH format)
+    - Should be set as a Scalr environment variable (TF_VAR_proxmox_ssh_key)
+
+    In Scalr, set this as an environment-level variable:
+    Key: TF_VAR_proxmox_ssh_key
+    Value: <paste SSH private key contents>
+    Sensitive: Yes
+  EOT
+  type        = string
+  sensitive   = true
+  default     = null
 }
 
 # ============================================================================
