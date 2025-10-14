@@ -167,3 +167,60 @@ resource "scalr_variable" "workspace_env_variables" {
   sensitive    = each.value.sensitive
   final        = each.value.final
 }
+
+# ============================================================================
+# Proxmox Provider Environment Variables
+# ============================================================================
+#
+# Automatically creates PROXMOX_VE_API_TOKEN environment variables for
+# workspaces that use Proxmox provider configurations. The API token is
+# extracted from the cluster configuration in terraform.auto.tfvars.
+#
+# This solves the issue where Scalr custom provider configurations don't
+# automatically inject as environment variables for custom providers.
+
+locals {
+  # Reverse map: provider config ID -> provider name
+  provider_id_to_name = {
+    for name, id in local.provider_config_map :
+    id => name
+  }
+
+  # Create a map of workspace -> cluster_name for workspaces using Proxmox
+  proxmox_workspace_tokens = {
+    for ws_key, ws in local.workspaces :
+    ws_key => {
+      # Extract cluster name from the first Proxmox provider config
+      # Example: "proxmox-nexus" -> "nexus"
+      cluster_name = try(
+        trimprefix(
+          [
+            for pc in ws.provider_configurations :
+            local.provider_id_to_name[pc.id]
+            if can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
+          ][0],
+          "proxmox-"
+        ),
+        null
+      )
+    }
+    # Only include workspaces that have at least one Proxmox provider
+    if anytrue([
+      for pc in ws.provider_configurations :
+      can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
+    ])
+  }
+}
+
+resource "scalr_variable" "proxmox_api_token" {
+  for_each = nonsensitive(local.proxmox_workspace_tokens)
+
+  account_id   = var.account_id
+  workspace_id = scalr_workspace.workspaces[each.key].id
+  key          = "PROXMOX_VE_API_TOKEN"
+  value        = var.proxmox_clusters[nonsensitive(each.value.cluster_name)].api_token
+  category     = "shell"
+  description  = "Proxmox API token for ${nonsensitive(each.value.cluster_name)} cluster (auto-generated)"
+  sensitive    = true
+  final        = false
+}

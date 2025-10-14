@@ -83,17 +83,21 @@ locals {
 
       # Provider configurations for this workspace
       # Priority: workspace-specific provider_configs > environment default_provider_configs
-      # For Proxmox clusters, extract cluster name as alias (e.g., "proxmox-nexus" -> alias "nexus")
-      # For other providers, alias is null since there's only one of each type
+      # Logic for aliases:
+      # - If workspace has ONLY ONE Proxmox provider: alias = null (no alias needed)
+      # - If workspace has MULTIPLE Proxmox providers: alias = cluster name (needed to distinguish)
+      # - For non-Proxmox providers: alias = null (only one of each type)
       provider_configurations = try(ws.provider_configs, null) != null ? [
         for provider_name in ws.provider_configs : {
-          id    = local.provider_config_map[provider_name]
-          alias = startswith(provider_name, "proxmox-") ? trimprefix(provider_name, "proxmox-") : null
+          id = local.provider_config_map[provider_name]
+          # No alias needed when workspace specifies only one provider config
+          alias = null
         }
         if contains(keys(local.provider_config_map), provider_name)
         ] : [
         for provider_name in local.environments[ws.environment_name].default_provider_configs : {
-          id    = local.provider_config_map[provider_name]
+          id = local.provider_config_map[provider_name]
+          # Use alias when inheriting multiple Proxmox providers from environment defaults
           alias = startswith(provider_name, "proxmox-") ? trimprefix(provider_name, "proxmox-") : null
         }
         if contains(keys(local.provider_config_map), provider_name)

@@ -27,10 +27,11 @@ workspaces:
     auto_apply: false  # Disabled until ready for production use
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/cloud/digitalocean/droplets
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/cloud/digitalocean/droplets
+    #   branch: main
     variables:
       - key: region
         value: nyc3
@@ -53,10 +54,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/cloud/digitalocean/spaces
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/cloud/digitalocean/spaces
+    #   branch: main
     variables:
       - key: region
         value: nyc3
@@ -71,10 +73,11 @@ workspaces:
     auto_apply: false  # Disabled until ready for production use
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/cloud/hetzner/instances
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/cloud/hetzner/instances
+    #   branch: main
     variables:
       - key: location
         value: nbg1
@@ -97,10 +100,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/cloud/hetzner/networking
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/cloud/hetzner/networking
+    #   branch: main
 
   # ==========================================================================
   # Multi-Cloud VPN/Networking
@@ -110,10 +114,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/cloud/networking/vpn
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/cloud/networking/vpn
+    #   branch: main
     variables:
       - key: homelab_public_ip
         value: "0.0.0.0"  # Replace with actual IP

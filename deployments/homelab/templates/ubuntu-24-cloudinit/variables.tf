@@ -28,6 +28,16 @@ variable "proxmox_node" {
   description = "Proxmox node name where the template will be created"
 }
 
+variable "proxmox_username" {
+  type        = string
+  description = "Proxmox username for authentication"
+}
+
+variable "proxmox_password" {
+  type        = string
+  description = "Proxmox password for authentication"
+}
+
 # =============================================================================
 # = Template Configuration Variables ==========================================
 # =============================================================================

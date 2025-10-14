@@ -106,6 +106,20 @@ variable "proxmox_ssh_key" {
   default     = null
 }
 
+variable "proxmox_username" {
+  description = "Proxmox username for authentication"
+  type        = string
+  sensitive   = true
+  default     = null
+}
+
+variable "proxmox_password" {
+  description = "Proxmox password for authentication"
+  type        = string
+  sensitive   = true
+  default     = null
+}
+
 # ============================================================================
 # DigitalOcean Provider Configuration Variables
 # ============================================================================

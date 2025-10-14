@@ -19,6 +19,16 @@ variable "proxmox_insecure" {
   default     = true
 }
 
+variable "proxmox_username" {
+  type        = string
+  description = "Proxmox username for authentication"
+}
+
+variable "proxmox_password" {
+  type        = string
+  description = "Proxmox password for authentication"
+}
+
 variable "ssh_username" {
   type        = string
   description = "SSH username for Proxmox host (required for image import)"

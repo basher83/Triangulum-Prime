@@ -60,10 +60,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/infrastructure/base
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/infrastructure/base
+    #   branch: main
     variables:
       - key: proxmox_node
         value: pve-01
@@ -78,10 +79,11 @@ workspaces:
     auto_apply: false  # Disabled until ready for production use
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/vms/single
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/vms/single
+    #   branch: main
     variables:
       - key: vm_template_id
         value: "2006"
@@ -100,10 +102,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/clusters/k8s
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/clusters/k8s
+    #   branch: main
     variables:
       - key: cluster_size
         value: "3"
@@ -126,10 +129,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/clusters/vault
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/clusters/vault
+    #   branch: main
     variables:
       - key: vault_version
         value: "1.15.0"
@@ -148,10 +152,11 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/clusters/nomad-consul
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/clusters/nomad-consul
+    #   branch: main
     variables:
       - key: nomad_version
         value: "1.7.0"
@@ -178,10 +183,11 @@ workspaces:
     auto_apply: false  # Disabled until ready for production use
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/lxc
-      branch: main
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/lxc
+    #   branch: main
     variables:
       - key: lxc_template
         value: "local:vztmpl/ubuntu-22.04-standard_22.04-1_amd64.tar.zst"
@@ -196,13 +202,14 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/templates
-      branch: main
-      trigger_patterns: |
-        deployments/homelab/templates/**/*
-        !deployments/homelab/templates/README.md
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/templates
+    #   branch: main
+    #   trigger_patterns: |
+    #     deployments/homelab/templates/**/*
+    #     !deployments/homelab/templates/README.md
     provider_configs:
       - proxmox-matrix  # Override default, only use Matrix cluster
     variables:
@@ -231,13 +238,14 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/templates
-      branch: main
-      trigger_patterns: |
-        deployments/homelab/templates/**/*
-        !deployments/homelab/templates/README.md
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/templates
+    #   branch: main
+    #   trigger_patterns: |
+    #     deployments/homelab/templates/**/*
+    #     !deployments/homelab/templates/README.md
     provider_configs:
       - proxmox-nexus  # Override default, only use Nexus cluster
     variables:
@@ -250,13 +258,26 @@ workspaces:
         category: terraform
         description: Nexus cluster endpoint
       - key: ubuntu_version
-        value: "22.04"
+        value: "24.04"
         category: terraform
         description: Ubuntu version for templates
       - key: debian_version
         value: "12"
         category: terraform
         description: Debian version for templates
+    environment_variables:
+      - key: PROXMOX_VE_ENDPOINT
+        value: "https://192.168.30.30:8006"
+        description: Proxmox VE API endpoint for Nexus cluster
+      - key: PROXMOX_VE_INSECURE
+        value: "true"
+        description: Allow insecure SSL connections
+      - key: PROXMOX_VE_SSH_USERNAME
+        value: terraform
+        description: SSH username for Proxmox host connections
+      - key: PROXMOX_VE_SSH_AGENT
+        value: "false"
+        description: Disable SSH agent (using private key instead)
 
   # ==========================================================================
   # VM Templates - Quantum Cluster
@@ -266,13 +287,14 @@ workspaces:
     auto_apply: false
     terraform_version: "1.10.0"
     execution_mode: remote
-    vcs_repo:
-      identifier: basher83/triangulum-prime
-      path: deployments/homelab/templates
-      branch: main
-      trigger_patterns: |
-        deployments/homelab/templates/**/*
-        !deployments/homelab/templates/README.md
+    # TEMPORARILY DISABLED: Switched to CLI-driven to avoid burning runs during debugging
+    # vcs_repo:
+    #   identifier: basher83/triangulum-prime
+    #   path: deployments/homelab/templates
+    #   branch: main
+    #   trigger_patterns: |
+    #     deployments/homelab/templates/**/*
+    #     !deployments/homelab/templates/README.md
     provider_configs:
       - proxmox-quantum  # Override default, only use Quantum cluster
     variables:

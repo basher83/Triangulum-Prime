@@ -75,11 +75,35 @@ resource "scalr_variable" "homelab_datacenter" {
 resource "scalr_variable" "homelab_proxmox_ssh_key" {
   count = contains(keys(local.environments), "homelab") ? 1 : 0
 
-  key            = "TF_VAR_proxmox_ssh_key"
+  key            = "proxmox_ssh_key"
   value          = var.proxmox_ssh_key
-  category       = "shell"
+  category       = "terraform"
   sensitive      = true
   account_id     = var.account_id
   environment_id = scalr_environment.environments["homelab"].id
   description    = "SSH private key for Proxmox template creation (CI/CD)"
+}
+
+resource "scalr_variable" "homelab_proxmox_username" {
+  count = contains(keys(local.environments), "homelab") ? 1 : 0
+
+  key            = "proxmox_username"
+  value          = var.proxmox_username
+  category       = "terraform"
+  sensitive      = true
+  account_id     = var.account_id
+  environment_id = scalr_environment.environments["homelab"].id
+  description    = "Proxmox username for API access"
+}
+
+resource "scalr_variable" "homelab_proxmox_password" {
+  count = contains(keys(local.environments), "homelab") ? 1 : 0
+
+  key            = "proxmox_password"
+  value          = var.proxmox_password
+  category       = "terraform"
+  sensitive      = true
+  account_id     = var.account_id
+  environment_id = scalr_environment.environments["homelab"].id
+  description    = "Proxmox password for API access"
 }
