@@ -4,21 +4,21 @@ Unified Terraform module for creating Proxmox VMs with support for cloning from 
 
 ## Features
 
-- **Flexible VM Creation**: Clone from templates or create from cloud images
-- **Template Support**: Create reusable VM templates for fast cloning
-- **Automated Image Download**: Optional cloud image download via URL
-- **Template + Clone Workflow**: Single module for both template creation and VM deployment
-- **Advanced Hardware**: QEMU Guest Agent, RNG device, serial console support
-- **Cloud-init Integration**: Built-in cloud-init support for automated VM configuration
-- **Dual Network Support**: Multiple network interfaces with VLAN tagging
+-   **Flexible VM Creation**: Clone from templates or create from cloud images
+-   **Template Support**: Create reusable VM templates for fast cloning
+-   **Automated Image Download**: Optional cloud image download via URL
+-   **Template + Clone Workflow**: Single module for both template creation and VM deployment
+-   **Advanced Hardware**: QEMU Guest Agent, RNG device, serial console support
+-   **Cloud-init Integration**: Built-in cloud-init support for automated VM configuration
+-   **Dual Network Support**: Multiple network interfaces with VLAN tagging
 
 ## Referancing in deployments
 
-- **From Github:**
+-   **From Github:**
 
 ```hcl
 module "single_vm" {
-  source = "github.com/basher83/Triangulum-Prime//terraform-bgp-vm?ref=v1.0.0"
+  source = "github.com/basher83/Triangulum-Prime//terraform-bgp-vm?ref=vm/1.0.1"
 
 	# Set 6 required variables below.
 
@@ -42,7 +42,7 @@ module "single_vm" {
   }
 ```
 
-- **From Scalr:**
+-   **From Scalr:**
 
 ```hcl
 module "vm" {
@@ -182,10 +182,10 @@ module "production_vm" {
 
 See the [examples](../examples/) directory for complete examples:
 
-- **[template-from-url](../examples/template-from-url/)** - Create template with automated image download
-- **[template-from-file](../examples/template-from-file/)** - Create template from existing image file
-- **[single-vm](../examples/single-vm/)** - Deploy single VM by cloning template
-- **[microk8s-cluster](../examples/microk8s-cluster/)** - Deploy multi-VM cluster via vm-cluster module
+-   **[template-from-url](../examples/template-from-url/)** - Create template with automated image download
+-   **[template-from-file](../examples/template-from-file/)** - Create template from existing image file
+-   **[single-vm](../examples/single-vm/)** - Deploy single VM by cloning template
+-   **[microk8s-cluster](../examples/microk8s-cluster/)** - Deploy multi-VM cluster via vm-cluster module
 
 <!-- BEGIN_TF_DOCS -->
 

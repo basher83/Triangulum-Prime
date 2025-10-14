@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_file" "cloud_init_user_data" {
 
 module "ubuntu_template" {
   source  = "the-mothership.scalr.io/proxmox/vm/bgp"
-  version = "1.0.0"
+  version = "1.0.1"
 
   # Required: VM type and Proxmox node
   vm_type  = "image"
