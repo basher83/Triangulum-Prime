@@ -9,9 +9,16 @@
 # attached to the workspace (proxmox-nexus, proxmox-matrix, or proxmox-quantum).
 
 provider "proxmox" {
-  # Configuration values are injected by Scalr custom provider configuration:
-  # - endpoint: Proxmox API endpoint (e.g., https://192.168.30.30:8006)
-  # - api_token: Proxmox API authentication token
-  # - insecure: Allow insecure SSL connections (optional)
-  # - ssh configuration: For template operations
+  # Configuration from workspace variables
+  endpoint = var.proxmox_endpoint
+  username = var.proxmox_username
+  password = var.proxmox_password
+  insecure = var.proxmox_insecure
+
+  # SSH configuration for template operations
+  ssh {
+    agent       = var.proxmox_ssh_agent
+    username    = var.proxmox_ssh_username
+    private_key = var.proxmox_ssh_key
+  }
 }

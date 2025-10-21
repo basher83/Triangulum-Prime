@@ -29,6 +29,24 @@ variable "proxmox_password" {
   description = "Proxmox password for authentication"
 }
 
+variable "proxmox_ssh_agent" {
+  type        = bool
+  description = "Enable SSH agent (false for CI/CD with private key)"
+  default     = false
+}
+
+variable "proxmox_ssh_username" {
+  type        = string
+  description = "SSH username for Proxmox host connections"
+  default     = "terraform"
+}
+
+variable "proxmox_ssh_key" {
+  type        = string
+  description = "SSH private key for Proxmox host connections"
+  sensitive   = true
+}
+
 variable "ssh_username" {
   type        = string
   description = "SSH username for Proxmox host (required for image import)"

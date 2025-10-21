@@ -62,38 +62,59 @@ Rocky: https://rockylinux.org/cloud-images
 Each workspace uses:
 
 1. **Same code** (`working_directory: deployments/homelab/templates`)
-2. **Different provider config** (via `provider_configs` in workspace YAML)
-3. **Cluster-specific variables** (via workspace variables)
+2. **Scalr provider configuration** (authenticates provider)
+3. **Cluster-specific variables** (auto-generated from `terraform.auto.tfvars`)
 
-### Workspace Variables
+### Variable Architecture
 
-Each workspace sets cluster-specific variables:
+**Environment-Level Variables (inherited by all workspaces):**
+
+-   `proxmox_ssh_key` - SSH private key for template operations
+-   `proxmox_ssh_username` - SSH username ("terraform")
+-   `proxmox_insecure` - Allow self-signed certs (true)
+-   `proxmox_ssh_agent` - Disable SSH agent (false)
+
+**Workspace Variables (auto-generated per cluster):**
+
+Each workspace automatically gets these variables from `scalr-management/terraform.auto.tfvars` based on its provider configuration attachment:
 
 **Matrix Workspace:**
 
--   `proxmox_endpoint` = "https://192.168.3.5:8006"
--   `proxmox_node` = "foxtrot"
+-   `proxmox_endpoint` = "https://192.168.3.5:8006" (from tfvars)
+-   `proxmox_username` = "root@pam" (from tfvars, sensitive)
+-   `proxmox_password` = (from tfvars, sensitive)
+-   `proxmox_node` = "foxtrot" (from YAML)
 
 **Nexus Workspace:**
 
--   `proxmox_endpoint` = "https://192.168.30.30:8006"
--   `proxmox_node` = "bravo"
+-   `proxmox_endpoint` = "https://192.168.30.30:8006" (from tfvars)
+-   `proxmox_username` = "root@pam" (from tfvars, sensitive)
+-   `proxmox_password` = (from tfvars, sensitive)
+-   `proxmox_node` = "bravo" (from YAML)
 
 **Quantum Workspace:**
 
--   `proxmox_endpoint` = "https://192.168.10.2:8006"
--   `proxmox_node` = "lloyd"
+-   `proxmox_endpoint` = "https://192.168.10.2:8006" (from tfvars)
+-   `proxmox_username` = "root@pam" (from tfvars, sensitive)
+-   `proxmox_password` = (from tfvars, sensitive)
+-   `proxmox_node` = "lloyd" (from YAML)
 
-### VCS Triggers
+**Note:** Credentials are NOT hardcoded in YAML - they're automatically injected from the gitignored `scalr-management/terraform.auto.tfvars` file.
 
-All three workspaces trigger on changes to:
+### Execution Mode
 
+**Current:** CLI-driven (manual execution)
+
+Workspaces are configured for remote execution on Scalr agent `bravo-143` but VCS triggers are currently disabled. To deploy:
+
+```bash
+cd deployments/homelab/templates
+tofu init
+tofu plan   # Runs on Scalr, shows output locally
+tofu apply  # Deploys templates
 ```
-deployments/homelab/templates/**/*
-!deployments/homelab/templates/README.md
-```
 
-This ensures template updates automatically deploy to all clusters.
+The workspace backend is configured in `backend.tf` and determines which cluster to target.
 
 ## Template IDs
 
