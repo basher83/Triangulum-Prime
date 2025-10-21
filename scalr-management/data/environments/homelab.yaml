@@ -41,7 +41,6 @@
 # Note: trigger_patterns and trigger_prefixes are mutually exclusive!
 
 name: homelab
-cost_estimation_enabled: false
 
 # Default provider configurations for all workspaces in this environment
 # All three Proxmox clusters are available to homelab workspaces
@@ -217,18 +216,6 @@ workspaces:
         value: foxtrot
         category: terraform
         description: Proxmox node in Matrix cluster
-      - key: proxmox_endpoint
-        value: "https://192.168.3.5:8006"
-        category: terraform
-        description: Matrix cluster endpoint
-      - key: ubuntu_version
-        value: "22.04"
-        category: terraform
-        description: Ubuntu version for templates
-      - key: debian_version
-        value: "12"
-        category: terraform
-        description: Debian version for templates
 
   # ==========================================================================
   # VM Templates - Nexus Cluster
@@ -253,31 +240,6 @@ workspaces:
         value: bravo
         category: terraform
         description: Proxmox node in Nexus cluster
-      - key: proxmox_endpoint
-        value: "https://192.168.30.30:8006"
-        category: terraform
-        description: Nexus cluster endpoint
-      - key: ubuntu_version
-        value: "24.04"
-        category: terraform
-        description: Ubuntu version for templates
-      - key: debian_version
-        value: "12"
-        category: terraform
-        description: Debian version for templates
-    environment_variables:
-      - key: PROXMOX_VE_ENDPOINT
-        value: "https://192.168.30.30:8006"
-        description: Proxmox VE API endpoint for Nexus cluster
-      - key: PROXMOX_VE_INSECURE
-        value: "true"
-        description: Allow insecure SSL connections
-      - key: PROXMOX_VE_SSH_USERNAME
-        value: terraform
-        description: SSH username for Proxmox host connections
-      - key: PROXMOX_VE_SSH_AGENT
-        value: "false"
-        description: Disable SSH agent (using private key instead)
 
   # ==========================================================================
   # VM Templates - Quantum Cluster
@@ -302,15 +264,3 @@ workspaces:
         value: lloyd
         category: terraform
         description: Proxmox node in Quantum cluster
-      - key: proxmox_endpoint
-        value: "https://192.168.10.2:8006"
-        category: terraform
-        description: Quantum cluster endpoint
-      - key: ubuntu_version
-        value: "22.04"
-        category: terraform
-        description: Ubuntu version for templates
-      - key: debian_version
-        value: "12"
-        category: terraform
-        description: Debian version for templates

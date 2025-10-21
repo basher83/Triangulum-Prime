@@ -14,7 +14,6 @@ locals {
     for env in local.environments_raw :
     env.name => {
       name                     = env.name
-      cost_estimation_enabled  = try(env.cost_estimation_enabled, false)
       default_provider_configs = try(env.default_provider_configs, [])
       policy_groups            = try(env.policy_groups, [])
       workspaces               = try(env.workspaces, [])

@@ -140,6 +140,80 @@ resource "scalr_variable" "workspace_variables" {
 }
 
 # ============================================================================
+# Workspace Proxmox Credentials (from Provider Configurations)
+# ============================================================================
+#
+# Automatically inject proxmox_endpoint, proxmox_username, and proxmox_password
+# into workspaces based on their provider configuration attachment.
+# Credentials come from var.proxmox_clusters (terraform.auto.tfvars).
+
+locals {
+  # Reverse map: provider config ID -> provider name
+  provider_id_to_name = {
+    for name, id in local.provider_config_map :
+    id => name
+  }
+
+  # Map workspace to cluster credentials
+  workspace_proxmox_credentials = {
+    for ws_key, ws in local.workspaces :
+    ws_key => {
+      cluster_name = try(
+        trimprefix(
+          [
+            for pc in ws.provider_configurations :
+            local.provider_id_to_name[pc.id]
+            if can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
+          ][0],
+          "proxmox-"
+        ),
+        null
+      )
+    }
+    if anytrue([
+      for pc in ws.provider_configurations :
+      can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
+    ])
+  }
+}
+
+resource "scalr_variable" "workspace_proxmox_endpoint" {
+  for_each = nonsensitive(local.workspace_proxmox_credentials)
+
+  account_id   = var.account_id
+  workspace_id = scalr_workspace.workspaces[each.key].id
+  key          = "proxmox_endpoint"
+  value        = var.proxmox_clusters[nonsensitive(each.value.cluster_name)].endpoint
+  category     = "terraform"
+  description  = "Proxmox API endpoint for ${nonsensitive(each.value.cluster_name)} cluster"
+  sensitive    = false
+}
+
+resource "scalr_variable" "workspace_proxmox_username" {
+  for_each = nonsensitive(local.workspace_proxmox_credentials)
+
+  account_id   = var.account_id
+  workspace_id = scalr_workspace.workspaces[each.key].id
+  key          = "proxmox_username"
+  value        = var.proxmox_clusters[nonsensitive(each.value.cluster_name)].username
+  category     = "terraform"
+  description  = "Proxmox username for ${nonsensitive(each.value.cluster_name)} cluster"
+  sensitive    = true
+}
+
+resource "scalr_variable" "workspace_proxmox_password" {
+  for_each = nonsensitive(local.workspace_proxmox_credentials)
+
+  account_id   = var.account_id
+  workspace_id = scalr_workspace.workspaces[each.key].id
+  key          = "proxmox_password"
+  value        = var.proxmox_clusters[nonsensitive(each.value.cluster_name)].password
+  category     = "terraform"
+  description  = "Proxmox password for ${nonsensitive(each.value.cluster_name)} cluster"
+  sensitive    = true
+}
+
+# ============================================================================
 # Workspace Environment Variables (Shell Variables)
 # ============================================================================
 
@@ -168,59 +242,3 @@ resource "scalr_variable" "workspace_env_variables" {
   final        = each.value.final
 }
 
-# ============================================================================
-# Proxmox Provider Environment Variables
-# ============================================================================
-#
-# Automatically creates PROXMOX_VE_API_TOKEN environment variables for
-# workspaces that use Proxmox provider configurations. The API token is
-# extracted from the cluster configuration in terraform.auto.tfvars.
-#
-# This solves the issue where Scalr custom provider configurations don't
-# automatically inject as environment variables for custom providers.
-
-locals {
-  # Reverse map: provider config ID -> provider name
-  provider_id_to_name = {
-    for name, id in local.provider_config_map :
-    id => name
-  }
-
-  # Create a map of workspace -> cluster_name for workspaces using Proxmox
-  proxmox_workspace_tokens = {
-    for ws_key, ws in local.workspaces :
-    ws_key => {
-      # Extract cluster name from the first Proxmox provider config
-      # Example: "proxmox-nexus" -> "nexus"
-      cluster_name = try(
-        trimprefix(
-          [
-            for pc in ws.provider_configurations :
-            local.provider_id_to_name[pc.id]
-            if can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
-          ][0],
-          "proxmox-"
-        ),
-        null
-      )
-    }
-    # Only include workspaces that have at least one Proxmox provider
-    if anytrue([
-      for pc in ws.provider_configurations :
-      can(local.provider_id_to_name[pc.id]) && startswith(local.provider_id_to_name[pc.id], "proxmox-")
-    ])
-  }
-}
-
-resource "scalr_variable" "proxmox_api_token" {
-  for_each = nonsensitive(local.proxmox_workspace_tokens)
-
-  account_id   = var.account_id
-  workspace_id = scalr_workspace.workspaces[each.key].id
-  key          = "PROXMOX_VE_API_TOKEN"
-  value        = var.proxmox_clusters[nonsensitive(each.value.cluster_name)].api_token
-  category     = "shell"
-  description  = "Proxmox API token for ${nonsensitive(each.value.cluster_name)} cluster (auto-generated)"
-  sensitive    = true
-  final        = false
-}

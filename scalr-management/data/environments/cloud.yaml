@@ -13,7 +13,6 @@
 # and cost tracking.
 
 name: cloud
-cost_estimation_enabled: false  # Cost estimation not available for this account
 
 # No default provider - each workspace will specify its own
 default_provider_configs: []

@@ -16,9 +16,8 @@
 resource "scalr_environment" "environments" {
   for_each = local.environments
 
-  name                    = each.value.name
-  account_id              = var.account_id
-  cost_estimation_enabled = each.value.cost_estimation_enabled
+  name       = each.value.name
+  account_id = var.account_id
 
   # Note: default_provider_configurations requires special permissions in Scalr
   # For solo/homelab use, it's simpler to let workspaces reference provider configs directly
@@ -43,34 +42,6 @@ resource "scalr_environment" "environments" {
 # - Environment-specific configuration
 # - Shared secrets from Infisical or Vault
 
-# Example: Default tags for homelab environment
-resource "scalr_variable" "homelab_default_tags" {
-  count = contains(keys(local.environments), "homelab") ? 1 : 0
-
-  key = "TF_VAR_default_tags"
-  value = jsonencode({
-    managed_by  = "scalr"
-    environment = "homelab"
-    project     = "triangulum-prime"
-  })
-  category       = "shell"
-  account_id     = var.account_id
-  environment_id = scalr_environment.environments["homelab"].id
-  description    = "Default tags applied to all homelab resources"
-}
-
-# Example: Proxmox datacenter variable
-resource "scalr_variable" "homelab_datacenter" {
-  count = contains(keys(local.environments), "homelab") ? 1 : 0
-
-  key            = "TF_VAR_datacenter"
-  value          = "homelab-dc1"
-  category       = "shell"
-  account_id     = var.account_id
-  environment_id = scalr_environment.environments["homelab"].id
-  description    = "Proxmox datacenter name"
-}
-
 # Proxmox SSH private key for CI/CD template creation
 resource "scalr_variable" "homelab_proxmox_ssh_key" {
   count = contains(keys(local.environments), "homelab") ? 1 : 0
@@ -84,26 +55,38 @@ resource "scalr_variable" "homelab_proxmox_ssh_key" {
   description    = "SSH private key for Proxmox template creation (CI/CD)"
 }
 
-resource "scalr_variable" "homelab_proxmox_username" {
+resource "scalr_variable" "homelab_proxmox_ssh_username" {
   count = contains(keys(local.environments), "homelab") ? 1 : 0
 
-  key            = "proxmox_username"
-  value          = var.proxmox_username
+  key            = "proxmox_ssh_username"
+  value          = "terraform"
   category       = "terraform"
-  sensitive      = true
+  sensitive      = false
   account_id     = var.account_id
   environment_id = scalr_environment.environments["homelab"].id
-  description    = "Proxmox username for API access"
+  description    = "SSH username for Proxmox host connections"
 }
 
-resource "scalr_variable" "homelab_proxmox_password" {
+resource "scalr_variable" "homelab_proxmox_insecure" {
   count = contains(keys(local.environments), "homelab") ? 1 : 0
 
-  key            = "proxmox_password"
-  value          = var.proxmox_password
+  key            = "proxmox_insecure"
+  value          = "true"
   category       = "terraform"
-  sensitive      = true
+  sensitive      = false
   account_id     = var.account_id
   environment_id = scalr_environment.environments["homelab"].id
-  description    = "Proxmox password for API access"
+  description    = "Allow insecure SSL connections for self-signed certificates"
+}
+
+resource "scalr_variable" "homelab_proxmox_ssh_agent" {
+  count = contains(keys(local.environments), "homelab") ? 1 : 0
+
+  key            = "proxmox_ssh_agent"
+  value          = "false"
+  category       = "terraform"
+  sensitive      = false
+  account_id     = var.account_id
+  environment_id = scalr_environment.environments["homelab"].id
+  description    = "Disable SSH agent (using private key instead for CI/CD)"
 }

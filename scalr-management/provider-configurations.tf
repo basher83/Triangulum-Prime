@@ -29,7 +29,7 @@ resource "scalr_provider_configuration" "proxmox_clusters" {
 
   name                   = "proxmox-${each.key}"
   account_id             = var.account_id
-  export_shell_variables = false  # Custom providers don't support shell variable export
+  export_shell_variables = false # Custom providers don't support shell variable export
   # Link to environments so workspaces in those environments can use this provider config
   environments = [for env in scalr_environment.environments : env.id]
 
