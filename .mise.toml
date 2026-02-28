@@ -11,8 +11,8 @@ show_env = false
 truncate = true
 
 [tools]
-terraform-docs = "0.20.0"
-tflint = "0.59.1"
+terraform-docs = "0.21.0"
+tflint = "0.61.0"
 git-cliff = "2.10.1"
 
 # === Changelog tasks ===
