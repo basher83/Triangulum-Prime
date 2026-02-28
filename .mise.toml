@@ -13,9 +13,6 @@ truncate = true
 [tools]
 terraform-docs = "0.20.0"
 tflint = "0.59.1"
-pre-commit = "4.4.0"
-tflint = "0.60.0"
-pre-commit = "4.3.0"
 git-cliff = "2.10.1"
 
 # === Changelog tasks ===
@@ -54,5 +51,3 @@ tflint --recursive --color --fix
 """
 
 [tasks.lint]
-description = "Run pre-commit"
-run = "pre-commit run -a"
