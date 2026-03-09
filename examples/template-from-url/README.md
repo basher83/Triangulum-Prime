@@ -185,7 +185,7 @@ Once created, use the template for cloning:
 ```hcl
 # In terraform/deployments/examples/single-vm/main.tf
 module "my_vm" {
-  source = "../../../modules/vm"
+  source = "../../terraform-bgp-vm"
 
   vm_type = "clone"
   src_clone = {
@@ -357,6 +357,6 @@ jobs:
 ## Additional Resources
 
 - [Proxmox VM Provisioning Guide](../../../../docs/terraform/proxmox-vm-provisioning-guide.md)
-- [VM Module Documentation](../../../modules/vm/README.md)
+- [VM Module Documentation](../../terraform-bgp-vm/README.md)
 - [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/)
 - [Debian Cloud Images](https://cloud.debian.org/images/cloud/)

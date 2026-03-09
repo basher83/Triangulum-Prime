@@ -40,7 +40,7 @@ resource "proxmox_virtual_environment_file" "cloud_init_user_data" {
 # =============================================================================
 
 module "ubuntu_template" {
-  source = "../../../modules/vm"
+  source = "../../terraform-bgp-vm"
 
   # Required: VM type and Proxmox node
   vm_type  = "image"
