@@ -27,6 +27,7 @@ variable "proxmox_username" {
 variable "proxmox_password" {
   type        = string
   description = "Proxmox password for authentication"
+  sensitive   = true
 }
 
 variable "proxmox_ssh_agent" {

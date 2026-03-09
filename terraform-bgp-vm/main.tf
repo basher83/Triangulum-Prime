@@ -232,7 +232,7 @@ resource "proxmox_virtual_environment_vm" "pve_vm" {
     }
 
     precondition {
-      condition     = ((var.vm_init.user != null && var.vm_user_data == null) || (var.vm_init.user == null && var.vm_user_data != null) || (var.vm_init.user == null && var.vm_user_data == null))
+      condition     = !(var.vm_init.user != null && var.vm_user_data != null)
       error_message = "Variables 'vm_init.user' and 'vm_user_data' are incompatible, only one should be set."
     }
   }

@@ -514,21 +514,19 @@ If you need to deploy multiple VMs, consider:
 
 ```hcl
 module "web_server" {
-  source = "../../../modules/vm"
+  source = "../../terraform-bgp-vm"
   # ... configuration
 }
 
 module "db_server" {
-  source = "../../../modules/vm"
+  source = "../../terraform-bgp-vm"
   # ... configuration
 }
 ```
 
 ## Related Documentation
 
-- [vm Module Documentation](../../../modules/vm/README.md)
-- [vm-cluster Module Documentation](../../../modules/vm-cluster/README.md)
-- [Proxmox VM Provisioning Guide](../../../../docs/terraform/proxmox-vm-provisioning-guide.md)
+- [vm Module Documentation](../../terraform-bgp-vm/README.md)
 - [CLAUDE.md Project Documentation](../../../../CLAUDE.md)
 
 ## Best Practices
