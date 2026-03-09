@@ -4,14 +4,14 @@
 
 variable "vm_template_id" {
   description = "Proxmox VM template ID to clone from"
-  type        = string
-  default     = "2006"
+  type        = number
+  default     = 2006
 }
 
 variable "vm_count" {
   description = "Number of single-purpose VMs to create"
-  type        = string
-  default     = "3"
+  type        = number
+  default     = 3
 }
 
 variable "proxmox_node" {
