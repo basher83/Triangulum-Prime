@@ -39,7 +39,7 @@ locals {
 
 # Deploy using for_each
 module "cluster_vms" {
-  source   = "../../../modules/vm"
+  source   = "../../terraform-bgp-vm"
   for_each = local.nodes
 
   vm_name  = each.key
@@ -366,7 +366,7 @@ module "cluster" {
 ```hcl
 # Flexible composition - RECOMMENDED
 module "cluster_vms" {
-  source   = "../modules/vm"
+  source   = "../../terraform-bgp-vm"
   for_each = local.nodes
 
   vm_type = "clone"  # Could be "image" for templates
@@ -376,7 +376,7 @@ module "cluster_vms" {
 
 ## 📚 Related Documentation
 
-- [vm Module Documentation](../../../modules/vm/README.md)
+- [vm Module Documentation](../../terraform-bgp-vm/README.md)
 - [Proxmox VM Provisioning Guide](../../../../docs/terraform/proxmox-vm-provisioning-guide.md)
 - [Terraform for_each Documentation](https://www.terraform.io/language/meta-arguments/for_each)
 

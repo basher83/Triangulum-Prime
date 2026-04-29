@@ -213,7 +213,7 @@ resource "proxmox_virtual_environment_vm" "pve_vm" {
     # cannot use variables - they must be static. Set these in deployment configs as needed.
     ignore_changes = [
       initialization[0].user_account,
-      template,  # Ignore template conversion changes to prevent "inconsistent result" errors
+      template, # Ignore template conversion changes to prevent "inconsistent result" errors
     ]
 
     precondition {
@@ -232,7 +232,7 @@ resource "proxmox_virtual_environment_vm" "pve_vm" {
     }
 
     precondition {
-      condition     = ((var.vm_init.user != null && var.vm_user_data == null) || (var.vm_init.user == null && var.vm_user_data != null) || (var.vm_init.user == null && var.vm_user_data == null))
+      condition     = !(var.vm_init.user != null && var.vm_user_data != null)
       error_message = "Variables 'vm_init.user' and 'vm_user_data' are incompatible, only one should be set."
     }
   }
