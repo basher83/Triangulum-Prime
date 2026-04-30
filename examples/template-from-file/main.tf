@@ -24,7 +24,7 @@
 # =============================================================================
 
 module "ubuntu_template" {
-  source = "../../../modules/vm"
+  source = "../../terraform-bgp-vm"
 
   # Required: VM type and Proxmox node
   vm_type  = "image"

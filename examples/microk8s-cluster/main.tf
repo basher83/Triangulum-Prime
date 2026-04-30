@@ -84,7 +84,7 @@ locals {
 # =============================================================================
 
 module "cluster_vms" {
-  source   = "../../../modules/vm"
+  source   = "../../terraform-bgp-vm"
   for_each = local.nodes
 
   # Required: Node identification
