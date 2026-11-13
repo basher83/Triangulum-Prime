@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e3fed7fef56a56047ed96107e136c3995a757a05088de7bf8b94230842731a69",
+  "claims": [
+    {
+      "id": "claim_e345150f1a4849798f93a339de471fe2",
+      "statement": "The template root uses a CLI-driven remote backend at the-mothership.scalr.io, organization homelab, workspace vm-templates-nexus; plans and applies execute remotely and state is stored in Scalr.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        }
+      ]
+    },
+    {
+      "id": "claim_0519739b7a9d4110b2eb759b574b50c4",
+      "statement": "The YAML declares separate Matrix, Nexus and Quantum remote template workspaces with auto-apply disabled, commented VCS bindings, matching provider configurations and nodes foxtrot, bravo and lloyd; changing a node input alone does not select their separate backend states.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml#L186-L266",
+          "version": "repo-lines-v1:sha256:f7edc63e3857cc751526b23243407811dc061f6e4ce1d05c840df644efab5b96:eyJzZWxlY3RlZExpbmVDb3VudCI6ODEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY5MjI5YmI4MDdmOTUwNDNjNjk4MGVhZThiZmJkNzZjOGJiMmZlMzNjZWVlOGU2MDIxMDc0ZWRjNzAwYTYyMjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5NmYyZTAwNTFmYTQ2MjMzZTc1YzYzOTNiZTY2MjQxOWUzYmFmZTI1NWNjN2I0ZmQ0ZWRmMTE1Yjc4OGFmYWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEwN2UyNjg2ZWZiNjM3OGIwZjE3NWI4Zjg1YmIwMDYwNmE3OWRkMWViNzg1M2QxNDY3MzNmZWQyYjI0ZWYzNmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L39-L100",
+          "version": "repo-lines-v1:sha256:b55b3bdb2c127b5b0b651adfd884b7e6b6a9bb4fa97f48173c512a165eaeee15:eyJzZWxlY3RlZExpbmVDb3VudCI6NjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlNDA3MDE4MGUzNDFjNzkxNjNmYzJmOGJmMmJjN2I1NDA4Y2JkYjlkNzcyOTE2ZDAxZTMwYWQ5NGZmOTgwOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlNGY0MWU4ZTI4YjY0OWM1Njc0ZjIwZTUxNTc4ODg2ODI5MzBhMWY1YjRmODNhZDM2NWJiZWZiZjE5ZTAyODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM2OWVlMjg0ZmZhY2ZjN2VjMDA2MDEzZTE1NjRiNmI5YjRiMzVmZDc3Mjc5ZGNmNGIzM2QyNjA3ZjU2NzUwZWEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2acb958794ea44c280f71f91c62faef7",
+      "statement": "Ubuntu 24.04 is the active template orchestrator module, while Ubuntu 22.04's module, outputs and summary entry are commented out.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/outputs.tf",
+          "version": "repo-file-v1:sha256:7343b8ff877ecfaf4cbfa0e5cd0099280562376046a14aec5752e1f6f5ffbf4d"
+        }
+      ]
+    },
+    {
+      "id": "claim_49ffa2b48d6f4a6ea5706e9740de927f",
+      "statement": "The active Ubuntu template child selects private registry module the-mothership.scalr.io/proxmox/vm/bgp version 1.0.1 independently of the provider: the template root and active child both require required_version >= 1.8 and bpg/proxmox ~> 0.90.0, and the root lockfile selects provider 0.90.0.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/.terraform.lock.hcl#L4-L6",
+          "version": "repo-lines-v1:sha256:edc447e312f15f3828d470c4a88924dd24a402f797b03836756e66773d19bfd7:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTAwODVkYjAzZWYwNzRiODgxOWU1MDRkZjUyNGNlMDdjMTUxMWNjZjViOWQ3MmY3NWIyMjI0OTEzOGNlMGYwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU1MDlhYjZkYWY2ZmNlNjZkZTk0ZjI2NDkzMzIwMmE4ZjE5NTBiMjNjNWExMmM3ODE5NzE4MjJmMzE1NGJiNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGI4MzBlNDU3NTQ1YzI4NmRhZWE2Mjg4ZWU2ZTFmODU2ZTU2NzYxOTI3ZDZmMTA5N2VkYzJiNjdjNzllNzI4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjIxNTM5NjEzMjllY2ZiMzkzNWU4ZGVkNTFlMmJjOTliODhiNGRlZTZiYzExNTcwYzU3NjUwNzliOGU4NTU5NiJ9"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L41-L49",
+          "version": "repo-lines-v1:sha256:e3ee266ce4c5c4529df192c5df964bb6696d243162aa0f953d73bb4789bd4034:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU2OWFmYTgzY2EzMzZlYzhhMDYxNmRlOWEwNTUwOGMyYzU3ZDE5MzJmYzQ4YmFkNTUxY2JiMjdhMWFiYjMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQxMjE5M2Y3NTE2NzIyYTliNzc1ZGZiMTU1NDdmMWU5MDhlODVkYzg0OGZmOGIyYTczNmM5NTU3MTY5NjRlMyJ9"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        }
+      ]
+    },
+    {
+      "id": "claim_23db8548e0c040a99ada4d171feffaa1",
+      "statement": "The remote Proxmox provider reads endpoint, username/password, TLS policy and host SSH configuration from variables; SSH agent defaults false, the private key is sensitive, and insecure TLS defaults true.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf#L6-L60",
+          "version": "repo-lines-v1:sha256:f898ac38744fad127b58b6b913e559ef07113f45a65c948fa3aa3cc913d3cd86:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OWM1NmYxYjQ2ZThlNzk4MmYyZWE2MTRhM2NiN2Q0ZDQ2NDFmYWIwNGE0M2E4ZWMxM2E5NWEzZjUwMTI4MWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk5YWYzZGZiYmM1ZTQ3ZTUyYzA3OTAwN2MyNTA5NDg5ZWU3MDNjNzJmMjdkMjUwY2QwMWIyNTU5ZmM3MTM0ZTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiODEyZTY0ODkyODA0M2Y3Yjg2ZGQzOTJhOTFjODE2ZDRkYTIyZmJiYWM0MjRkMzgwOTBhZGZkMjY3Yjk2M2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1f1c4f1714cd434faed16ca854637658",
+      "statement": "The active child uploads a snippets resource and passes its ID as custom user-data to an image-mode stopped template configured with an EFI disk, main scsi0 disk, DHCP bridge networking and DNS.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e0c81e48a2541c9b730f29b4b075572",
+      "statement": "Remote template defaults include ID 9001, a 5 GB disk, a moving Noble current image URL, null checksum, local-lvm disks, local image/snippet storage, vmbr0 and public DNS servers.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf",
+          "version": "repo-file-v1:sha256:abe919ffe03d220eeebabca087dc021e217773b9ede0644be6a15f778a6a3f87"
+        }
+      ]
+    },
+    {
+      "id": "claim_b9d4e5a28ba149748a5414d209e7cd35",
+      "statement": "The remote snippet path defaults to ./shared/user-data.yaml and is passed unchanged to source_file.path; the local custom example defaults to user-data.yaml and supplies a user-data.yaml.example rather than that configured file.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf#L86-L89",
+          "version": "repo-lines-v1:sha256:54f5098be31d4af901b3da315ab5d5ce53c1e3dbbbf328074fe3a290dd27e23b:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzA1ODVmZWQ4NzMyYTFkNjUyOGYzYmUyZDNmYzYxZjViN2IxNTJlNWU4OTk2N2JmNjVjYzA1NjczOGI5MzY0YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmI0Y2I5YmFkOGEyMTk0NGRhMTg1OGEyN2M5Y2JkODFkYzg5NDUyNmMxNzRhNzNhY2M2NjkyMzM0NjNmNzk5MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzNiODEzZTQxZTk1NWUwNDJhZGYyZmViOTNjNTE5MDg5OTliZTcyNTM0ZjU1ODkxYzdjZjAwOTY2NmEyMjQ0NSJ9"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L26-L35",
+          "version": "repo-lines-v1:sha256:2d03e2e40c4515763d3f68e8c0fe11f3c893c63be56225a2640f814139f25e94:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYjM4OTFlOGM0YzBhMmEzNjA3M2IxZDJlMzZhZDk1OWQ1NjE3OGM5ZTMxZGQxZjYxYTI4YWFjYzZjZThiZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2MGRjY2M2YmY4ZTdiYmZjNGY3OGU3YzZiYWE2ZTc4YmNlOWE2NjRjMjVhMmQyYWZjM2JhM2U5OGIyODljZWYifQ"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf#L96-L104",
+          "version": "repo-lines-v1:sha256:2bb7c07de3a471e54d798c771594c166dccaee761d8c4d87ee6118490ed95235:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjZjMDhkYzkwZjU4MzIxZmQ5YmU2OGE5OGM3NTZlNDU0Zjk0MjNhYTZkN2FmM2Q2ZThlODc3N2FiZjRhYjdlOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTYwZGNjYzZiZjhlN2JiZmM0Zjc4ZTdjNmJhYTZlNzhiY2U5YTY2NGMyNWEyZDJhZmMzYmEzZTk4YjI4OWNlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzZhYjM0ODFlMjViMjIyZWZmNWJhY2JiYmVkZGMwZmZkMjQxMmMyMWIyYWJmZjI4OTY2Mzg1M2YwM2RiZTY5OSJ9"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/user-data.yaml.example",
+          "version": "repo-file-v1:sha256:136f3c1d42e87e52174830385bdbb2602067738c5c1fcbde603e5b5b4cd9d685"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/variables.tf#L43-L48",
+          "version": "repo-lines-v1:sha256:0d5124988c08a7813e938bf1eed3f5aa8a9734e7a16f0765e9c11d841094bfd2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTgyMDNhOTM3ZDBkYzk2ODQwNDFmM2MzYTFkMDExZTRhOTkzOTlkOTA0NjNmZTQ1ZGJjYzEyODRlNGQ2OTM1MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDgzMDU2NzJhYzM3MGYyMTQ5NGFhNDVlMDE0YzcyMTg0NDdkZGUzZWQwNmYyZTRlMTZiNDhiMjMyMmZjYTNjMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTYwZGNjYzZiZjhlN2JiZmM0Zjc4ZTdjNmJhYTZlNzhiY2U5YTY2NGMyNWEyZDJhZmMzYmEzZTk4YjI4OWNlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGU2ZjVjZTQ3ZDI3MjRmZWMwNjI1ZDUwNWRiNzg3ODE4Zjg2NGM1ZDg2YWEzOGE5NGM0ZDQ0Y2RmYzY4MzRmZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b983ce467a644843aabed933be7f279b",
+      "statement": "The shared remote cloud-init snippet creates an ansible account with public keys and passwordless sudo, disables password SSH, installs qemu-guest-agent, upgrades packages and requests reboot.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/shared/user-data.yaml",
+          "version": "repo-file-v1:sha256:03ba9e84b328b9ff17342919c2cac344a10447955377fe7034dee31e6fc2cbd8"
+        }
+      ]
+    },
+    {
+      "id": "claim_69faae7aae234363bbe0bce251ac1d6e",
+      "statement": "Remote outputs expose Ubuntu 24 template ID, name, node, snippet ID and a summary containing endpoint and node for verification.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/outputs.tf",
+          "version": "repo-file-v1:sha256:7343b8ff877ecfaf4cbfa0e5cd0099280562376046a14aec5752e1f6f5ffbf4d"
+        }
+      ]
+    },
+    {
+      "id": "claim_8a8ea32f4d1f40ed945969ca521bbe88",
+      "statement": "The standalone examples use the local ../../terraform-bgp-vm source rather than the private release and do not wire template outputs to clone inputs through a remote-state lookup; edits to those examples or the local module do not automatically update the independently selected private-registry artifact used by the remote template child.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L41-L49",
+          "version": "repo-lines-v1:sha256:e3ee266ce4c5c4529df192c5df964bb6696d243162aa0f953d73bb4789bd4034:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU2OWFmYTgzY2EzMzZlYzhhMDYxNmRlOWEwNTUwOGMyYzU3ZDE5MzJmYzQ4YmFkNTUxY2JiMjdhMWFiYjMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQxMjE5M2Y3NTE2NzIyYTliNzc1ZGZiMTU1NDdmMWU5MDhlODVkYzg0OGZmOGIyYTczNmM5NTU3MTY5NjRlMyJ9"
+        },
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        },
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        },
+        {
+          "resource": "repo://examples/template-from-file/main.tf",
+          "version": "repo-file-v1:sha256:cff914548ea5e3c369d0e84d263f9f8bc74ac932f2500a1067f2b12dc144316e"
+        },
+        {
+          "resource": "repo://examples/template-from-url/main.tf",
+          "version": "repo-file-v1:sha256:24030e94d289977defbb9abf6ff871d5aebd9a5101aaffd6b6579db43e7e3c7c"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:02685f6e22108391923c07e9a90c25a91af2d50cded27505c704594540b4eef9"
+        }
+      ]
+    },
+    {
+      "id": "claim_afec85b56460483f85c54d11476bb203",
+      "statement": "Local examples configure Proxmox locally with endpoint/TLS inputs and environment-based API credentials; template examples use a local SSH agent, and no Scalr backend or provider injection is declared in these roots.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/provider.tf",
+          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+        },
+        {
+          "resource": "repo://examples/single-vm/provider.tf",
+          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+        },
+        {
+          "resource": "repo://examples/template-from-file/provider.tf",
+          "version": "repo-file-v1:sha256:4e6237a42eefd45dc30978e048fb53ca8f10420c00f958efa58e84973327c0d9"
+        },
+        {
+          "resource": "repo://examples/template-from-url/provider.tf",
+          "version": "repo-file-v1:sha256:7bb19c9eaf7d72b4b866b24b2d86d149c8e9ea53519a54ab234e808f1c9ed159"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/provider.tf",
+          "version": "repo-file-v1:sha256:7bb19c9eaf7d72b4b866b24b2d86d149c8e9ea53519a54ab234e808f1c9ed159"
+        }
+      ]
+    },
+    {
+      "id": "claim_837236b806214dcf989f35dd129cace4",
+      "statement": "The local VM module downloads images only for image mode with a URL, stores them as ISO content, defaults checksum_algorithm to sha256, and otherwise references an existing datastore:iso/filename without a download resource.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L10-L25",
+          "version": "repo-lines-v1:sha256:dc9913f42fc57cd0398ff989c11a8c67ec066945a02d4cd60ec6caa2288d43fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmNzg0NDBmZmVhZDZjMjU1ZDk3NWU4YzJiNzA5Y2Q1NTI2OTdiNWE4NTI2N2YwYjUxMGQ4YmUzNTg2NTM0NmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2MGRjY2M2YmY4ZTdiYmZjNGY3OGU3YzZiYWE2ZTc4YmNlOWE2NjRjMjVhMmQyYWZjM2JhM2U5OGIyODljZWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2MDM5ZDIyNWZmMjkwZDBjMDM4MWE4ZDRlYjA5YjVmNDdhMmY1ZWVjNjQ2ODNhMWQyNzdjOTZjNmZmM2UwZDkifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L129-L145",
+          "version": "repo-lines-v1:sha256:790d1acd215665b9ad6e7ac6042ad8614f566905b5e0a0e76b5921498615ce7a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUxMGZkNzdmZDEzY2I3NTYwZjMzODU5ODg3M2RlNWRkN2ZlMWQ2MjZlOWIwYWEyYmE0MjM5NDdiNjZmMzNiNGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNhN2IwMTdiNmFkNTMxNjNjMTMyYmE1ZDA3OTJmYTk2Y2IyOGM2ODI1MjYzMWY3NDgxYTk2Yzg3ZjRiYjUxMWQifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf#L36-L49",
+          "version": "repo-lines-v1:sha256:e07985d8746e80d60fb629bba7b1ab13675febba7cf548c56385951540ce5012:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3YjZlYmJmZjA1ZjIxMTc5NGMxZDc3MmJlODQwNzZmODIyYzc1MmY4ODgxMWFlMzYzZTk0ZTM0NDZhZDQ0MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM4YWU3ODdjZGNmZTA4ZmI2Yzg4MTBiZjE0ZDExM2U5YTY4OWMxNWM2YzkzMmUxMThmY2I0NTBmM2ZkZDE5NWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1Y2I1NjFiMzRiODg3NmI2MDEzNWM3MTc3YTA4YjNhNTEzYTRmMjZlNzE4MTlhZGY0ODM3MDE1Njk4NWFlZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_01902fcadf4748b48a8a9a2b280106c1",
+      "statement": "The URL and custom-data example wrappers pass optional checksums without exposing an algorithm override; custom data uploads require snippets-capable storage and image downloads require file-based rather than block-based storage.",
+      "evidence": [
+        {
+          "resource": "repo://examples/template-from-url/main.tf#L35-L43",
+          "version": "repo-lines-v1:sha256:c7fa403a867d1f8a2a3bedf76c727d0960764ef5ead3fb7d0c47fdcc36a7775b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTJiN2QwNWEzOWNmNzY4YjYzMzgwMmJlZjY4YTA4MmIyODFiNGZiNWZlMDUxOTQxYjY3Yjc5Zjg1MzM2MjJhNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDA2ZjYzY2Q5YmI3Yzg2M2RkMTU2YmE4ZmM3OGU3Zjg0ZjkzM2I1NTU1YjE1NDYxYmUzMzQ1NGZmOGRjY2E3MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTJjODEzNjljMDcyNDc3MzU1MmYxM2ExZGM1NzRhOTUxNjg5ZmI2ZjY2YThjZmQ3MDc2YjdiOGIwNjBkYjZjOCJ9"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/main.tf#L26-L35",
+          "version": "repo-lines-v1:sha256:2d03e2e40c4515763d3f68e8c0fe11f3c893c63be56225a2640f814139f25e94:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkzYjM4OTFlOGM0YzBhMmEzNjA3M2IxZDJlMzZhZDk1OWQ1NjE3OGM5ZTMxZGQxZjYxYTI4YWFjYzZjZThiZmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU2MGRjY2M2YmY4ZTdiYmZjNGY3OGU3YzZiYWE2ZTc4YmNlOWE2NjRjMjVhMmQyYWZjM2JhM2U5OGIyODljZWYifQ"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/main.tf#L52-L60",
+          "version": "repo-lines-v1:sha256:2ccfde8b88ac0a646833e6efae4e7e878b05a3055c6d2f304b27fb395e1f513f:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGFmYTkwNTgzNTAwMGM5Nzc0MmQ2MGMyNDJjODBjMGVmMWRkMGQ1OTA4MDdlZGUwM2U3OWRmMzcwN2RmZDU2YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjdlNTc4OGQ1ZDlkNzNkMjRhODFkYmMwYTVhNzRiZmE4MmM5YzNiM2FmOTllNTJhZjc5NmU5MGI0NjhhOGEzZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWQxMjE5M2Y3NTE2NzIyYTliNzc1ZGZiMTU1NDdmMWU5MDhlODVkYzg0OGZmOGIyYTczNmM5NTU3MTY5NjRlMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmJjNzYyOGUzNTMwMTZhZjdmZTYzNTk4OGFiNjQ1MGEzZjMzY2VhMzQ3YjRmMGViNzhmOTdjZDY0MDQ2N2MwMSJ9"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/variables.tf#L57-L102",
+          "version": "repo-lines-v1:sha256:c37abc68ac8a6a96cf7148bb901f1a0d1f931dee8ef6fb696c34e55a369f343a:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkxM2QzZDZjOGZmNTZkY2Y1ZDJiNTI3MTAwZDY0ZDQ4OTI3ZmQzNDlmODViNmIxY2NkM2U5MGNmZTc4MmI3NjciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjBlOWVhOWEwYmFiM2E3OWZkODFiMWM3YWNkMzYyNDMxMjM5YWM3ZWI4Y2RjODcwNDcwYmUyZjg0NjlkMDhjNmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEwNmRkOGMyMWZkZDA3MDYxMmFlMTVhMzdhY2QxMzc1OTM3ZDQ3ODFlNDc2ZWJkN2E1N2FmNDUzZTg0N2RhM2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_808f7f22cd2342e392cf4e2a2eb094d1",
+      "statement": "The local module requests full clones and defaults an omitted clone source node to the target node; single-vm omits that source node whereas microk8s-cluster explicitly supplies template_node.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf#L100-L106",
+          "version": "repo-lines-v1:sha256:c051b84e3c520280aa1b0aaf16b75ecc31b2c7e0a9d1a668d2ddb01a14192b61:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDgwY2RjYTZjN2U0ODc5ODhhNzViZWRmNzAwYjY0Mzk0MGMyZTlmOTkwNDAzYmJjY2EzNGEwMTc2MjMxMzhlOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTJiZjIxNWRkODlhZDBlMTY4ODk4NDNmMDM5MzZkNTE4ZGY4NTVkZWVjZDMzOTVjMWE2NjUwMzBjNmQ0MmFiMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNmEwMDRkMTEyMDRlNDJjZTlkMjMwOWQyZmI4MzQ0YzBhOTAzNTY1MmRmOWNjZDMyMDhiNTRiNjdmNDAyODEyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzkwNjZkMDI2NTU4YTIwNWM3ODljOTUxMjlmNjI0NWU0NzY3NTU5NmFiZThlNTFmYWVmMzdmMTY2MzBiMGU3MyJ9"
+        },
+        {
+          "resource": "repo://examples/single-vm/main.tf#L17-L28",
+          "version": "repo-lines-v1:sha256:5b9a48814f00ded66bcee899c463a60c1247056e8c1fc6f217bf39659347069b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJmZTY3OTQ1YzI1Njg1YmEwNzhlYWEwYTQyOTNjMmE4M2UwODNhZjk0NDYxYjk1NjVlYjg4MWE5MzBlNzJjOTAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE0Y2U1YzY1YTI3Zjc0OWQ1NDBhMmM2MDdlZDc4Y2NhMDhlNmNhMzgzZDI3YjJmMWQ2ZDNjMzJhNDQyODk0ZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY1OTBmMTZlZDNlZjIyM2NlNGU4MGI3MTczNDEyYTQ1MDZmMjFhNzAzNzc2YmUwNDM4ZGU4NTE4NzNjZGIwMGYifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L50-L58",
+          "version": "repo-lines-v1:sha256:a5255123e1a06d770244af56234739364c4a78a04bb5fed236900b4f18108b95:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjI4N2I3YmM1OTUxZjhlYTk5ZDBhYjQwZWE0NmQyMDAwOTYzYTBhNTA1OGQyZmRjYTIwNDlkNDkxY2YwZjZlMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmRlY2E3YWQ3NTNkNmRmMzAyMDUzZTgxYzUwYTFlNzAxNGI4OTdmNGJlZWViNzkzZDA0Y2I4NDlkN2VjNTNkZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGU4Mjg2NGM0NmRiZjM5ZGQwYjU1YzJmOThmYjNjNzgzYTAxODMyZDM5OGU2YWVlYWZlMjZmNTQxMjUwOWRmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0b74fdeace9a4b62b7f7f7312c45308e",
+      "statement": "The single-VM example provisions one clone with configurable CPU, memory, disks, static addressing, optional secondary NIC, DNS and guest user keys.",
+      "evidence": [
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        }
+      ]
+    },
+    {
+      "id": "claim_3045a9d41cea4e09a0321636142c56d0",
+      "statement": "The MicroK8s example provisions only three VMs through for_each, with hard-coded target nodes and IPs, deterministic MACs, and environment ID offsets; it does not install or join MicroK8s.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        }
+      ]
+    },
+    {
+      "id": "claim_8684d1b5841d44e498e86424a377ad44",
+      "statement": "The local module requires clone/image sources and OVMF EFI configuration, rejects simultaneous vm_init.user and vm_user_data, forces templates stopped, and ignores subsequent cloud-init user-account and template changes.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L206-L238",
+          "version": "repo-lines-v1:sha256:64a9582ac404e9e89ac287651559bfb5a5d3ee0ad9a3c7b65c442dc478ac8ad7:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1ODJhODQyMjA4ZGUwNTg1Y2U0ZTgyODVhZDdiMGE2NGVjZGM4ZjNjZjlhYTY1MjI3OWU3NTAwNGYxOWE5NjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L38-L40",
+          "version": "repo-lines-v1:sha256:e46f6d14af2ab2687f337644bf46b9e8a81f73ef34707a3cae8cde00e0c43f81:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTljNzI2MTJkYzFhNTRlYmJmYTJlMWNhMGNiMTFhYWMzODIwYWI3NjMzOWYwZWJkYzg3MTA2Y2UzODhlYzljZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjI2MWYzZjgzOGNiOWY1NDk0MzA0MzNhOWQ0YjQzYmIwZjZmNzRmMjM0NDg5MTIwZjhjY2JmZDZjMjRiZDE5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWEyMmU4ODM5MmY2NWNiMTA4ZWE1MDg3NDQxNDBjMWFhZWJmNmUzNTgwYTg1MDM4ZjUyMDMwY2MxODJkMTBkMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_abd9955452f8476588ebf9c64fd9fe8c",
+      "statement": "The local primary_ip output prefers non-loopback guest-agent addresses and falls back to the configured first interface address then N/A; cluster inventory and IP outputs therefore do not establish guest reachability.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/outputs.tf",
+          "version": "repo-file-v1:sha256:bb1dae8f097a71c38eef98b0e9d4d0ef99e2f12f099fb54b8f4a5522e6b2ef0b"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/outputs.tf",
+          "version": "repo-file-v1:sha256:fc99f241e0d5e83d3bd733e7b3c65d8840dfb7d6cd168d8307579e5f9c8f8de7"
+        }
+      ]
+    },
+    {
+      "id": "claim_2eefe06a82814d62bf800d345a645938",
+      "statement": "The unit, integration and Terratest test directories contain README placeholders, while deploy.sh and local-test.sh contain only shebangs/comments rather than implemented workflows.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/deploy.sh",
+          "version": "repo-file-v1:sha256:776b7fde2be7f48b5efe3888fcb0c155be3680e1647406e2430539a8e7fdd1ff"
+        },
+        {
+          "resource": "repo://scripts/local-test.sh",
+          "version": "repo-file-v1:sha256:9ad6fd1c74ae4d9508e87109406427ee6126a7e081de3027bc0e326dcea1eae2"
+        },
+        {
+          "resource": "repo://tests/integration/README.md",
+          "version": "repo-file-v1:sha256:6a98f244d097a6b89c921a6fc6dfa170402a276a1d4271ddf14b69ad90158df5"
+        },
+        {
+          "resource": "repo://tests/terratest/README.md",
+          "version": "repo-file-v1:sha256:e6172f814513554d696970a4b528d72e6b2b78e1b8f60d5f33989ed984d021ad"
+        },
+        {
+          "resource": "repo://tests/unit/README.md",
+          "version": "repo-file-v1:sha256:42bea2bf090fc8c37e0fb98c7db675620de81b89108b401c8c2469eba3b1427b"
+        }
+      ]
+    },
+    {
+      "id": "claim_0236e2577eb2443e8971b2451eaebeb0",
+      "statement": "The single-VM, LXC and Kubernetes deployment scaffold roots contain commented resource examples rather than instantiations of the standalone modules.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/clusters/k8s/main.tf",
+          "version": "repo-file-v1:sha256:d50a51e748759a19c7422beda1c7dd8825fbcc3d93a6708c88352e0e70b6fa80"
+        },
+        {
+          "resource": "repo://deployments/homelab/lxc/main.tf",
+          "version": "repo-file-v1:sha256:0e8c4576d9ac0aabb7a1a436243f80ddcfea3a64ab3df16b04d111eadc54749f"
+        },
+        {
+          "resource": "repo://deployments/homelab/vms/single/main.tf",
+          "version": "repo-file-v1:sha256:36a717dda5160219c3c7eb5487550b63458508a6d14eebeadd73a67d7164254c"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T03:06:44.899Z"
+  }
+}

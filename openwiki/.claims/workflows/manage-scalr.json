@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:d7bd3431469f7820d648f053e2b1eb2b27917290417fea2fc67b5738376eda5e",
+  "claims": [
+    {
+      "id": "claim_878aab7055db4ec282fcef304caf3f6c",
+      "statement": "The scalr-management root manages Scalr environments, workspaces, provider configurations and variables rather than deploying workload resources; workload configurations run independently.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        },
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_40a50cc059a348e18d945911adb7cb12",
+      "statement": "The management remote backend is commented out, leaving initial management state local; remote migration is an optional separate init -migrate-state procedure.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        }
+      ]
+    },
+    {
+      "id": "claim_ad7069de378541188f1c053d318b027a",
+      "statement": "The management root requires an engine >=1.8.0 and pins registry.scalr.io/scalr/scalr to exactly 3.12.0; provider authentication uses SCALR_HOSTNAME and SCALR_TOKEN or CLI credentials.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/main.tf#L24-L28",
+          "version": "repo-lines-v1:sha256:ba4b7ef3a8646a8dc61d59683173cc5754180ea618ee2dd1205fbc95a0db0884:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWI2MzViNmMyZWY1YWRkNmVlY2IyYzM5NzAzZDIwY2E2MjcyNzQ2MDViODlmNjA1YWNhZjhmOWU4MjkzM2Y2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWMzMjExZTg2MTQzN2VjOGZkMDU4ZDMwODE0MTMyNjc3MDlhMjc5ZjQ2NzM2ODlkM2E1NTM0NDZhNDI0MGFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://scalr-management/versions.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:6936eb6053233c5c1059269745e695015c0bdfe3014c7c2fc5da0c6840f10ff3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_123513eaa2144b39a16de8990c365a1a",
+      "statement": "account_id and proxmox_clusters have no defaults; account_id must start with acc-, and each Proxmox cluster requires an endpoint plus an API token or username and password.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        }
+      ]
+    },
+    {
+      "id": "claim_e80ad1ff90174ffc9735b406308b7807",
+      "statement": "Environment YAML files are decoded from environments_data_path into environment-name keys, workspaces are keyed by environment/workspace name, and workspace variable resource keys also include the variable name.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_827e6bb352b747cc8240823a24710085",
+      "statement": "All current homelab and cloud YAML workspaces disable auto_apply and have their VCS repository blocks commented out while specifying remote execution.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f26bb081c714d799392f1f93ae22d0d",
+      "statement": "VCS integration and agent pools are looked up rather than created; VCS attachment requires both workspace vcs_repo and vcs_provider_id, while workspace agent_pool_id overrides the default pool restricted to its configured environment.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_d322ef932cdd4d858342a39288f970ae",
+      "statement": "Workspace normalization defaults to auto_apply false, execution_mode remote and iac_platform opentofu, supports working directory, variable files and hooks, but run_operation_mode is not assigned to the workspace resource.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_b23e7f9a5e0649da8e29a03a7a459dfd",
+      "statement": "working_directory takes precedence over legacy vcs_repo.path; trigger_patterns suppresses trigger_prefixes, otherwise explicit prefixes or a working-directory fallback determine VCS trigger coverage.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_39538f17f96a4ecab239f7afc82231de",
+      "statement": "Workspace provider_configs replaces inherited environment default_provider_configs; explicit attachments use null aliases, inherited Proxmox attachments use cluster-name aliases, and unknown provider names are filtered out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        }
+      ]
+    },
+    {
+      "id": "claim_c5119cd05aab47978289f12ce2f65e92",
+      "statement": "Each proxmox_clusters entry creates an account-scoped bpg/proxmox custom provider configuration linked to all managed environments; Scalr environment-default provider assignment itself is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_c31e4966067f48928702864ba05a7841",
+      "statement": "Proxmox provider configurations emit sensitive SSH private key arguments only when ssh_agent is false and proxmox_ssh_key is non-null, and configure the SSH username as terraform.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_087b821a2be240d8883483b28166d0d8",
+      "statement": "proxmox_clusters is not globally sensitive although provider credential arguments are individually sensitive, so it must not be treated as universally redacted configuration.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        }
+      ]
+    },
+    {
+      "id": "claim_2e726b0d0f074f71b15b58deb5a065fc",
+      "statement": "DigitalOcean and Hetzner provider configuration creation is gated by their tokens, while Infisical creation is gated by infisical_client_id and consumes its matching secret and host inputs.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        }
+      ]
+    },
+    {
+      "id": "claim_6fd4fb726c8b437cbedbb2fa0afe9186",
+      "statement": "The first attached Proxmox provider determines the automatically injected workspace proxmox_endpoint, proxmox_username and proxmox_password variables; username and password are sensitive and their cluster fields are optional.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3ce3fea34f946549360d0e3b8f295f1",
+      "statement": "YAML variables create workspace variables with default Terraform category and environment_variables creates shell variables; shared homelab variables instead come from explicit environment-scoped resources.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_2777b4f8945545bb96f67deb0e5bfa6c",
+      "statement": "The homelab environment conditionally receives a sensitive proxmox_ssh_key and shared proxmox_ssh_username terraform, proxmox_insecure true, and proxmox_ssh_agent false Terraform variables.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8b7b8a15dc94dd49f892e9a0ae3b44b",
+      "statement": "Management outputs expose environment and workspace IDs, grouping, auto_apply and execution mode, while provider configuration outputs and summary are marked sensitive and do not enumerate all execution settings.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/outputs.tf",
+          "version": "repo-file-v1:sha256:386c5e16b0f144dd261b2a804f57231c7ea4aa12121b9bcbce443edcaa8ab25a"
+        }
+      ]
+    },
+    {
+      "id": "claim_ace56f074649473e80323e3379d60f93",
+      "statement": "Workspace inventory does not guarantee deployable workloads: the DigitalOcean droplets root has a commented resource example and summary output, whereas the Proxmox templates orchestrator invokes an active Ubuntu 24.04 module.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/cloud/digitalocean/droplets/main.tf",
+          "version": "repo-file-v1:sha256:9f5d4fe4ed8f4bf9f7a105bd3b2a7200b80352d041f22dfb1db5c1c52a550195"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T03:06:44.899Z"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "pages": {
+    "/openwiki/architecture/system-map.md": {
+      "pageVersion": "sha256:5df9298bf84f1d2e321d87daa87ea4e37b4262aeea022af1acb0a51db041ce82",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/concepts/proxmox-module-contracts.md": {
+      "pageVersion": "sha256:40619d42e1a6f6b2fab502705f04bb9a29a17809edbf5dbfd553ae4cf8b34915",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/concepts/scalr-configuration.md": {
+      "gitHead": "19d278a8a8a93cd91d1f2ed3d45a1ac8f14f07f3",
+      "sourceFingerprint": "sha256:db13f0f7ac3df0a99cbae368a63b78e54c1eb819e554845a337bd406490fd1c2",
+      "pageVersion": "sha256:551309153703177f1e21e987563a879945d7352bbfa184886b5e2e21a5aab2ec",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "f23d3153-80dc-4e8b-b454-1d721a16d84b"
+    },
+    "/openwiki/integrations/authentication-and-connectivity.md": {
+      "gitHead": "19d278a8a8a93cd91d1f2ed3d45a1ac8f14f07f3",
+      "sourceFingerprint": "sha256:db13f0f7ac3df0a99cbae368a63b78e54c1eb819e554845a337bd406490fd1c2",
+      "pageVersion": "sha256:acce671cd6423d66d05e8b7c0516c34618862b0947cbe11ae9b3e4fc2d8c1196",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "f23d3153-80dc-4e8b-b454-1d721a16d84b"
+    },
+    "/openwiki/operations/state-and-troubleshooting.md": {
+      "pageVersion": "sha256:54fa2e6704e80d774ac367289fffaeb54bc4a8ec3de9619d85dc5e320396ab3d",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/quickstart.md": {
+      "pageVersion": "sha256:f27ed7956b7529bac54dde8061298c1cc0c9be24131e4c789a626b09268212f6",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/testing/local-validation.md": {
+      "pageVersion": "sha256:187edf68545dcd22edf656f6741c909786bfb0750226784efc821cd61083a2d0",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/workflows/manage-scalr.md": {
+      "pageVersion": "sha256:d7bd3431469f7820d648f053e2b1eb2b27917290417fea2fc67b5738376eda5e",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    },
+    "/openwiki/workflows/provision-proxmox.md": {
+      "pageVersion": "sha256:e3fed7fef56a56047ed96107e136c3995a757a05088de7bf8b94230842731a69",
+      "completedBy": "openwiki/0.9.0",
+      "completedRunId": "74504f1e-6e74-4358-b4b1-30ff18af9724",
+      "gitHead": "198639576dd47446571a28058aa9e38981bfda5c",
+      "sourceFingerprint": "sha256:72f457d6a4378045020b4849c59afe5d26456a4bdcd94a5b4e831e3891a3ee18"
+    }
+  }
+}

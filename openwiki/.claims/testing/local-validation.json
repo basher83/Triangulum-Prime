@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:187edf68545dcd22edf656f6741c909786bfb0750226784efc821cd61083a2d0",
+  "claims": [
+    {
+      "id": "claim_b396d934232645659b32b1385c0d587e",
+      "statement": "Mise declares fmt-check, tofu-validate and docs-check in the absent terraform directory; docs-check additionally references the absent root .terraform-docs.yml, and lint is an empty task table rather than an aggregate.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml",
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        }
+      ]
+    },
+    {
+      "id": "claim_7548ef73ad16411a80102c6ca9d4a76e",
+      "statement": "Mise requires 2024.9.5, enables automatic installation with auto_install, not_found_auto_install and task.run_auto_install under settings, pins terraform-docs 0.22.0, TFLint 0.62.0 and git-cliff 2.13.1, declares no OpenTofu tool entry, and has no duplicate tool keys or pre-commit entry.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml",
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
+        }
+      ]
+    },
+    {
+      "id": "claim_84ea5bc05db94d53832bada8e8f4e19a",
+      "statement": "The TFLint tasks run --init before recursive lint, the fix variant adds --fix, and no repository .tflint.hcl defines a plugin policy; the changelog task writes CHANGELOG.md.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml",
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
+        }
+      ]
+    },
+    {
+      "id": "claim_8bdfa25997c3400cb44b4b5a27469b02",
+      "statement": "Both OpenTofu version files pin 1.10.0, while Scalr management requires >= 1.8.0 and exactly registry.scalr.io/scalr/scalr 3.12.0.",
+      "evidence": [
+        {
+          "resource": "repo://.opentofu-version",
+          "version": "repo-file-v1:sha256:943b94a4e4d7b6b70f66d35e2268da108ee661fceaba81d32849729fa2b89e0a"
+        },
+        {
+          "resource": "repo://scalr-management/.opentofu-version",
+          "version": "repo-file-v1:sha256:f97c288d05020354cbfef23d891052cc52a6d409c9bf9edf072f33ae55ebd1a2"
+        },
+        {
+          "resource": "repo://scalr-management/versions.tf",
+          "version": "repo-file-v1:sha256:6936eb6053233c5c1059269745e695015c0bdfe3014c7c2fc5da0c6840f10ff3"
+        }
+      ]
+    },
+    {
+      "id": "claim_7c173e088e894d46b5b005c2485b4c0e",
+      "statement": "Template orchestrator and Ubuntu 24 child require OpenTofu >= 1.8 and bpg/proxmox ~> 0.90.0 (>= 0.90.0, < 0.91.0); the single-VM root uses >= 1.8.0 and ~> 0.90 (>= 0.90.0, < 1.0.0), while reusable VM and LXC modules use >= 1.0 and >=1.5.0 respectively with Proxmox >=0.84.1.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        },
+        {
+          "resource": "repo://deployments/homelab/vms/single/versions.tf",
+          "version": "repo-file-v1:sha256:d0479ef56049ce0ab84a8451d363ebbb21186ee0fe4f3c0fdea4087dd59d274d"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf#L1-L9",
+          "version": "repo-lines-v1:sha256:2d2718342c8ef2703ce7aa36c1fd2b716252464b2a5401a879b36a70fabaccc2:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWM2MTYxZmJmZTViMzZlMDgwYWE5OGUwYjgwNDM0YjJmNTM0NzM3YTMzMTJiZWFhY2RiOTEyNTk4ZjFkNTBmYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYwOTc4Y2QyNDYwNDNiYzk2YjQ5YzUzZjcyYzhkM2QwMGU3MzM0ODNiZGNjNjc3ZjgyOTkxMjEyYWRhNWIxYSJ9"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/versions.tf",
+          "version": "repo-file-v1:sha256:38fe3a8e258e5e89126bba800386e1547e6361d8833719f9a1a1966356326d29"
+        }
+      ]
+    },
+    {
+      "id": "claim_5f4ebcbc67a54add8e37c36191a73c0c",
+      "statement": "DigitalOcean droplets and Hetzner instances require OpenTofu >= 1.8.0 and constrain digitalocean/digitalocean to ~> 2.0 and hetznercloud/hcloud to ~> 1.45 respectively.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/cloud/digitalocean/droplets/versions.tf",
+          "version": "repo-file-v1:sha256:e07b73592cb2e05d32c964bd9b61e362c5230dabdc4d84c08e83a2207ce86d4d"
+        },
+        {
+          "resource": "repo://deployments/cloud/hetzner/instances/versions.tf",
+          "version": "repo-file-v1:sha256:f7be4881ddddd74902cbfa2dee3cfb573eb2e202ccf0ee55ed5ded4cb2d9571f"
+        }
+      ]
+    },
+    {
+      "id": "claim_32d6efb68c80457caae8b420d59f594e",
+      "statement": "The declared validation task initializes with -backend=false before validate, so the task is not purely read-only initialization-free checking; scoped real-root checks must account for module/provider downloads and tooling metadata rather than treating static validation as infrastructure testing.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml",
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_bed47b86472f4cf4b0c799760912157e",
+      "statement": "The active template orchestrator calls Ubuntu 24, whose child uses the private the-mothership.scalr.io/proxmox/vm/bgp module at 1.0.1 and uploads a user-data file, making registry access and local inputs dependencies of the workflow.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_f50e71a7d724496aa6426758b40c4bce",
+      "statement": "Local configuration includes sensitive Scalr and Proxmox environment credentials, the template provider requires API/SSH inputs, and LXC reads a supplied SSH public key path with file().",
+      "evidence": [
+        {
+          "resource": "repo://.mise.local.toml",
+          "version": "repo-file-v1:sha256:436725a41089ddde0ff9333a1d9f548b77f3604d6113d5d24f92fa7afb735758"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        }
+      ]
+    },
+    {
+      "id": "claim_cabbe92528af40eba4a7355efeda5aad",
+      "statement": "The template remote backend targets the-mothership.scalr.io organization homelab workspace vm-templates-nexus and documents CLI-triggered remote plan/apply, distinct from backend-disabled local validation.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e1644531b454418b4b84a63c4aafe66",
+      "statement": "tests/unit, tests/integration and tests/terratest are README-only placeholders without implemented OpenTofu tests or Go harness; scripts/local-test.sh contains no testing logic.",
+      "evidence": [
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        },
+        {
+          "resource": "repo://scripts/local-test.sh",
+          "version": "repo-file-v1:sha256:9ad6fd1c74ae4d9508e87109406427ee6126a7e081de3027bc0e326dcea1eae2"
+        },
+        {
+          "resource": "repo://tests/integration/README.md",
+          "version": "repo-file-v1:sha256:6a98f244d097a6b89c921a6fc6dfa170402a276a1d4271ddf14b69ad90158df5"
+        },
+        {
+          "resource": "repo://tests/terratest/README.md",
+          "version": "repo-file-v1:sha256:e6172f814513554d696970a4b528d72e6b2b78e1b8f60d5f33989ed984d021ad"
+        },
+        {
+          "resource": "repo://tests/unit/README.md",
+          "version": "repo-file-v1:sha256:42bea2bf090fc8c37e0fb98c7db675620de81b89108b401c8c2469eba3b1427b"
+        }
+      ]
+    },
+    {
+      "id": "claim_0c2c31faf8974cbdacced25fae0d696c",
+      "statement": "The sole checked-in workflow updates OpenWiki manually or daily at 0 8 * * *, creates a documentation PR preserving completed work on failure, then propagates failure; it is not infrastructure CI and runs no OpenTofu checks or tests.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml",
+          "version": "repo-file-v1:sha256:b6aebba579d5608ff71912ae9c4f335687cf9c41e06aff716c5effcdd494f060"
+        }
+      ]
+    },
+    {
+      "id": "claim_c48951d095324d688d37eb3ad2f9c68a",
+      "statement": "Repository documentation references absent setup, migration, workflows, module/example index and Proxmox provisioning guides, so these are not usable validation setup targets.",
+      "evidence": [
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:2e1ece1d545749471645fbe2a427107b38009f8bbac21e16c42369cddedd5942"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        }
+      ]
+    },
+    {
+      "id": "claim_52a808337dbb485b9d33136f1155d29d",
+      "statement": "VM lifecycle preconditions require clone/image sources, require EFI disk for ovmf, and prohibit simultaneous vm_init.user and vm_user_data; lifecycle ignores initialization user-account and template changes, and disk validation limits main_disk to at most one.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L209-L239",
+          "version": "repo-lines-v1:sha256:3bf6520d9b6e9a7b16d00e6290412b35f3155de6188adac4f7e559f54a098543:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjNDYxYjFlZDdkMTU0NTBhMWM1MjZjNjM4YTI4MjBlMjMyNzM2YTZkOTcxODlmMTMxOWNhMDAxMjRhNDhjZTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2ZDNkNjI0M2Q0NzJiNzhlNDFiZTEyMjI0N2NkMGI3MmJlYzYxMWEwYjhhNWQ3YzExZWM2ZjQ2Yjg1OTEwNjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf#L266-L278",
+          "version": "repo-lines-v1:sha256:a931e607a5f6382288155f34ac700887fd277b03e707728b9406114dbdd4e854:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4ZTNjODdlODFjMWRiZmJkNWMxMmJhYWY1NWFiMTAyMjkzMmIyMGFkYmM2YmU5MzM4ZmJhYTlmN2MyYmZkOTMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJjY2RjMGZiZmM5MTc3NTRhNDRmODYzZTc5ZWYxNmQxOGYxYjZjYmNkYjhmNjM0NGNmNTY4NjhhM2U5MDk3MDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzYjRmNzlkZWQzM2QxYjFmY2QyZGZjYjI2Njk0ZDlmMzM2MDU0Y2JjMjFhZWZhYjEyYzBmZjQxZTY3MGY3ZjUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c669f3c918b441b3ad5fbd46638bbc70",
+      "statement": "LXC renders optional mount points and only emits startup when start_on_boot is true; the Ubuntu 24 template explicitly disables deployment and boot start while configuring EFI, image input and snippet-backed cloud-init.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        }
+      ]
+    },
+    {
+      "id": "claim_edd1b3a527484d8e8cedf1732fdc5dec",
+      "statement": "The homelab LXC deployment root requires OpenTofu >= 1.8.0 and bpg/proxmox ~> 0.90, sharing the single-VM root's broader provider compatibility window rather than the template roots' ~> 0.90.0 window.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/lxc/versions.tf",
+          "version": "repo-file-v1:sha256:afb3562c41e477831380b301c97b112c08bd9bf6fbcd771b7469c2b099a7fdf6"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        },
+        {
+          "resource": "repo://deployments/homelab/vms/single/versions.tf",
+          "version": "repo-file-v1:sha256:d0479ef56049ce0ab84a8451d363ebbb21186ee0fe4f3c0fdea4087dd59d274d"
+        }
+      ]
+    },
+    {
+      "id": "claim_463f94121d4e43cea652de198d3a0900",
+      "statement": "The template root lockfile selects Proxmox 0.90.0 and records combined constraints >= 0.84.1, ~> 0.90.0; a lockfile selection is distinct from evidence of a passing initialization or validation run.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/.terraform.lock.hcl#L1-L7",
+          "version": "repo-lines-v1:sha256:d0234d04503b826072d0357bba027367cb4891321cea5deab86d6f9c1949bc21:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODY5Mzc1OWI2OTA2NDBjYjQ2ODAyMzc0OWIxNGExYWY5M2EzZDZhNjA5NTlkNTc1MGE3MjM1NjlhMmM1YzQ2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ExNTY2NTdjZmFlMzQxMTk0ZTU4YzRkY2M2NmJmMWY1NjA2YzcyZjg1MWU2YjU1NzQxMTRiYTg2NTI4ZmNiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzA5MDFjMmRkMTVlODczY2YxZjJkM2ZmYTEzOTI2OTllODAyNzc0YmY2OTQzZjA2ZDdhNjcxN2E2MGJmZWZiMSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T03:06:44.899Z"
+  }
+}

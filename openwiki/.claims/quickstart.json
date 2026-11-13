@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f27ed7956b7529bac54dde8061298c1cc0c9be24131e4c789a626b09268212f6",
+  "claims": [
+    {
+      "id": "claim_718b4e0736044507820f8519b300c462",
+      "statement": "Current homelab and cloud environment YAML declares remote workspaces with auto_apply false and commented-out VCS attachments, so a push is not a configured deployment trigger.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        }
+      ]
+    },
+    {
+      "id": "claim_c708cc4efc944230b75ed17da4f21238",
+      "statement": "The template root explicitly binds the Scalr remote backend to the-mothership.scalr.io, organization homelab, workspace vm-templates-nexus; CLI-triggered plans and applies are intended to execute remotely.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        }
+      ]
+    },
+    {
+      "id": "claim_2319f2937a2e41e09cae63106ddeeba1",
+      "statement": "scalr-management configures Scalr account entities rather than deploying workspace workloads: environment YAML is transformed into workspace definitions, provider attachments and variables; its remote backend is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_1ea233d314f4403b8e99ec227ec3e483",
+      "statement": "The template Proxmox provider uses workspace input variables for API and SSH settings, with provider configuration attachments managed through Scalr.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e752ef9a2d9427590408ffefeab8dd0",
+      "statement": "The single-vm example configures its own Proxmox provider with input endpoint settings and environment authentication, and invokes terraform-bgp-vm in clone mode with a source template ID and target node.",
+      "evidence": [
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        },
+        {
+          "resource": "repo://examples/single-vm/provider.tf",
+          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+        }
+      ]
+    },
+    {
+      "id": "claim_616d2c5a83ef4ab89dec59322ad9f85d",
+      "statement": "The template orchestrator currently invokes the Ubuntu 24.04 module while the Ubuntu 22.04 module invocation is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        }
+      ]
+    },
+    {
+      "id": "claim_578163afab434948aa717be5f773c1b2",
+      "statement": "The repository pins OpenTofu 1.10.0; mise declares terraform-docs 0.22.0, tflint 0.62.0 and git-cliff 2.13.1 but no OpenTofu entry in its tools table, distinct from the single-vm example's broader required_version constraint.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml#L13-L16",
+          "version": "repo-lines-v1:sha256:c1cdbb9244ecda4ea6311a193e0fd95713141781db130ac5cbffdfe9736106c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTgyNmJlYTA1ZmU1MGE3M2E2NDVkOGZiMTJkYzI4MmYyNTM2MzQ0MzI2NmQ5MDE3MzcyZWFmODg0NTk0NjM0NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmUzMzU5OTJmMTFlMjY3ODI0YTAyNDc5MWE1NzYyZWI5OWRkMDIyZTY5YTAwZmRmZDQwYjVlZWYxOTI3NDUwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzdjZjkzOTBjYTI2ZDIzYWY3OGY1OTM1YjdiNThhMTI4MGRkMmYwOTMwZmVjYzViMWQ3ZjU2NTBiOTdiNWU5MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODRkMjVhNDQwYTE5MTA2YzA0MzNjYjJjMTE5YTlhYmYyYjVmMTI5YmRmZjc3ZTlkNDdiZWEyYjVlMGUwZmVhMiJ9"
+        },
+        {
+          "resource": "repo://.opentofu-version",
+          "version": "repo-file-v1:sha256:943b94a4e4d7b6b70f66d35e2268da108ee661fceaba81d32849729fa2b89e0a"
+        },
+        {
+          "resource": "repo://examples/single-vm/provider.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:4f12b44a08ea374fe6b8bb3c329e56a195fb68bc3adc1c21ebb0b41f501b73a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ZTBjZGZhNDQ5NjE5NDI0YjVmNDg4NjA0ZjhkODM4ZGE0MTg0ODYzMDk3ZDQyMzBjNjIyZjIwMmMwZDkwMGEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ddcdfec4e0d241c0a9938c05ac8d4f89",
+      "statement": "The mise fmt-check, tofu-validate and docs-check tasks target a terraform working directory absent from the repository layout; mise enables automatic installation including settings.task.run_auto_install, validation performs initialization and lint tasks initialize plugins, so these are not a ready-to-run non-mutating bootstrap.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml#L23-L50",
+          "version": "repo-lines-v1:sha256:d47220ff47c07473db376ffa8e2082bea2e76fecbb989b68fb63e9e157dbd676:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2M2VlZTI5MzlkZWU3ZDY0ZGEyNTE4MTIyYTZjYmFjZTQzMmNhYTA5NTIwOGE0ZDg0MTIwZDgwYzE4MDFiNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2MWM3NGI5ZjlkNmY0YjA3NDk2Zjg2OTMzNDExMGViYWMzZTM2Y2MxYzk4ZDQ5Mzc1MjcxYzNhMjM3MDRmMDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5MGEzM2MxYzFlNzBmYWEyN2ZiMDVhYTZmNjliZTIyNjg2ZTFlOWIwMDA1ODAwZjJjMzhiZmNhZTZmYTNiNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiOWFlNmEyOWI0OTNmYTdlM2YzZjEzY2ExODhlMjZiNzFmMDIyYjNhZWJmODFjNzkzMjFkZDY0NjMxNTllZDMifQ"
+        },
+        {
+          "resource": "repo://.mise.toml#L3-L6",
+          "version": "repo-lines-v1:sha256:50b9d82e2e5bef752a7a6393263f8d3e1b5207abb9af22408208151194ead8ee:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGIyODg4YTRiMzAzYTA2ZGQ0NGIwZmUyOTg0MGVmNDBiYTZhMGY4ODc1MzM2ZDA4ODQ3ZDM5ZjI3MWQ5ZGZkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk4YzcwYzU0MTUxYmEwOWZlZmE4MTAxNzFmYTJmOGEyOGRmY2NkOTI3ZDEzMGQ1NTEwZWFhMmZhYWVhN2RjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWI3NTU2YTMyNGVmZDk3ODI0NWU3YjZhZmI4MDhhM2VjOTVjZjhiNmU3MGNkOGUxNDY2ZTVmNDVmZDQ1Mjk0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE2Njg0MTZjNjAyMjQxMTBjZDMwZWJmMjU5NWVkNWFkMjg2ZTczNmYwOWU1OTllZDcyMDVjZjZiNGY0MTQ2NyJ9"
+        },
+        {
+          "resource": "repo://README.md",
+          "version": "repo-file-v1:sha256:2e1ece1d545749471645fbe2a427107b38009f8bbac21e16c42369cddedd5942"
+        },
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        }
+      ]
+    },
+    {
+      "id": "claim_3c5df196fd0141449f0d6574548a3b6e",
+      "statement": "deploy.sh, local-test.sh and opentofu-migrate.sh are placeholders containing only a shebang and descriptive comment, not executable deployment, test or migration implementations.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/deploy.sh",
+          "version": "repo-file-v1:sha256:776b7fde2be7f48b5efe3888fcb0c155be3680e1647406e2430539a8e7fdd1ff"
+        },
+        {
+          "resource": "repo://scripts/local-test.sh",
+          "version": "repo-file-v1:sha256:9ad6fd1c74ae4d9508e87109406427ee6126a7e081de3027bc0e326dcea1eae2"
+        },
+        {
+          "resource": "repo://scripts/opentofu-migrate.sh",
+          "version": "repo-file-v1:sha256:d8e33bd151db700cab8ee54c07ea9772405ffd3bd9ca5182d3f3087cf68748cf"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T03:06:44.899Z"
+  }
+}

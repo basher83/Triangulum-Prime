@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:54fa2e6704e80d774ac367289fffaeb54bc4a8ec3de9619d85dc5e320396ab3d",
+  "claims": [
+    {
+      "id": "claim_d23a806ed2cd411cb74dfe64a0da3d30",
+      "statement": "The shared backup module and OpenTofu migration helper are placeholders and implement no backup, restore, or state migration automation.",
+      "evidence": [
+        {
+          "resource": "repo://modules/shared/backup/main.tf",
+          "version": "repo-file-v1:sha256:ceb94c3ee4d1b2c08fc7ffcaf433dc21bea516f8996b7fc7b4e2cd32dfe8cc7b"
+        },
+        {
+          "resource": "repo://scripts/opentofu-migrate.sh",
+          "version": "repo-file-v1:sha256:d8e33bd151db700cab8ee54c07ea9772405ffd3bd9ca5182d3f3087cf68748cf"
+        }
+      ]
+    },
+    {
+      "id": "claim_64ceb4912be241c7bd30cadae987f2c8",
+      "statement": "Scalr management defaults to local state because its optional remote backend is commented out, while its provider reads Scalr hostname/token from environment or CLI credentials.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        }
+      ]
+    },
+    {
+      "id": "claim_01830d19ef2546558bdf03ac2b8d4279",
+      "statement": "Each managed Scalr workspace has its own state and execution configuration; management configures these workspaces rather than sharing their deployment state.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_6dd197524a204cce9c5af7da08e5e78d",
+      "statement": "The template root actively targets the Scalr remote backend at the-mothership.scalr.io, organization homelab, workspace vm-templates-nexus, and documents remote plan/apply execution.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        }
+      ]
+    },
+    {
+      "id": "claim_ac24f19565db4a7886564d8a1ac5f019",
+      "statement": "The single-VM example is a standalone root using the local VM module and a Proxmox provider without a remote backend declaration.",
+      "evidence": [
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        },
+        {
+          "resource": "repo://examples/single-vm/provider.tf",
+          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+        }
+      ]
+    },
+    {
+      "id": "claim_2a71c905f78347b0b5ada7d1e9ee9a14",
+      "statement": "Scalr management consumes existing VCS and agent-pool integrations conditionally; workspace-specific agent pool IDs take precedence over an environment-matched default pool lookup.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_727c2958f9364a6699250e71b5527fdf",
+      "statement": "Provider attachment resolution filters unknown configuration names; explicit workspace lists use null aliases, whereas inherited Proxmox defaults use cluster-name aliases.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        }
+      ]
+    },
+    {
+      "id": "claim_8b0ae02340804f779a3eb8a8e29a230c",
+      "statement": "Workspace Proxmox variable injection derives endpoint, username, and password from the first matching attached proxmox configuration, while the template provider explicitly consumes those variables and separate SSH settings.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_558ee386e8db4c4ca5a7a7a872b37b8d",
+      "statement": "Proxmox provider configurations support token and username/password authentication and optional sensitive SSH private keys; template image import requires separate host SSH access and suitable qm/pvesm permissions.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/SSH_KEY_SETUP.md",
+          "version": "repo-file-v1:sha256:194e3c7ea7106afa5bce22da761676d8914017cf895bdf19721cf1995c06d56e"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_c7818d9c75c54ee4990e3ad2f47539a1",
+      "statement": "Homelab template workspaces select separate Matrix/foxtrot, Nexus/bravo, and Quantum/lloyd targets, with VCS blocks commented out and auto_apply false.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml#L198-L266",
+          "version": "repo-lines-v1:sha256:dd9024758fdac0c70905e9e8a966127c2bda9b4ac3497ff3806d5e75c48ea801:eyJzZWxlY3RlZExpbmVDb3VudCI6NjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdkYTk4NTdkY2JkZjU0MzQ1MTVmM2Y3MjA4NjFhMTE3YmU3OTYxOTJlMGU4NTUzOGIyZDdjYTVkODRmNmM0MmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg5NmYyZTAwNTFmYTQ2MjMzZTc1YzYzOTNiZTY2MjQxOWUzYmFmZTI1NWNjN2I0ZmQ0ZWRmMTE1Yjc4OGFmYWMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU2YTdmMjYyNzdhOWRjNDBmOTJhZWNhOTlmOGE0ODBiZTIyNjYwMTczZTk1MjJhODc1MDRhOTQzYTYyN2Y4OGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4e9d1598cb14b99b3b5cf346bb87831",
+      "statement": "The Ubuntu 24 template uploads user-data as snippets from a file in the execution context and uses a private-registry VM module pinned to version 1.0.1; its cloud image storage must be file-based.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_56052d89deb540bf84d677afab14fcd9",
+      "statement": "VM image mode downloads an image only when a URL is supplied, using node, datastore, filename and optional checksum configuration; otherwise it references an existing datastore ISO file.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_e654a785ad244bb3ad7bcca5e44c0958",
+      "statement": "VM primary_ip prefers guest-agent addresses filtered for empty, null and localhost values, then falls back to the first configured interface address and finally N/A, so fallback output is not reachability evidence.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/outputs.tf",
+          "version": "repo-file-v1:sha256:fc99f241e0d5e83d3bd733e7b3c65d8840dfb7d6cd168d8307579e5f9c8f8de7"
+        }
+      ]
+    },
+    {
+      "id": "claim_6bf24ecaa50548c3b4a13cefec74df6c",
+      "statement": "The VM module forces templates not to start and statically ignores template and cloud-init user-account changes; its changelog attributes the template exception in vm/1.0.1 to inconsistent-result errors.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/CHANGELOG.md",
+          "version": "repo-file-v1:sha256:409dceacb23932722831631e03a07f0fd3bd47de4df9ef1eb11d231b23f823d6"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_c2fbaa97fea6488db849d66ea3859434",
+      "statement": "The template orchestrator currently enables Ubuntu 24 and comments out Ubuntu 22 for testing.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        }
+      ]
+    },
+    {
+      "id": "claim_312201fe814e40ac8c1ca101f15fbf4b",
+      "statement": "The template root requires bpg/proxmox ~> 0.90.0, permitting compatible 0.90.x releases rather than pinning an exact version; its lockfile selects 0.90.0 and records combined constraints >= 0.84.1, ~> 0.90.0.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/.terraform.lock.hcl#L1-L7",
+          "version": "repo-lines-v1:sha256:d0234d04503b826072d0357bba027367cb4891321cea5deab86d6f9c1949bc21:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODY5Mzc1OWI2OTA2NDBjYjQ2ODAyMzc0OWIxNGExYWY5M2EzZDZhNjA5NTlkNTc1MGE3MjM1NjlhMmM1YzQ2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ExNTY2NTdjZmFlMzQxMTk0ZTU4YzRkY2M2NmJmMWY1NjA2YzcyZjg1MWU2YjU1NzQxMTRiYTg2NTI4ZmNiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzA5MDFjMmRkMTVlODczY2YxZjJkM2ZmYTEzOTI2OTllODAyNzc0YmY2OTQzZjA2ZDdhNjcxN2E2MGJmZWZiMSJ9"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_78d06b0ddee34b91af9de5e7fad73e17",
+      "statement": "The 2026-04-28 audit's missing-guide/script and mise duplicate-key findings are historical. Current .mise.toml has one tflint tool entry, enables auto_install, not_found_auto_install, and task.run_auto_install, and still targets dir = \"terraform\" in fmt-check, tofu-validate, and docs-check despite the absent root terraform directory; validation invokes backend-disabled initialization and lint invokes tflint --init, so task execution can install tools or fetch dependencies rather than merely inspect source.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml#L1-L53",
+          "version": "repo-lines-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83:eyJzZWxlY3RlZExpbmVDb3VudCI6NTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwNjQwZmU2ZTlkZmYyMDE5NjY2OTM0NjEzODU4MmM2ZTI3NTliMTJjNzNjYTA0OWE5NDc4YjEzMzFjNWY0NmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmOWEwOWYwZjExNTJmOGI1MmM2N2VkZjdlOGE4ZmNkYjcwODk3MGZlYWQxYmFlMWMyYTViYWQ4MmZkYWQ1NzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md#L129-L134",
+          "version": "repo-lines-v1:sha256:3466b8b478a37c6121dacd6e42ff60838fde6a498e7b6d78128af0f5a94623b6:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUwMmNkYzEyZjQ0MmJiMTczOGRiMmU4M2E3OTk4NzIxZDBlODFmOWEzMjA5OWI4MmM5YzIzNzExNWFjNGE0MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWRkNTBiODY3OTZmNjgxOThkNzZhZDRmY2Y4ZDFiZjMzMzA5YzI3N2JiMzk0OWY4ZTIxZjFlMzVkNmM1MjZjNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md#L23-L31",
+          "version": "repo-lines-v1:sha256:5d32917b06b076e5b147d6c5056a7ca5468f2222ebd83cdea9f927b5f49e7bba:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWE5NDQ5YzlhN2VhYjQ5OTYyMGYzYjk1NDA4ZjgzMTVhNmE5ODkzZjc0MTJiNmFkOGY1YjQzZTc0NjMyZjRkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2FjNzJmODlmOThkY2YxMDM1NmU1NGU3YmI4NTUyMjRkNmNjNDljYjViMTM0MjRkOWYwZGJkZGEyMjM4YzYyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGM2N2EzNzBiMThiNTI5OTAzNWYzOWI1NjAwYzE2NjU2YmIyMTNhY2Q4NWMxOWNkZGM3OTg3NTFlZmIwMmM4OCJ9"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md#L79-L95",
+          "version": "repo-lines-v1:sha256:46d30fa096fcb5b6edf4ef57cc7c8488823ab6c4958aa2b75db332e090adc752:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiNzY3MmVmMTRmNjdlOWEzYzRiNDE0YThiOTQ3N2NlZmM5ZWNlZTUyNDMwYjNjYmU1N2NiNDI0Y2Y3MDllNjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1ZTlkNTZhODVmY2JlYmFkMWU2MWUxNDY1ZTE0NDgyMjcwMzA0MTRkYzI3OTliOTRjYTU2NGYxMjkxN2E4NzciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJiYjhiMzVmYjVjMDE3NTkyNWU2YzljMDdkNjFlOTFlOTcwNjhmMzg2ZWRhMGI5YTg0MTdjYjVlMzU3N2M2Y2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU4MTM5MzEzNjIxNDNlOGVjYWYxODY3MDdlMTM2YTczYTAyZWI5ZTEyYTJmMjk3ODcwN2NhZjk0MzBmYzI1MzMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-13T03:06:44.899Z"
+  }
+}
