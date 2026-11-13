@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:c96e4363046ffe508a8257c6ba503ee5d9a3bf258c178af2863027d77f12a52a",
+  "pageVersion": "sha256:187edf68545dcd22edf656f6741c909786bfb0750226784efc821cd61083a2d0",
   "claims": [
     {
       "id": "claim_b396d934232645659b32b1385c0d587e",
@@ -8,7 +8,7 @@
       "evidence": [
         {
           "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
         },
         {
           "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
@@ -18,11 +18,11 @@
     },
     {
       "id": "claim_7548ef73ad16411a80102c6ca9d4a76e",
-      "statement": "Mise requires 2024.9.5, enables automatic installation, pins terraform-docs 0.21.0, TFLint 0.61.0 and git-cliff 2.10.1, declares no OpenTofu tool entry, and currently has no duplicate tool keys or pre-commit entry.",
+      "statement": "Mise requires 2024.9.5, enables automatic installation with auto_install, not_found_auto_install and task.run_auto_install under settings, pins terraform-docs 0.22.0, TFLint 0.62.0 and git-cliff 2.13.1, declares no OpenTofu tool entry, and has no duplicate tool keys or pre-commit entry.",
       "evidence": [
         {
           "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
         }
       ]
     },
@@ -32,13 +32,13 @@
       "evidence": [
         {
           "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
         }
       ]
     },
     {
       "id": "claim_8bdfa25997c3400cb44b4b5a27469b02",
-      "statement": "Both OpenTofu version files pin 1.10.0, while Scalr management requires >= 1.8.0 and exactly registry.scalr.io/scalr/scalr 3.11.0.",
+      "statement": "Both OpenTofu version files pin 1.10.0, while Scalr management requires >= 1.8.0 and exactly registry.scalr.io/scalr/scalr 3.12.0.",
       "evidence": [
         {
           "resource": "repo://.opentofu-version",
@@ -50,29 +50,29 @@
         },
         {
           "resource": "repo://scalr-management/versions.tf",
-          "version": "repo-file-v1:sha256:4f7e4a3465e91b130d81321d6cbc32d7f0e2da83454fdf24f9872f7bb29e636a"
+          "version": "repo-file-v1:sha256:6936eb6053233c5c1059269745e695015c0bdfe3014c7c2fc5da0c6840f10ff3"
         }
       ]
     },
     {
       "id": "claim_7c173e088e894d46b5b005c2485b4c0e",
-      "statement": "Template orchestrator and Ubuntu 24 child require OpenTofu >= 1.8 and bpg/proxmox ~> 0.89.0 despite obsolete inline comments; the single-VM root uses >= 1.8.0 and ~> 0.89, while reusable VM and LXC modules use >= 1.0 and >=1.5.0 respectively with Proxmox >=0.84.1.",
+      "statement": "Template orchestrator and Ubuntu 24 child require OpenTofu >= 1.8 and bpg/proxmox ~> 0.90.0 (>= 0.90.0, < 0.91.0); the single-VM root uses >= 1.8.0 and ~> 0.90 (>= 0.90.0, < 1.0.0), while reusable VM and LXC modules use >= 1.0 and >=1.5.0 respectively with Proxmox >=0.84.1.",
       "evidence": [
         {
           "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf",
-          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
         },
         {
           "resource": "repo://deployments/homelab/templates/versions.tf",
-          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
         },
         {
           "resource": "repo://deployments/homelab/vms/single/versions.tf",
-          "version": "repo-file-v1:sha256:41e9b559ab8779dde101b0488f5a823cac9f76d65d0110f9f2b39afb11244521"
+          "version": "repo-file-v1:sha256:d0479ef56049ce0ab84a8451d363ebbb21186ee0fe4f3c0fdea4087dd59d274d"
         },
         {
-          "resource": "repo://terraform-bgp-lxc/main.tf",
-          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+          "resource": "repo://terraform-bgp-lxc/main.tf#L1-L9",
+          "version": "repo-lines-v1:sha256:2d2718342c8ef2703ce7aa36c1fd2b716252464b2a5401a879b36a70fabaccc2:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWM2MTYxZmJmZTViMzZlMDgwYWE5OGUwYjgwNDM0YjJmNTM0NzM3YTMzMTJiZWFhY2RiOTEyNTk4ZjFkNTBmYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYwOTc4Y2QyNDYwNDNiYzk2YjQ5YzUzZjcyYzhkM2QwMGU3MzM0ODNiZGNjNjc3ZjgyOTkxMjEyYWRhNWIxYSJ9"
         },
         {
           "resource": "repo://terraform-bgp-vm/versions.tf",
@@ -100,7 +100,7 @@
       "evidence": [
         {
           "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
         },
         {
           "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
@@ -227,10 +227,38 @@
           "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
         }
       ]
+    },
+    {
+      "id": "claim_edd1b3a527484d8e8cedf1732fdc5dec",
+      "statement": "The homelab LXC deployment root requires OpenTofu >= 1.8.0 and bpg/proxmox ~> 0.90, sharing the single-VM root's broader provider compatibility window rather than the template roots' ~> 0.90.0 window.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/lxc/versions.tf",
+          "version": "repo-file-v1:sha256:afb3562c41e477831380b301c97b112c08bd9bf6fbcd771b7469c2b099a7fdf6"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf",
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
+        },
+        {
+          "resource": "repo://deployments/homelab/vms/single/versions.tf",
+          "version": "repo-file-v1:sha256:d0479ef56049ce0ab84a8451d363ebbb21186ee0fe4f3c0fdea4087dd59d274d"
+        }
+      ]
+    },
+    {
+      "id": "claim_463f94121d4e43cea652de198d3a0900",
+      "statement": "The template root lockfile selects Proxmox 0.90.0 and records combined constraints >= 0.84.1, ~> 0.90.0; a lockfile selection is distinct from evidence of a passing initialization or validation run.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/.terraform.lock.hcl#L1-L7",
+          "version": "repo-lines-v1:sha256:d0234d04503b826072d0357bba027367cb4891321cea5deab86d6f9c1949bc21:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODY5Mzc1OWI2OTA2NDBjYjQ2ODAyMzc0OWIxNGExYWY5M2EzZDZhNjA5NTlkNTc1MGE3MjM1NjlhMmM1YzQ2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2ExNTY2NTdjZmFlMzQxMTk0ZTU4YzRkY2M2NmJmMWY1NjA2YzcyZjg1MWU2YjU1NzQxMTRiYTg2NTI4ZmNiZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzA5MDFjMmRkMTVlODczY2YxZjJkM2ZmYTEzOTI2OTllODAyNzc0YmY2OTQzZjA2ZDdhNjcxN2E2MGJmZWZiMSJ9"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

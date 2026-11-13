@@ -1,16 +1,18 @@
 ---
 type: deployment workflow
-title: Deploy templates and compose local VM examples
+title: Provision Proxmox templates and local examples
 description: Safely select the Scalr template backend, review remote Ubuntu template runs, and compose standalone local image and clone examples. Covers state boundaries, Proxmox prerequisites, output verification, and recovery limits.
 tags: [proxmox, opentofu, templates, cloud-init, scalr, workflows]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-a4d86dd45fbc5812f8210406
     resource: repo://deployments/homelab/clusters/k8s/main.tf
   - id: openwiki-source-3326f83dd68e9112a51e2363
     resource: repo://deployments/homelab/lxc/main.tf
+  - id: openwiki-source-339929c7b9fd1d61da31ceb9
+    resource: repo://deployments/homelab/templates/.terraform.lock.hcl
   - id: openwiki-source-f4ea58552bf95821c57a3374
     resource: repo://deployments/homelab/templates/backend.tf
   - id: openwiki-source-f062fd85b6c0d801a9b89d28
@@ -77,17 +79,17 @@ sources:
     resource: repo://tests/terratest/README.md
   - id: openwiki-source-da85fde896f6c6bf21228a40
     resource: repo://tests/unit/README.md
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
-# Deploy templates and compose local VM examples
+# Provision Proxmox templates and local examples
 
 There are **two separate execution paths**, not one deployment pipeline:
 
 - The [template root](../../deployments/homelab/templates/main.tf) is CLI-triggered but runs remotely with Scalr-managed state and workspace configuration.
 - The [standalone examples](../../examples/) execute locally, use `../../terraform-bgp-vm`, and have no automatic Scalr backend or injected provider configuration. Template outputs must be transferred deliberately into clone inputs; there is no remote-state lookup wiring them together.
 
-Ubuntu **24.04 is active** in the remote orchestrator. The Ubuntu 22.04 module, its root outputs, and its summary entry are commented out. Declared Ubuntu 22 variables do not deploy a second template. The active child uses private registry module `the-mothership.scalr.io/proxmox/vm/bgp` at **1.0.1**, not the checkout's standalone module. Both root and child require OpenTofu-compatible configuration `>= 1.8` and `bpg/proxmox ~> 0.89.0`; the adjacent comment mentioning 0.84.x is not the effective constraint. See [module contracts](../concepts/proxmox-module-contracts.md) for the underlying module interface.
+Ubuntu **24.04 is active** in the remote orchestrator. The Ubuntu 22.04 module, its root outputs, and its summary entry are commented out. Declared Ubuntu 22 variables do not deploy a second template. The active child uses private registry module `the-mothership.scalr.io/proxmox/vm/bgp` at **1.0.1**, not the checkout's standalone module. Both the [root](../../deployments/homelab/templates/versions.tf) and [active child](../../deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf) require `required_version >= 1.8` and `bpg/proxmox ~> 0.90.0`. The [root lockfile](../../deployments/homelab/templates/.terraform.lock.hcl) selects provider **0.90.0**; that provider selection is separate from the private module's **1.0.1** release. See [module contracts](../concepts/proxmox-module-contracts.md) for the underlying module interface.
 
 ## Control flow and ownership
 
@@ -122,7 +124,7 @@ flowchart TD
 ```
 *Custom-cloud-init flow: repository configuration coordinates snippet upload and image acquisition before template creation; Proxmox performs the infrastructure operations, and an operator connects outputs to standalone clones.*
 
-Snippet upload and download are independent prerequisites, not necessarily serialized steps. The snippet resource ID feeds `vm_user_data`; the downloaded image ID feeds the imported main disk in the local module. URL-only templates omit the snippet branch. Existing-file templates omit downloading and reference an image already on Proxmox. The registry release is independently versioned: inspect its installed code and plan rather than assuming every checkout implementation detail also applies to version 1.0.1.
+Snippet upload and download are independent prerequisites, not necessarily serialized steps. The snippet resource ID feeds `vm_user_data`; the downloaded image ID feeds the imported main disk in the local module. URL-only templates omit the snippet branch. Existing-file templates omit downloading and reference an image already on Proxmox. The registry release is independently versioned: edits to local examples or `terraform-bgp-vm` do not automatically update the private-registry artifact selected by the remote child. Inspect its installed code and plan rather than assuming every checkout implementation detail also applies to version 1.0.1.
 
 ## Safety gates before either procedure
 

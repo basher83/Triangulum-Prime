@@ -5,7 +5,7 @@ description: Choose the configuration root and execution context before changing
 tags: [quickstart, routing, opentofu, scalr, proxmox]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-9c06bd9d7d25770709e07c7c
     resource: repo://.mise.toml
@@ -39,7 +39,7 @@ sources:
     resource: repo://scripts/local-test.sh
   - id: openwiki-source-28e45ae11fe7f64787d962f1
     resource: repo://scripts/opentofu-migrate.sh
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # Quickstart and task routing
@@ -75,9 +75,9 @@ tofu fmt -check -diff -recursive deployments/homelab/templates
 tofu fmt -check -diff -recursive examples/single-vm
 ```
 
-**Repository pin: OpenTofu `1.10.0`.** A provider file's broader `required_version` constraint is not the repository pin. [`.mise.toml`](../.mise.toml) declares `terraform-docs` `0.21.0`, `tflint` `0.61.0`, and `git-cliff` `2.10.1`, but does not install OpenTofu through its `[tools]` table. These are declared requirements, not evidence of a successfully executed toolchain; no commands were executed for this page.
+**Repository pin: OpenTofu `1.10.0`.** A provider file's broader `required_version` constraint is not the repository pin. [`.mise.toml`](../.mise.toml) declares `terraform-docs` `0.22.0`, `tflint` `0.62.0`, and `git-cliff` `2.13.1`, but does not install OpenTofu through its `[tools]` table. These are declared requirements, not evidence of a successfully executed toolchain; no commands were executed for this page.
 
-Do **not** use the mise tasks as a ready-to-run bootstrap: `fmt-check`, `tofu-validate`, and `docs-check` target a missing `terraform/` working directory. Mise also enables automatic installation. The validation task includes initialization, and the lint tasks initialize plugins; neither belongs in the non-mutating checks above.
+Do **not** use the mise tasks as a ready-to-run bootstrap: `fmt-check`, `tofu-validate`, and `docs-check` target a missing `terraform/` working directory. Mise also enables automatic installation, including task-triggered installation via `settings.task.run_auto_install = true`. The validation task includes initialization, and the lint tasks initialize plugins; neither belongs in the non-mutating checks above.
 
 ## Cross each side-effect boundary deliberately
 

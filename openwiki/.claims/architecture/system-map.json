@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:bcb0896619de8b4ea626adb1aee7b9b4e677887d220739907b2ee28849dad68e",
+  "pageVersion": "sha256:5df9298bf84f1d2e321d87daa87ea4e37b4262aeea022af1acb0a51db041ce82",
   "claims": [
     {
       "id": "claim_213f0dab659144258219fd1bfe8f9600",
@@ -410,7 +410,7 @@
       "evidence": [
         {
           "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "version": "repo-file-v1:sha256:1485bf659f126e8b983ac73cfb097c1c4514d88e2ff126e7420771797bbd0a83"
         },
         {
           "resource": "repo://CHANGELOG.md",
@@ -421,10 +421,34 @@
           "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
         }
       ]
+    },
+    {
+      "id": "claim_b527cc54e52844a8813483355f8681ac",
+      "statement": "The committed mise configuration requires mise 2024.9.5 or newer, enables automatic tool installation, and pins terraform-docs 0.22.0, tflint 0.62.0, and git-cliff 2.13.1, but declares no OpenTofu tool; .opentofu-version separately records OpenTofu 1.10.0.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml#L1-L16",
+          "version": "repo-lines-v1:sha256:7a0d2665212b67625013ca3492285e8a624ee2a6bd036211fe028b7ececae733:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwNjQwZmU2ZTlkZmYyMDE5NjY2OTM0NjEzODU4MmM2ZTI3NTliMTJjNzNjYTA0OWE5NDc4YjEzMzFjNWY0NmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlMzM1OTkyZjExZTI2NzgyNGEwMjQ3OTFhNTc2MmViOTlkZDAyMmU2OWEwMGZkZmQ0MGI1ZWVmMTkyNzQ1MDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg0ZDI1YTQ0MGExOTEwNmMwNDMzY2IyYzExOWE5YWJmMmI1ZjEyOWJkZmY3N2U5ZDQ3YmVhMmI1ZTBlMGZlYTIifQ"
+        },
+        {
+          "resource": "repo://.opentofu-version#L1-L2",
+          "version": "repo-lines-v1:sha256:943b94a4e4d7b6b70f66d35e2268da108ee661fceaba81d32849729fa2b89e0a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNiNDZkYzdjM2FjZGMxMjk5ZTk0NzJjMWY0ZDRjOTViMGZlNDgyNGE2ZTg3MTNiNTNmNzk4NTg5NWI1YWEyMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGY1YmE2YTNlMzgwYmY4MTBjYzk2OGI1OGQzMGE4ZDcxNjNlYWZlOWUyZmIxYWQxOWJkYzZkOWQ2NGExZTU0OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f1c6dde411c1415da4eb79a9d7931c74",
+      "statement": "The mise tflint and tflint-fix tasks initialize TFLint and run recursively, with tflint-fix adding --fix; the empty lint task has no configured command or dependencies and is not an aggregate validation gate.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml#L39-L53",
+          "version": "repo-lines-v1:sha256:e185b7a88e394f8ff8ee6e830461026332ba7a246379d738724da8257215820b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjkzYWEzNzk3NjBkYWVmNTY2OWE4NzFkMmU2M2MxOGE5YTM2Zjk2YzUwZDBiMmViNmU5NzNlYzYwMWUzMGIzYmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmOWEwOWYwZjExNTJmOGI1MmM2N2VkZjdlOGE4ZmNkYjcwODk3MGZlYWQxYmFlMWMyYTViYWQ4MmZkYWQ1NzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3NjAzNjQ2YTM0ODBkNzIzYzkwNGE5M2M5YWUyODM0MzRjYmVjNWUyOTExZDk4YzRhOWEzNjc2Njk3ZmM2MzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
     }
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

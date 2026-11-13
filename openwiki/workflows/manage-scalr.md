@@ -5,7 +5,7 @@ description: Safely bootstrap and modify Scalr environments, workspaces, provide
 tags: [scalr, configuration, bootstrap, opentofu, operations]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-d1aafb58c92d7db9e253cbce
     resource: repo://deployments/cloud/digitalocean/droplets/main.tf
@@ -31,7 +31,7 @@ sources:
     resource: repo://scalr-management/versions.tf
   - id: openwiki-source-f920c42fbce563c055fd03b0
     resource: repo://scalr-management/workspaces.tf
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # Bootstrap and change Scalr account configuration
@@ -61,7 +61,7 @@ flowchart TD
 
 ## Prerequisites and ownership
 
-- Install OpenTofu or Terraform compatible with `required_version = ">= 1.8.0"`. The management root pins the Scalr provider to `registry.scalr.io/scalr/scalr` version `3.11.0`; workload engine versions in YAML are separate settings.
+- Install OpenTofu or Terraform compatible with `required_version = ">= 1.8.0"`. The management root pins the Scalr provider to `registry.scalr.io/scalr/scalr` exactly version `3.12.0`; workload engine versions in YAML are separate settings.
 - Obtain an existing Scalr account and an API identity authorized to manage the intended account resources. Supply `account_id` externally; validation requires the `acc-` prefix.
 - Authenticate using **`SCALR_HOSTNAME`** and **`SCALR_TOKEN`**, or the CLI credential store via `tofu login <hostname>`. Do not put actual credentials in YAML, review comments, or this documentation. See [Authentication and connectivity](../integrations/authentication-and-connectivity.md).
 - Supply **`proxmox_clusters`** externally, even if it is an empty map for a cloud-only setup. It has no default. A cluster requires `endpoint` and either `api_token` or both `username` and `password`. The homelab YAML currently references `proxmox-nexus`, `proxmox-matrix`, and `proxmox-quantum`; reconcile those references with real inputs rather than trusting example names.

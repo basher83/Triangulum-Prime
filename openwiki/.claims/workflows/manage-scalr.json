@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:845b89c331c4bb570ff11881f8f9ffb35a5bb509b5bfbd4051f305a4096f1e3a",
+  "pageVersion": "sha256:d7bd3431469f7820d648f053e2b1eb2b27917290417fea2fc67b5738376eda5e",
   "claims": [
     {
       "id": "claim_878aab7055db4ec282fcef304caf3f6c",
@@ -32,15 +32,15 @@
     },
     {
       "id": "claim_ad7069de378541188f1c053d318b027a",
-      "statement": "The management root requires an engine >=1.8.0 and pins registry.scalr.io/scalr/scalr to 3.11.0; provider authentication uses SCALR_HOSTNAME and SCALR_TOKEN or CLI credentials.",
+      "statement": "The management root requires an engine >=1.8.0 and pins registry.scalr.io/scalr/scalr to exactly 3.12.0; provider authentication uses SCALR_HOSTNAME and SCALR_TOKEN or CLI credentials.",
       "evidence": [
         {
-          "resource": "repo://scalr-management/main.tf",
-          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+          "resource": "repo://scalr-management/main.tf#L24-L28",
+          "version": "repo-lines-v1:sha256:ba4b7ef3a8646a8dc61d59683173cc5754180ea618ee2dd1205fbc95a0db0884:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWI2MzViNmMyZWY1YWRkNmVlY2IyYzM5NzAzZDIwY2E2MjcyNzQ2MDViODlmNjA1YWNhZjhmOWU4MjkzM2Y2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWMzMjExZTg2MTQzN2VjOGZkMDU4ZDMwODE0MTMyNjc3MDlhMjc5ZjQ2NzM2ODlkM2E1NTM0NDZhNDI0MGFhOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
         },
         {
-          "resource": "repo://scalr-management/versions.tf",
-          "version": "repo-file-v1:sha256:4f7e4a3465e91b130d81321d6cbc32d7f0e2da83454fdf24f9872f7bb29e636a"
+          "resource": "repo://scalr-management/versions.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:6936eb6053233c5c1059269745e695015c0bdfe3014c7c2fc5da0c6840f10ff3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
@@ -251,6 +251,6 @@
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

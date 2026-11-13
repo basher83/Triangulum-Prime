@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:e797c298e47789e4c44bf2d4a2f403ac5bc1e2b6db82e65c149046032e3f653a",
+  "pageVersion": "sha256:40619d42e1a6f6b2fab502705f04bb9a29a17809edbf5dbfd553ae4cf8b34915",
   "claims": [
     {
       "id": "claim_54db8274997f41929dc1a78587fb64a1",
@@ -264,23 +264,23 @@
     },
     {
       "id": "claim_2356129d6ec240eda145a26b8f8b67ea",
-      "statement": "VM and LXC module minimum requirements differ from deployment provider constraints and registry release selection: VM requires Terraform >=1.0, LXC >=1.5.0, both bpg/proxmox >=0.84.1, while template deployment selects provider ~>0.89.0 and registry VM module 1.0.1.",
+      "statement": "VM and LXC module minimum requirements differ from deployment provider constraints and registry release selection: VM requires Terraform >=1.0, LXC >=1.5.0, both bpg/proxmox >=0.84.1, while template deployment requires provider ~>0.90.0 and Terraform >=1.8 and the Ubuntu template caller selects registry VM module 1.0.1.",
       "evidence": [
         {
           "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L42-L45",
           "version": "repo-lines-v1:sha256:a8030497b37c6b185b9955130ef855afecef8b1b1299d97a6c7b513c3f6a2cdf:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ5NjBlNDJmOTY4MTBhMjg5M2FkOWE2MDgwOTRjYWFhYjEyZWIzOGMxMzI4ZGExN2JhNzgyYjliYWMzM2I5ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQxZGM4YzgyNDEzOTdiODFmMTQwMGNiZGY2MTEzNTM2NjY2ODEwMWQyOGFlZTAwOGQxMmViYTdiYWYyZDgyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTlhZjkwZjUzZjQ2MDc5NGY1ZTU4MWNiZjIyY2IyMDY0ZGE4Yzk0ZTkzNjE4YTI5NTE4NTBjOTBmM2Q2NjE3MSJ9"
         },
         {
-          "resource": "repo://deployments/homelab/templates/versions.tf",
-          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+          "resource": "repo://deployments/homelab/templates/versions.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         },
         {
           "resource": "repo://terraform-bgp-lxc/main.tf#L1-L9",
           "version": "repo-lines-v1:sha256:2d2718342c8ef2703ce7aa36c1fd2b716252464b2a5401a879b36a70fabaccc2:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWM2MTYxZmJmZTViMzZlMDgwYWE5OGUwYjgwNDM0YjJmNTM0NzM3YTMzMTJiZWFhY2RiOTEyNTk4ZjFkNTBmYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYwOTc4Y2QyNDYwNDNiYzk2YjQ5YzUzZjcyYzhkM2QwMGU3MzM0ODNiZGNjNjc3ZjgyOTkxMjEyYWRhNWIxYSJ9"
         },
         {
-          "resource": "repo://terraform-bgp-vm/versions.tf",
-          "version": "repo-file-v1:sha256:38fe3a8e258e5e89126bba800386e1547e6361d8833719f9a1a1966356326d29"
+          "resource": "repo://terraform-bgp-vm/versions.tf#L1-L11",
+          "version": "repo-lines-v1:sha256:38fe3a8e258e5e89126bba800386e1547e6361d8833719f9a1a1966356326d29:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
         }
       ]
     },
@@ -305,6 +305,6 @@
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

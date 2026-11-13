@@ -5,7 +5,7 @@ description: Resource creation paths, lifecycle invariants, initialization modes
 tags: [proxmox, opentofu, modules, virtual-machines, lxc]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-39fd6912be936e5dd090c88d
     resource: repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf
@@ -37,7 +37,7 @@ sources:
     resource: repo://tests/terratest/README.md
   - id: openwiki-source-da85fde896f6c6bf21228a40
     resource: repo://tests/unit/README.md
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # VM and LXC module contracts
@@ -157,7 +157,7 @@ Keep three version decisions separate:
 | Boundary | Repository example |
 |---|---|
 | Module minimum compatibility | VM requires Terraform `>= 1.0`; LXC requires `>=1.5.0`; both require `bpg/proxmox >= 0.84.1` |
-| Deployment provider selection | [Template versions](../../deployments/homelab/templates/versions.tf) selects `~> 0.89.0` and Terraform `>= 1.8`; its comment still mentions 0.84.x, so read the expression, not the comment |
+| Deployment provider selection | [Template versions](../../deployments/homelab/templates/versions.tf) requires `bpg/proxmox ~> 0.90.0` and Terraform `>= 1.8` |
 | Published module release selection | Ubuntu template caller selects private-registry source `the-mothership.scalr.io/proxmox/vm/bgp`, version `1.0.1`; the examples use a relative local source instead |
 
 A provider constraint is not a module release, and a locally edited module is not automatically the code consumed by the pinned registry caller.

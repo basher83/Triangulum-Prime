@@ -5,10 +5,12 @@ description: Identify state ownership and diagnose Scalr and Proxmox failures wi
 tags: [operations, state, troubleshooting, scalr, proxmox, recovery]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-9c06bd9d7d25770709e07c7c
     resource: repo://.mise.toml
+  - id: openwiki-source-339929c7b9fd1d61da31ceb9
+    resource: repo://deployments/homelab/templates/.terraform.lock.hcl
   - id: openwiki-source-f4ea58552bf95821c57a3374
     resource: repo://deployments/homelab/templates/backend.tf
   - id: openwiki-source-f062fd85b6c0d801a9b89d28
@@ -47,7 +49,7 @@ sources:
     resource: repo://terraform-bgp-vm/main.tf
   - id: openwiki-source-cd117dda250dbdf421bcb7a6
     resource: repo://terraform-bgp-vm/outputs.tf
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # State safety, recovery limits, and troubleshooting
@@ -149,7 +151,7 @@ The [2026-04-28 audit](../../docs/audits/AUDIT_REPORT_2026-04-28.md) is evidence
 
 - Validate linked paths before following setup or migration instructions. `docs/SETUP.md`, `docs/MIGRATION.md`, `docs/WORKFLOWS.md`, and `scripts/build-template.sh` are absent from the inspected directories; the existing migration script is a stub.
 - Check active YAML and workspace configuration rather than assuming a push triggers a plan. Homelab template VCS blocks are currently commented out and `auto_apply` is false; the implementation only emits VCS configuration when both repository data and a VCS provider ID exist.
-- Re-read tool configuration. The audit's duplicate-key observation is historical: current [`.mise.toml`](../../.mise.toml) has one `tflint` entry, but several tasks still use `dir = "terraform"`, which does not match the current root layout. Initialization and lint tasks can fetch dependencies; inspect task bodies before use.
-- Prefer active constraints over historical comments. [Template `versions.tf`](../../deployments/homelab/templates/versions.tf) actively requires `bpg/proxmox ~> 0.89.0` while its adjacent comment says to pin 0.84.x because of a 0.85.0 bug. That comment is not the selected version constraint and is not evidence for a blind downgrade.
+- Re-read tool configuration. The audit's duplicate-key failure is historical: current [`.mise.toml`](../../.mise.toml) has one `tflint` tool entry and enables `auto_install`, `not_found_auto_install`, and `task.run_auto_install`. Invoking tools or tasks through mise can therefore install missing tools; it is not equivalent to reading source. The `fmt-check`, `tofu-validate`, and `docs-check` tasks still use `dir = "terraform"`, which does not match the current root layout. The validation task runs `tofu init -backend=false`, and lint tasks run `tflint --init`; these can fetch dependencies. Inspect task bodies and choose the intended configuration root before use.
+- Distinguish compatibility constraints from selected versions. [Template `versions.tf`](../../deployments/homelab/templates/versions.tf) requires `bpg/proxmox ~> 0.90.0` (compatible 0.90.x releases, not an exact pin). The [template lockfile](../../deployments/homelab/templates/.terraform.lock.hcl) selects `0.90.0` and records combined constraints `>= 0.84.1, ~> 0.90.0`. Diagnose the run's provider selection using the applicable constraints and lockfile, not historical workaround or downgrade advice.
 
 No remote plan, API probe, SSH session, or infrastructure change is implied by this source-based troubleshooting guide.

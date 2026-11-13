@@ -5,10 +5,12 @@ description: Separates Scalr account configuration from infrastructure runs, map
 tags: [architecture, infrastructure, scalr, proxmox, opentofu]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-9c06bd9d7d25770709e07c7c
     resource: repo://.mise.toml
+  - id: openwiki-source-f5053717be48e08d375c2ebc
+    resource: repo://.opentofu-version
   - id: openwiki-source-ca6cb4b1a14fd7969dfae3ec
     resource: repo://CHANGELOG.md
   - id: openwiki-source-d1aafb58c92d7db9e253cbce
@@ -99,7 +101,7 @@ sources:
     resource: repo://tests/terratest/README.md
   - id: openwiki-source-da85fde896f6c6bf21228a40
     resource: repo://tests/unit/README.md
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # System ownership and practical source map
@@ -181,6 +183,8 @@ For the local VM module, templates are forcibly stopped and excluded from boot s
 | Automate deployment or migration | [`scripts/`](../../scripts/) is only a starting point: all three shell files contain a shebang and a comment, not automation |
 | Add regression coverage | [`tests/unit/`](../../tests/unit/), [`tests/integration/`](../../tests/integration/), and [`tests/terratest/`](../../tests/terratest/) document intended test styles but contain README placeholders, not executable tests |
 | Check developer tooling | [`.mise.toml`](../../.mise.toml) defines tool versions and formatting, validation, documentation, lint, and changelog tasks; check their working directories before use |
+
+The committed [`.mise.toml`](../../.mise.toml) requires mise `2024.9.5` or newer, enables automatic tool installation, and pins `terraform-docs = "0.22.0"`, `tflint = "0.62.0"`, and `git-cliff = "2.13.1"`. It does not declare an OpenTofu tool; [`.opentofu-version`](../../.opentofu-version) separately records `1.10.0`. The `tflint` and `tflint-fix` tasks initialize TFLint and run recursively, with only the latter adding `--fix`; the bare `lint` task has no configured command or dependencies. Do not treat it as an aggregate validation gate. For practical checks, see [Local validation](../testing/local-validation.md).
 
 No automated regression evidence is supplied by the placeholder test directories. Focus new coverage on YAML-to-workspace transformations, provider selection, VM source/precondition combinations, template lifecycle behavior, and the firewall interface once implemented. Static inspection here did not run plans, applies, or provider-backed tests.
 

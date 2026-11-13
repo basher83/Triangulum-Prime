@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:6d677450000d7f6a5b2fe7d38f23ecffe5d0ace6d802ee3bb078d33d69a34370",
+  "pageVersion": "sha256:f27ed7956b7529bac54dde8061298c1cc0c9be24131e4c789a626b09268212f6",
   "claims": [
     {
       "id": "claim_718b4e0736044507820f8519b300c462",
@@ -84,29 +84,33 @@
     },
     {
       "id": "claim_578163afab434948aa717be5f773c1b2",
-      "statement": "The repository pins OpenTofu 1.10.0; mise declares terraform-docs 0.21.0, tflint 0.61.0 and git-cliff 2.10.1 but no OpenTofu entry in its tools table, distinct from the single-vm example's broader required_version constraint.",
+      "statement": "The repository pins OpenTofu 1.10.0; mise declares terraform-docs 0.22.0, tflint 0.62.0 and git-cliff 2.13.1 but no OpenTofu entry in its tools table, distinct from the single-vm example's broader required_version constraint.",
       "evidence": [
         {
-          "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "resource": "repo://.mise.toml#L13-L16",
+          "version": "repo-lines-v1:sha256:c1cdbb9244ecda4ea6311a193e0fd95713141781db130ac5cbffdfe9736106c3:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTgyNmJlYTA1ZmU1MGE3M2E2NDVkOGZiMTJkYzI4MmYyNTM2MzQ0MzI2NmQ5MDE3MzcyZWFmODg0NTk0NjM0NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmUzMzU5OTJmMTFlMjY3ODI0YTAyNDc5MWE1NzYyZWI5OWRkMDIyZTY5YTAwZmRmZDQwYjVlZWYxOTI3NDUwOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzdjZjkzOTBjYTI2ZDIzYWY3OGY1OTM1YjdiNThhMTI4MGRkMmYwOTMwZmVjYzViMWQ3ZjU2NTBiOTdiNWU5MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODRkMjVhNDQwYTE5MTA2YzA0MzNjYjJjMTE5YTlhYmYyYjVmMTI5YmRmZjc3ZTlkNDdiZWEyYjVlMGUwZmVhMiJ9"
         },
         {
           "resource": "repo://.opentofu-version",
           "version": "repo-file-v1:sha256:943b94a4e4d7b6b70f66d35e2268da108ee661fceaba81d32849729fa2b89e0a"
         },
         {
-          "resource": "repo://examples/single-vm/provider.tf",
-          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+          "resource": "repo://examples/single-vm/provider.tf#L1-L10",
+          "version": "repo-lines-v1:sha256:4f12b44a08ea374fe6b8bb3c329e56a195fb68bc3adc1c21ebb0b41f501b73a9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjNjE2MWZiZmU1YjM2ZTA4MGFhOThlMGI4MDQzNGIyZjUzNDczN2EzMzEyYmVhYWNkYjkxMjU5OGYxZDUwZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0ZTBjZGZhNDQ5NjE5NDI0YjVmNDg4NjA0ZjhkODM4ZGE0MTg0ODYzMDk3ZDQyMzBjNjIyZjIwMmMwZDkwMGEifQ"
         }
       ]
     },
     {
       "id": "claim_ddcdfec4e0d241c0a9938c05ac8d4f89",
-      "statement": "The mise fmt-check, tofu-validate and docs-check tasks target a terraform working directory absent from the repository layout; mise enables automatic installation, validation performs initialization and lint tasks initialize plugins, so these are not a ready-to-run non-mutating bootstrap.",
+      "statement": "The mise fmt-check, tofu-validate and docs-check tasks target a terraform working directory absent from the repository layout; mise enables automatic installation including settings.task.run_auto_install, validation performs initialization and lint tasks initialize plugins, so these are not a ready-to-run non-mutating bootstrap.",
       "evidence": [
         {
-          "resource": "repo://.mise.toml",
-          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+          "resource": "repo://.mise.toml#L23-L50",
+          "version": "repo-lines-v1:sha256:d47220ff47c07473db376ffa8e2082bea2e76fecbb989b68fb63e9e157dbd676:eyJzZWxlY3RlZExpbmVDb3VudCI6MjgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2M2VlZTI5MzlkZWU3ZDY0ZGEyNTE4MTIyYTZjYmFjZTQzMmNhYTA5NTIwOGE0ZDg0MTIwZDgwYzE4MDFiNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ2MWM3NGI5ZjlkNmY0YjA3NDk2Zjg2OTMzNDExMGViYWMzZTM2Y2MxYzk4ZDQ5Mzc1MjcxYzNhMjM3MDRmMDciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5MGEzM2MxYzFlNzBmYWEyN2ZiMDVhYTZmNjliZTIyNjg2ZTFlOWIwMDA1ODAwZjJjMzhiZmNhZTZmYTNiNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFiOWFlNmEyOWI0OTNmYTdlM2YzZjEzY2ExODhlMjZiNzFmMDIyYjNhZWJmODFjNzkzMjFkZDY0NjMxNTllZDMifQ"
+        },
+        {
+          "resource": "repo://.mise.toml#L3-L6",
+          "version": "repo-lines-v1:sha256:50b9d82e2e5bef752a7a6393263f8d3e1b5207abb9af22408208151194ead8ee:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGIyODg4YTRiMzAzYTA2ZGQ0NGIwZmUyOTg0MGVmNDBiYTZhMGY4ODc1MzM2ZDA4ODQ3ZDM5ZjI3MWQ5ZGZkMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk4YzcwYzU0MTUxYmEwOWZlZmE4MTAxNzFmYTJmOGEyOGRmY2NkOTI3ZDEzMGQ1NTEwZWFhMmZhYWVhN2RjNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWI3NTU2YTMyNGVmZDk3ODI0NWU3YjZhZmI4MDhhM2VjOTVjZjhiNmU3MGNkOGUxNDY2ZTVmNDVmZDQ1Mjk0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE2Njg0MTZjNjAyMjQxMTBjZDMwZWJmMjU5NWVkNWFkMjg2ZTczNmYwOWU1OTllZDcyMDVjZjZiNGY0MTQ2NyJ9"
         },
         {
           "resource": "repo://README.md",
@@ -139,6 +143,6 @@
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

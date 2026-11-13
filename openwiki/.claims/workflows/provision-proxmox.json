@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "pageVersion": "sha256:dc11651f42e2f949221490248f8bfc8eea22f8b0bbced97fc2cc3daebda798b8",
+  "pageVersion": "sha256:e3fed7fef56a56047ed96107e136c3995a757a05088de7bf8b94230842731a69",
   "claims": [
     {
       "id": "claim_e345150f1a4849798f93a339de471fe2",
@@ -46,19 +46,23 @@
     },
     {
       "id": "claim_49ffa2b48d6f4a6ea5706e9740de927f",
-      "statement": "The active Ubuntu template child uses private registry module the-mothership.scalr.io/proxmox/vm/bgp version 1.0.1; the template root and child require >= 1.8 and bpg/proxmox ~> 0.89.0 despite the stale adjacent provider comment.",
+      "statement": "The active Ubuntu template child selects private registry module the-mothership.scalr.io/proxmox/vm/bgp version 1.0.1 independently of the provider: the template root and active child both require required_version >= 1.8 and bpg/proxmox ~> 0.90.0, and the root lockfile selects provider 0.90.0.",
       "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/.terraform.lock.hcl#L4-L6",
+          "version": "repo-lines-v1:sha256:edc447e312f15f3828d470c4a88924dd24a402f797b03836756e66773d19bfd7:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTAwODVkYjAzZWYwNzRiODgxOWU1MDRkZjUyNGNlMDdjMTUxMWNjZjViOWQ3MmY3NWIyMjI0OTEzOGNlMGYwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjU1MDlhYjZkYWY2ZmNlNjZkZTk0ZjI2NDkzMzIwMmE4ZjE5NTBiMjNjNWExMmM3ODE5NzE4MjJmMzE1NGJiNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGI4MzBlNDU3NTQ1YzI4NmRhZWE2Mjg4ZWU2ZTFmODU2ZTU2NzYxOTI3ZDZmMTA5N2VkYzJiNjdjNzllNzI4MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjIxNTM5NjEzMjllY2ZiMzkzNWU4ZGVkNTFlMmJjOTliODhiNGRlZTZiYzExNTcwYzU3NjUwNzliOGU4NTU5NiJ9"
+        },
         {
           "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L41-L49",
           "version": "repo-lines-v1:sha256:e3ee266ce4c5c4529df192c5df964bb6696d243162aa0f953d73bb4789bd4034:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU2OWFmYTgzY2EzMzZlYzhhMDYxNmRlOWEwNTUwOGMyYzU3ZDE5MzJmYzQ4YmFkNTUxY2JiMjdhMWFiYjMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQxMjE5M2Y3NTE2NzIyYTliNzc1ZGZiMTU1NDdmMWU5MDhlODVkYzg0OGZmOGIyYTczNmM5NTU3MTY5NjRlMyJ9"
         },
         {
           "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf",
-          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
         },
         {
           "resource": "repo://deployments/homelab/templates/versions.tf",
-          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+          "version": "repo-file-v1:sha256:2e50b0f1bcf9df95b5d1087e95fefc191ca5cd4a45142b03beff921fc6f994ba"
         }
       ]
     },
@@ -144,8 +148,12 @@
     },
     {
       "id": "claim_8a8ea32f4d1f40ed945969ca521bbe88",
-      "statement": "The standalone examples use the local ../../terraform-bgp-vm source rather than the private release and do not wire template outputs to clone inputs through a remote-state lookup.",
+      "statement": "The standalone examples use the local ../../terraform-bgp-vm source rather than the private release and do not wire template outputs to clone inputs through a remote-state lookup; edits to those examples or the local module do not automatically update the independently selected private-registry artifact used by the remote template child.",
       "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L41-L49",
+          "version": "repo-lines-v1:sha256:e3ee266ce4c5c4529df192c5df964bb6696d243162aa0f953d73bb4789bd4034:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWU2OWFmYTgzY2EzMzZlYzhhMDYxNmRlOWEwNTUwOGMyYzU3ZDE5MzJmYzQ4YmFkNTUxY2JiMjdhMWFiYjMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMWQxMjE5M2Y3NTE2NzIyYTliNzc1ZGZiMTU1NDdmMWU5MDhlODVkYzg0OGZmOGIyYTczNmM5NTU3MTY5NjRlMyJ9"
+        },
         {
           "resource": "repo://examples/microk8s-cluster/main.tf",
           "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
@@ -347,6 +355,6 @@
   ],
   "verification": {
     "by": "openwiki/0.9.0",
-    "at": "2026-11-12T08:01:26.797Z"
+    "at": "2026-11-13T03:06:44.899Z"
   }
 }

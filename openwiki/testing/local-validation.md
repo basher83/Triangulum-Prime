@@ -5,7 +5,7 @@ description: Explains the declared local checks, their broken path assumptions a
 tags: [testing, opentofu, validation, tooling, coverage]
 verified:
   - by: openwiki/0.9.0
-    at: 2026-11-12T08:01:26.797Z
+    at: 2026-11-13T03:06:44.899Z
 sources:
   - id: openwiki-source-6d4b4e707b8d60b6ccfa3425
     resource: repo://.github/workflows/openwiki-update.yml
@@ -19,6 +19,10 @@ sources:
     resource: repo://deployments/cloud/digitalocean/droplets/versions.tf
   - id: openwiki-source-93ac82387625013dd8fc86b0
     resource: repo://deployments/cloud/hetzner/instances/versions.tf
+  - id: openwiki-source-181dcadf06d8e7271c897d80
+    resource: repo://deployments/homelab/lxc/versions.tf
+  - id: openwiki-source-339929c7b9fd1d61da31ceb9
+    resource: repo://deployments/homelab/templates/.terraform.lock.hcl
   - id: openwiki-source-f4ea58552bf95821c57a3374
     resource: repo://deployments/homelab/templates/backend.tf
   - id: openwiki-source-f062fd85b6c0d801a9b89d28
@@ -57,7 +61,7 @@ sources:
     resource: repo://tests/terratest/README.md
   - id: openwiki-source-da85fde896f6c6bf21228a40
     resource: repo://tests/unit/README.md
-generated: { by: "openwiki/0.9.0", at: "2026-11-12T08:01:26.797Z" }
+generated: { by: "openwiki/0.9.0", at: "2026-11-13T03:06:44.899Z" }
 ---
 
 # Validation tooling and actual test coverage
@@ -75,27 +79,27 @@ The repository declares formatting, OpenTofu validation, documentation checking,
 | `mise run tflint-fix` | Same directory behavior | Initializes TFLint, then adds `--fix`; this can change files. |
 | `mise run lint` | Empty `[tasks.lint]` table | No command or dependency list is declared. It does not aggregate the other checks. |
 
-The changelog task is separate: `git-cliff -o CHANGELOG.md` writes the changelog; it is not validation. Mise enables automatic tool installation, so even invoking a nominally read-only check through mise can install missing tooling.
+The changelog task is separate: `git-cliff -o CHANGELOG.md` writes the changelog; it is not validation. Mise enables automatic tool installation through `auto_install`, `not_found_auto_install`, and `task.run_auto_install` under `[settings]` (the last is a nested setting, not a top-level task declaration). Even invoking a nominally read-only check through mise can install missing tooling.
 
 The [April audit](../../docs/audits/AUDIT_REPORT_2026-04-28.md) is useful historical context, not a substitute for current configuration. Its duplicate `tflint`/`pre-commit` key finding is obsolete: current `.mise.toml` has a single `tflint` tool key and no `pre-commit` tool entry. The missing-directory problem remains.
 
 ## Versions are not uniform across roots
 
-The root [`.opentofu-version`](../../.opentofu-version) and [Scalr management pin](../../scalr-management/.opentofu-version) both declare **1.10.0**. These pins express a selected CLI version; `required_version` expresses compatibility, not an identical pin. Mise requires at least **2024.9.5** and installs **terraform-docs 0.21.0**, **TFLint 0.61.0**, and **git-cliff 2.10.1**. It does not declare an OpenTofu tool entry; ensure a compatible `tofu` binary is available rather than assuming `mise install` supplies it.
+The root [`.opentofu-version`](../../.opentofu-version) and [Scalr management pin](../../scalr-management/.opentofu-version) both declare **1.10.0**. These pins express a selected CLI version; `required_version` expresses compatibility, not an identical pin. Mise requires at least **2024.9.5** and installs **terraform-docs 0.22.0**, **TFLint 0.62.0**, and **git-cliff 2.13.1**. It does not declare an OpenTofu tool entry; ensure a compatible `tofu` binary is available rather than assuming `mise install` supplies it.
 
 Representative current constraints:
 
 | Configuration | `required_version` | Provider constraint |
 |---|---|---|
-| [`scalr-management`](../../scalr-management/versions.tf) | `>= 1.8.0` | `registry.scalr.io/scalr/scalr` exactly `3.11.0` |
-| [Template orchestrator](../../deployments/homelab/templates/versions.tf) and [Ubuntu 24 child](../../deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf) | `>= 1.8` | `bpg/proxmox ~> 0.89.0` |
-| [Single-VM deployment](../../deployments/homelab/vms/single/versions.tf) | `>= 1.8.0` | `bpg/proxmox ~> 0.89` |
+| [`scalr-management`](../../scalr-management/versions.tf) | `>= 1.8.0` | `registry.scalr.io/scalr/scalr` exactly `3.12.0` |
+| [Template orchestrator](../../deployments/homelab/templates/versions.tf) and [Ubuntu 24 child](../../deployments/homelab/templates/ubuntu-24-cloudinit/versions.tf) | `>= 1.8` | `bpg/proxmox ~> 0.90.0` |
+| [Single-VM deployment](../../deployments/homelab/vms/single/versions.tf) | `>= 1.8.0` | `bpg/proxmox ~> 0.90` |
 | [Reusable VM module](../../terraform-bgp-vm/versions.tf) | `>= 1.0` | `bpg/proxmox >= 0.84.1` |
 | [Reusable LXC module](../../terraform-bgp-lxc/main.tf) | `>=1.5.0` | `bpg/proxmox >=0.84.1` |
 | [DigitalOcean droplets](../../deployments/cloud/digitalocean/droplets/versions.tf) | `>= 1.8.0` | `digitalocean/digitalocean ~> 2.0` |
 | [Hetzner instances](../../deployments/cloud/hetzner/instances/versions.tf) | `>= 1.8.0` | `hetznercloud/hcloud ~> 1.45` |
 
-Read constraint expressions literally: `~> 0.89.0` is narrower than `~> 0.89`. The template files still contain an older inline comment about pinning to 0.84.x; the executable expression is `~> 0.89.0`. A module's lower bound does not override a consuming root's tighter constraint or lockfile selection.
+Read constraint expressions literally: `~> 0.90.0` permits versions `>= 0.90.0, < 0.91.0`, while `~> 0.90` permits `>= 0.90.0, < 1.0.0`. These are different compatibility windows, not identical pins. The neighboring [LXC deployment root](../../deployments/homelab/lxc/versions.tf) also requires OpenTofu `>= 1.8.0` and Proxmox `~> 0.90`. A module's lower bound does not override a consuming root's tighter constraint or lockfile selection. The [template root lockfile](../../deployments/homelab/templates/.terraform.lock.hcl) currently selects Proxmox **0.90.0** and records the combined constraints `>= 0.84.1, ~> 0.90.0`; this selection is not evidence that initialization or validation passed.
 
 ## Scoped checks for real directories
 
