@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e797c298e47789e4c44bf2d4a2f403ac5bc1e2b6db82e65c149046032e3f653a",
+  "claims": [
+    {
+      "id": "claim_54db8274997f41929dc1a78587fb64a1",
+      "statement": "The VM module selects image or clone creation, requires the corresponding source object, downloads URL images as ISO content only in image mode, otherwise references an existing datastore ISO file, and always performs full clones with source-node fallback to the target node.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d70259049a944bd9f15a8fbcec03b60",
+      "statement": "Image import selects the sole main_disk flag or the first map key fallback; only the selected disk receives file_id, clone mode renders all disks without it, and src_file.file_format is not consumed by the construction.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_89a3d3e12b264a02b74003f88567767c",
+      "statement": "VM BIOS, machine and SCSI hardware are set only in image mode, but EFI creation and the required EFI precondition depend on vm_bios being ovmf in both image and clone modes.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_5a56bf4b5a5d4fed84dff8ddc7fef4bf",
+      "statement": "The VM module supplies host CPU/two cores, 2048 MiB memory, enabled guest agent, RNG and serial defaults, and substitutes dedicated memory when floating memory is null.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_eed931c5def54df2b1d2deefad6b7622",
+      "statement": "VM networking and cloud-init IP blocks iterate the same interface map, while disabling a NIC disconnects it without removing its initialization IP configuration; vm_init remains required with an ide2 default.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_51bb0cca3c794f3cadca7a22c0346571",
+      "statement": "VM structured user accounts and custom user-data file IDs are mutually exclusive by precondition, both may be absent, and the caller rather than the VM module owns custom snippets uploads.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_3bf273746d194028a0d76f2e560dd07e",
+      "statement": "VM validation checks enumerated hardware modes, naming patterns, main-disk count and discard values, but its unanchored regexes and lack of general address or reachability validation do not establish complete Proxmox compatibility; unused second source objects are not rejected by preconditions.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd3567a1805046768f930e3c30e91c0a",
+      "statement": "The VM lifecycle ignores structured initialization user-account changes and template changes, with template ignoring recorded in version 1.0.1 as an inconsistent-result workaround; this is not an ignore of all initialization.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/CHANGELOG.md",
+          "version": "repo-file-v1:sha256:409dceacb23932722831631e03a07f0fd3bd47de4df9ef1eb11d231b23f823d6"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L205-L215",
+          "version": "repo-lines-v1:sha256:ca9964c77182ff50e323872902be372465c9088f5f5788bec8e5f4e3aec958af:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzMGE5NTI3MGM5NTg3ZTk2NWIxMWFjMTA1MWM5MGJkNDZiNGZmMzNmMmI2MDZkYzZlNDgyMDMyZGRkY2ZjMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MTAxZjQ3ZjI5ZjZlODAxZmY2ZmIxM2QyMDI5NzU3MjQ4M2UzNGZkN2Y4N2I4MWJjODZmYjBjMWQ4MmViNDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YjlhMGIxNmI5OTEwYmFhNWQwYTRkY2FmZjhhNjBjNDI5NjMzYmYyYWUzY2JhY2M4MjAyOTA3NTgwZDEwY2EiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhhNTk3NzBlMDNkZWQ2NDVjMmVhY2YyOGVhNTU0ZWEwYmMzMzJmYTlmOGVmY2QzNjgzMDQ1ZjAyNGFhNGU4MTgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5e7b1f1e3ee047859a1e9db58c523004",
+      "statement": "VM templates force started and on_boot false while still emitting startup order and delays; ordinary VMs follow vm_start inputs.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L37-L45",
+          "version": "repo-lines-v1:sha256:38743202b7447b41f8a2f48daade6e15385252835e62003680d65bea1f5cd6c8:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTgzMThiNDk3MmMzMmU0MTUyNTU3YTgxMTZlODJjNTVhMzQ5MDU2NDUwMTVkYjczNmNiOWQ4NzMyMDdiNGFhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzA5ODFjOTk1ZTdiYjlkODFjODJiNDc0YWQwMmViYjA5NjcxYzU1MTMzNTZlNmZjOTg0YTlkNDkwOTA5ZjI3MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGMyMzBjZTQxODlkZmUzODgyMDYzNDQ3ZGY2OWJjZDBjNGIxZTExN2EyOWYxZDVjODkzZGU4YzdmODk4YWJjOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzE1MWEyY2I4MmJkNzFmNmM3NDgwNmE5ODg2YTMyNGEwYjI3NmExMDk1ZjU1Y2E4NmZmNTg0MmQ0YmE0MzdmZCJ9"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/variables.tf",
+          "version": "repo-file-v1:sha256:4563b1f47b3092ef1da0341dddaa7bf03540310f4e536b430a45d477d3410ee0"
+        }
+      ]
+    },
+    {
+      "id": "claim_6496831413b94f0f814d5f1ac9f40fe2",
+      "statement": "Neither module supplies blanket prevent_destroy protection: VM lifecycle has no prevent_destroy or create_before_destroy and LXC has no lifecycle block.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_1894d070f28740a99c8d253adebba902",
+      "statement": "VM primary_ip flattens guest-agent IPv4 addresses, excludes only empty strings, null and 127.0.0.1, selects the first remaining address, then coalesces to the first configured interface address stripped at slash and finally N/A; a configured dhcp string can therefore be returned without an assigned usable address.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/outputs.tf",
+          "version": "repo-file-v1:sha256:fc99f241e0d5e83d3bd733e7b3c65d8840dfb7d6cd168d8307579e5f9c8f8de7"
+        }
+      ]
+    },
+    {
+      "id": "claim_8245c660768548cf8e57b923684ba101",
+      "statement": "VM exports identity, node, raw guest-agent address arrays and MAC addresses plus primary_ip; the full vm_resource output is explicitly sensitive whereas focused outputs are not.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/outputs.tf",
+          "version": "repo-file-v1:sha256:fc99f241e0d5e83d3bd733e7b3c65d8840dfb7d6cd168d8307579e5f9c8f8de7"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cbabb40a13c451888fa755f4b62376f",
+      "statement": "LXC manages a container from a required existing template ID with unprivileged mode defaulting true and validated os_type defaulting unmanaged, without VM-style download, EFI or lifecycle mechanisms.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/variables.tf",
+          "version": "repo-file-v1:sha256:d45fdf193caf512fdf23caa10b75b6014bbef9831827e9c7936d4ccb231ea9ec"
+        }
+      ]
+    },
+    {
+      "id": "claim_65075d153033460999a76b9e0462255d",
+      "statement": "LXC user_ssh_key_public is a sensitive execution-host file path read with file(), or an empty key list when null; its PRIVATE validation checks the path string rather than file contents, and its password input is sensitive.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf#L36-L39",
+          "version": "repo-lines-v1:sha256:6d7eebca4b4e613fb04f5ea2598e7fef8e71037315cd43b2c40bcca1d9e3a447:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWRmMjJiMWZmN2FjN2QzNWZiYjFhMGJiOTFmN2Q3M2MzNmFkYTg3OTc1MmVhNTg4ODI3NTkyNzMwYTRiNmQ2MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDRiOWEwYjE2Yjk5MTBiYWE1ZDBhNGRjYWZmOGE2MGM0Mjk2MzNiZjJhZTNjYmFjYzgyMDI5MDc1ODBkMTBjYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDI5YmU1M2VhODMyZTc3YTM1M2JkNGYwMDE5MDk0NjY0YWE0ZmNjZjI2MzBhMTE4MDE5YmUwOTUzODkwMTNmNCJ9"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/variables.tf#L154-L172",
+          "version": "repo-lines-v1:sha256:22ef396acea7fe64235147546cac89a6e32ab8b1310b6a2e993f6e9ae50945b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5Yjk2Yjc5NjJiNDUxODQ4ZDJlOGYyNmUwZWNiZjYzMzNkZjA5N2M5NGYzOGMwM2Q0M2Q2NDFjODFhNDhhOTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7918beedf7e1468dbb54008bc86dbfea",
+      "statement": "LXC renders one network interface and a list of IPv4 blocks inside one ip_config, defaulting to eth0 on vmbr0 with DHCP and no gateway.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/variables.tf",
+          "version": "repo-file-v1:sha256:d45fdf193caf512fdf23caa10b75b6014bbef9831827e9c7936d4ccb231ea9ec"
+        }
+      ]
+    },
+    {
+      "id": "claim_1b88ec42303346de81d3910d8737d0f7",
+      "statement": "LXC supplies a root disk defaulting to local-lvm size 8 and optional mount points with backup/read-only false defaults, with one core and 512 MiB each of memory and swap by default.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/variables.tf",
+          "version": "repo-file-v1:sha256:d45fdf193caf512fdf23caa10b75b6014bbef9831827e9c7936d4ccb231ea9ec"
+        }
+      ]
+    },
+    {
+      "id": "claim_5c434905a3064cd6902236b24af5b2e2",
+      "statement": "LXC starts on creation by default but not on host boot, and emits startup order/delay configuration only when start_on_boot is true.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf#L72-L83",
+          "version": "repo-lines-v1:sha256:98e6aecc1bd204a4cba8d57964b7d2b21b3bd0e8339caa76bab06989c3593de7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVmMDM3YmJmMzdiNWFhNzVhOGU5MDZhYTE4OGM1ODg1MWNhZjRkZWNlMmUxN2QxZjZiYTUwN2E0MjJiYzkwNGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/variables.tf#L69-L98",
+          "version": "repo-lines-v1:sha256:0fe6c8f2f9601ebd4f973c03defc206bac67ce1f946f38d489fb81fb0a18c5f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdiOGRkNGYyNGVmMTIzNTY4ZjE0MDM4NjZjZWE2NjU1YWVkMWRkZWYwNWE5NmY3NzY4ZmIzZWNmMzM1MzNmOTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM3YTBmMTVlZTY5ZmNiY2FkYWRkNmJlZWNmM2QwMDQ0NDI0YTBhZjUwYWRlOTAxN2U0NzEzOWJlODNhNGU4MjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg1NzYwNDdiZDQ5ZDVkMThhYTM4OWQxOTExYWNmZGM3OTk3NjY5YjhmYWI2NTMyNzczNTdkYzk2MjcyZjljZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c9d78e08c6f41978f90729d5d778f6b",
+      "statement": "LXC outputs only container ID and the first network interface MAC, not VM-style address fallbacks or a full-resource object.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-lxc/outputs.tf",
+          "version": "repo-file-v1:sha256:cb99dcc4f0ca182f0c0fb209f381fb2ae3b19712192e8fb36d0e7527e80f0c4c"
+        }
+      ]
+    },
+    {
+      "id": "claim_069fedb3a3634189a98269a9405005ab",
+      "statement": "The single-VM example composes a local clone module with optional secondary NIC and structured cloud-init; MicroK8s composes the same module using for_each, deterministic MACs and environment-offset VM IDs, without installing cluster software in this HCL.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        },
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        }
+      ]
+    },
+    {
+      "id": "claim_ce855751bc1b46b2b99c08fb8ff1f7bc",
+      "statement": "MicroK8s offsets IDs by dev 2000, staging 3000 and prod 4000 plus 101–103, but does not offset the shown names, IPs or MACs per environment, leaving shared-network uniqueness to callers.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        }
+      ]
+    },
+    {
+      "id": "claim_2356129d6ec240eda145a26b8f8b67ea",
+      "statement": "VM and LXC module minimum requirements differ from deployment provider constraints and registry release selection: VM requires Terraform >=1.0, LXC >=1.5.0, both bpg/proxmox >=0.84.1, while template deployment selects provider ~>0.89.0 and registry VM module 1.0.1.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L42-L45",
+          "version": "repo-lines-v1:sha256:a8030497b37c6b185b9955130ef855afecef8b1b1299d97a6c7b513c3f6a2cdf:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmQ5NjBlNDJmOTY4MTBhMjg5M2FkOWE2MDgwOTRjYWFhYjEyZWIzOGMxMzI4ZGExN2JhNzgyYjliYWMzM2I5ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQxZGM4YzgyNDEzOTdiODFmMTQwMGNiZGY2MTEzNTM2NjY2ODEwMWQyOGFlZTAwOGQxMmViYTdiYWYyZDgyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTlhZjkwZjUzZjQ2MDc5NGY1ZTU4MWNiZjIyY2IyMDY0ZGE4Yzk0ZTkzNjE4YTI5NTE4NTBjOTBmM2Q2NjE3MSJ9"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/versions.tf",
+          "version": "repo-file-v1:sha256:639011368dcce68d75e32de8e658f289e7ad117b18cbb8f9965984e154d9f446"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf#L1-L9",
+          "version": "repo-lines-v1:sha256:2d2718342c8ef2703ce7aa36c1fd2b716252464b2a5401a879b36a70fabaccc2:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWM2MTYxZmJmZTViMzZlMDgwYWE5OGUwYjgwNDM0YjJmNTM0NzM3YTMzMTJiZWFhY2RiOTEyNTk4ZjFkNTBmYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYwOTc4Y2QyNDYwNDNiYzk2YjQ5YzUzZjcyYzhkM2QwMGU3MzM0ODNiZGNjNjc3ZjgyOTkxMjEyYWRhNWIxYSJ9"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/versions.tf",
+          "version": "repo-file-v1:sha256:38fe3a8e258e5e89126bba800386e1547e6361d8833719f9a1a1966356326d29"
+        }
+      ]
+    },
+    {
+      "id": "claim_8bfa4e2d3db34cffbfaf274a3aa49807",
+      "statement": "The unit, integration and Terratest directories currently document intended test locations in placeholder READMEs rather than providing executable contract coverage.",
+      "evidence": [
+        {
+          "resource": "repo://tests/integration/README.md",
+          "version": "repo-file-v1:sha256:6a98f244d097a6b89c921a6fc6dfa170402a276a1d4271ddf14b69ad90158df5"
+        },
+        {
+          "resource": "repo://tests/terratest/README.md",
+          "version": "repo-file-v1:sha256:e6172f814513554d696970a4b528d72e6b2b78e1b8f60d5f33989ed984d021ad"
+        },
+        {
+          "resource": "repo://tests/unit/README.md",
+          "version": "repo-file-v1:sha256:42bea2bf090fc8c37e0fb98c7db675620de81b89108b401c8c2469eba3b1427b"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T08:01:26.797Z"
+  }
+}

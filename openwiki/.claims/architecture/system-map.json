@@ -1,0 +1,430 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bcb0896619de8b4ea626adb1aee7b9b4e677887d220739907b2ee28849dad68e",
+  "claims": [
+    {
+      "id": "claim_213f0dab659144258219fd1bfe8f9600",
+      "statement": "The repository separates Scalr account management from infrastructure execution: scalr-management creates workspace configuration while separate workspace runs manage infrastructure with their own state.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        },
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_4389f549ad8e42f9b00b1d96e37bb195",
+      "statement": "Management bootstrap currently uses a commented remote backend example, whereas the template deployment has an active Scalr remote backend fixed to organization homelab and workspace vm-templates-nexus.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        },
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        }
+      ]
+    },
+    {
+      "id": "claim_658959aa8a9146df967387e5d72b2cfc",
+      "statement": "Current homelab and cloud YAML disable all workspace VCS blocks, declare remote execution and auto_apply false, and record CLI-driven debugging to avoid consuming runs; deployment README push-trigger guidance therefore does not describe current YAML behavior.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/README.md",
+          "version": "repo-file-v1:sha256:846a88dc63b895f682f89eae89c6c4dc3fdf777fc726075fc4b30df4098b4acd"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        }
+      ]
+    },
+    {
+      "id": "claim_7307f29f467c4524992eb3eede6f306a",
+      "statement": "Scalr locals load environment YAML, flatten workspace keys as environment/workspace, default to OpenTofu and remote execution, and support legacy vcs_repo.path fallback with explicit trigger patterns taking precedence over prefixes rather than dependency-aware module triggering.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        }
+      ]
+    },
+    {
+      "id": "claim_7107eaa6d4fe46d591af69e1dc35319e",
+      "statement": "Workspace provider_configs replace environment defaults; unknown provider configuration names are filtered out, explicit workspace attachments are unaliased, and inherited Proxmox defaults receive cluster aliases.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        }
+      ]
+    },
+    {
+      "id": "claim_339da387b0bb4e328af95b55375e43ac",
+      "statement": "Account management dynamically creates Proxmox cluster provider configurations and conditionally creates DigitalOcean, Hetzner, and Infisical configurations from credentials.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_72fe071153544c9cb734a0c3d50d4837",
+      "statement": "Workspace resources manage Terraform and shell variables, hooks, attachments, and agent selection; VCS providers and agent pools are looked up rather than installed or provisioned here.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_f6f08d53ab1e43af82570bce34fd2291",
+      "statement": "Workspace Proxmox endpoint, username, and password variables are injected from the first matching attached Proxmox configuration.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L147-L213",
+          "version": "repo-lines-v1:sha256:a78580886c413102ea2c7653a3a8b280e0631679b24302b563fbcdfe09ccd02c:eyJzZWxlY3RlZExpbmVDb3VudCI6NjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNmY4ZjI3MGY4OTY0MDVlMzYwYTY5NjU2MTJjMzlhMWM2MjZlMTc4ZGUxMmZlNjk0ODczMGVhYTRlODU4ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkNzY3MzViNWVlMzhkYTg1ODA1ZjEyYzhhYzc2ZTJjM2IwNGYzYjk4NGU0MzBhYmU4NjczNDZlNzc4ZjNhYTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmZDk1Mjk2Njg1ZTM0NzljYjQ1MzU5ZTY2MmJlZGU3NDJlOTJlYzFlMzZlYjIxZTJkYTgxMWJkMDA5MzkzNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NzRhMWI2ODEyZjkyNzJjZWJlMzRkMDI4ODJhZmQxY2Y2NTQ5MWE3MDhjY2QwYjk2OGU2NjU4Y2E2NjE3YWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_79646165f0ba440cb6f499166f68ec08",
+      "statement": "Homelab defines Matrix, Nexus, and Quantum template workspaces with single-cluster provider overrides, while cloud YAML has neither default provider attachments nor workspace-specific provider attachments.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        }
+      ]
+    },
+    {
+      "id": "claim_9fc935d5a648437cab6e301dd36f71b0",
+      "statement": "The template root actively composes Ubuntu 24.04 while its Ubuntu 22.04 module call is commented out as temporarily disabled for testing.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/main.tf",
+          "version": "repo-file-v1:sha256:e3d2330e10220da90c4aa971484d7c1cdf517bbcecea81634d469a99e378b9aa"
+        }
+      ]
+    },
+    {
+      "id": "claim_bdb455cd62574f29aba41b2e7f79f0cc",
+      "statement": "Both template children upload custom cloud-init snippets and consume the Scalr private registry VM module at version 1.0.1, unlike examples that consume the local terraform-bgp-vm module; local source edits do not update that pinned published artifact.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-22-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        },
+        {
+          "resource": "repo://examples/single-vm/main.tf",
+          "version": "repo-file-v1:sha256:958d0f2b129551fdc03f4832adbbe3772f51fdf445302cea4067eb98a755eec3"
+        },
+        {
+          "resource": "repo://examples/template-from-file/main.tf",
+          "version": "repo-file-v1:sha256:cff914548ea5e3c369d0e84d263f9f8bc74ac932f2500a1067f2b12dc144316e"
+        },
+        {
+          "resource": "repo://examples/template-from-url/main.tf",
+          "version": "repo-file-v1:sha256:24030e94d289977defbb9abf6ff871d5aebd9a5101aaffd6b6579db43e7e3c7c"
+        },
+        {
+          "resource": "repo://examples/template-with-custom-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:02685f6e22108391923c07e9a90c25a91af2d50cded27505c704594540b4eef9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4a2ce6bd29ba41f3b13a733112f50206",
+      "statement": "Template creation passes a snippet file ID and image URL to the VM module, disables startup, requires file-based cloud-image storage and host SSH, and the root provider explicitly assigns API and SSH settings from variables.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_995fc69fdb2a4bc2845b7e0e4014b682",
+      "statement": "Most non-template deployment roots are scaffolds with commented infrastructure resources; their summaries describe inputs rather than proof of provisioned resources or services.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/cloud/digitalocean/droplets/main.tf",
+          "version": "repo-file-v1:sha256:9f5d4fe4ed8f4bf9f7a105bd3b2a7200b80352d041f22dfb1db5c1c52a550195"
+        },
+        {
+          "resource": "repo://deployments/cloud/digitalocean/spaces/main.tf",
+          "version": "repo-file-v1:sha256:1ae639f619654d5815d3fcf0ce5316dfc3661884b4a583d14f0c55afa71f98fb"
+        },
+        {
+          "resource": "repo://deployments/cloud/hetzner/instances/main.tf",
+          "version": "repo-file-v1:sha256:c712c491c409a830bca7f6bac60a5400aa139248187893a8d06e8d38f42ee2d7"
+        },
+        {
+          "resource": "repo://deployments/cloud/hetzner/networking/main.tf",
+          "version": "repo-file-v1:sha256:a0e90aa1f02742ed5992d27cfe860b1a221c0f301e91ea8697c0194b5da78af4"
+        },
+        {
+          "resource": "repo://deployments/cloud/networking/vpn/main.tf",
+          "version": "repo-file-v1:sha256:7458785f11c558ef6f602c449feb4c36a7bd36f32514ed68443279e510c5975c"
+        },
+        {
+          "resource": "repo://deployments/homelab/clusters/k8s/main.tf",
+          "version": "repo-file-v1:sha256:d50a51e748759a19c7422beda1c7dd8825fbcc3d93a6708c88352e0e70b6fa80"
+        },
+        {
+          "resource": "repo://deployments/homelab/clusters/nomad-consul/main.tf",
+          "version": "repo-file-v1:sha256:2e39d6bc260bcd6438014a1b8304cf7fb8b7e48309f819cd56256a627deb94f8"
+        },
+        {
+          "resource": "repo://deployments/homelab/clusters/vault/main.tf",
+          "version": "repo-file-v1:sha256:b7e3201a6c4f295ca60dad2b552dec940926fd81fc6f73c6cbc71fdd10cddca1"
+        },
+        {
+          "resource": "repo://deployments/homelab/lxc/main.tf",
+          "version": "repo-file-v1:sha256:0e8c4576d9ac0aabb7a1a436243f80ddcfea3a64ab3df16b04d111eadc54749f"
+        },
+        {
+          "resource": "repo://deployments/homelab/vms/single/main.tf",
+          "version": "repo-file-v1:sha256:36a717dda5160219c3c7eb5487550b63458508a6d14eebeadd73a67d7164254c"
+        }
+      ]
+    },
+    {
+      "id": "claim_f6483a1db37b48e8a36df41314839c79",
+      "statement": "The standalone VM module implements Proxmox VM creation with optional image download, full clones, disks, network configuration, and cloud-init; templates are forced not to start or boot automatically.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_8219133daf5144f8ad085bd111fdd050",
+      "statement": "The local VM module requires clone/image source settings and EFI storage for ovmf, rejects simultaneous inline cloud-init users and custom user-data, and ignores user-account and template conversion changes during reconciliation.",
+      "evidence": [
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L198-L239",
+          "version": "repo-lines-v1:sha256:bb38aea92a0cebd648d9d6bb2dd1e35dfa42e7e3addd6e64dd2809b627e89d1f:eyJzZWxlY3RlZExpbmVDb3VudCI6NDIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4MDNiZTVjOGQ4YmJkYjI2NGEzNmRmNjkzYmQ2N2IxMzg5N2VjYjg0MTkxY2Y1M2I3NTM5ZTAxZjJhZThjMzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmNGZjZTI3NmFmNjcyNzA4MjJmYmFlMTYwYTJkZjgwYTliZGM2Y2MzMGQxYTA0OGIzYTMyMmU2OGEwNjkxZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d95a2d1953114343b8752c90d314077c",
+      "statement": "The standalone LXC module implements Proxmox container provisioning with OS-template initialization, networking, resources, optional mounts, and startup configuration, separately from the LXC deployment scaffold.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/lxc/main.tf",
+          "version": "repo-file-v1:sha256:0e8c4576d9ac0aabb7a1a436243f80ddcfea3a64ab3df16b04d111eadc54749f"
+        },
+        {
+          "resource": "repo://terraform-bgp-lxc/main.tf",
+          "version": "repo-file-v1:sha256:16e71f5a71b7f031f40f7231f8b8e100a9a8f3d6d1ab83ce7132b354f9fafbc2"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0724f843cb646d0ac07e02809a664ba",
+      "statement": "DigitalOcean droplet and Hetzner server cloud modules contain active hardcoded example resources rather than parameterized reusable interfaces.",
+      "evidence": [
+        {
+          "resource": "repo://modules/cloud/digitalocean_droplet/main.tf",
+          "version": "repo-file-v1:sha256:46e0180fc62c35373f0736f54bc792b3686dcd5e7c8520318254ad956634a366"
+        },
+        {
+          "resource": "repo://modules/cloud/hetzner_server/main.tf",
+          "version": "repo-file-v1:sha256:aeac170e2ec18c39e2e2866d797fc064d578ebe6c086cafa73c60bb5beae41dc"
+        }
+      ]
+    },
+    {
+      "id": "claim_7a4a262389974d508c447f3660b9d44e",
+      "statement": "The DigitalOcean firewall directly references digitalocean_droplet.web from a different module directory without a declared local resource or input interface, so it cannot function as an independent reusable module as written.",
+      "evidence": [
+        {
+          "resource": "repo://modules/cloud/digitalocean_droplet/main.tf",
+          "version": "repo-file-v1:sha256:46e0180fc62c35373f0736f54bc792b3686dcd5e7c8520318254ad956634a366"
+        },
+        {
+          "resource": "repo://modules/cloud/digitalocean_firewall/main.tf",
+          "version": "repo-file-v1:sha256:1cc93caa00d7f3c63b82d967597b9c4d92f00e48c2e4519a1b98751676052294"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fccb05bcc6a47178c0a849ac5da9feb",
+      "statement": "Shared backup, monitoring, security, and cloud shared_compute modules contain comments only and implement no shared services.",
+      "evidence": [
+        {
+          "resource": "repo://modules/cloud/shared_compute/main.tf",
+          "version": "repo-file-v1:sha256:d1ea565963fb67eebb449a7309e7f2e1b2c2f6126864f12f90a91fe58811245f"
+        },
+        {
+          "resource": "repo://modules/shared/backup/main.tf",
+          "version": "repo-file-v1:sha256:ceb94c3ee4d1b2c08fc7ffcaf433dc21bea516f8996b7fc7b4e2cd32dfe8cc7b"
+        },
+        {
+          "resource": "repo://modules/shared/monitoring/main.tf",
+          "version": "repo-file-v1:sha256:c0d0e35d89476b3a0379bc9e96d16c99387143aa06af70c9bb696c41d3cf57a2"
+        },
+        {
+          "resource": "repo://modules/shared/security/main.tf",
+          "version": "repo-file-v1:sha256:ebbe0d3f89b35b413b65dc8452221d3f927b9ca6cb0e838b28dc4832977b918b"
+        }
+      ]
+    },
+    {
+      "id": "claim_db005281e774464a8ec9938b16080b00",
+      "statement": "The MicroK8s example directly composes local VM modules with for_each and provisions VM configurations, not a separate cluster module or functioning MicroK8s installation/join workflow.",
+      "evidence": [
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        }
+      ]
+    },
+    {
+      "id": "claim_ca4ef4d1126c4bbba63ba69ac1bde36f",
+      "statement": "The three scripts are shebang-and-comment placeholders, and test directories document intended OpenTofu unit/integration and optional Go tests rather than providing executable regression suites.",
+      "evidence": [
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        },
+        {
+          "resource": "repo://scripts/deploy.sh",
+          "version": "repo-file-v1:sha256:776b7fde2be7f48b5efe3888fcb0c155be3680e1647406e2430539a8e7fdd1ff"
+        },
+        {
+          "resource": "repo://scripts/local-test.sh",
+          "version": "repo-file-v1:sha256:9ad6fd1c74ae4d9508e87109406427ee6126a7e081de3027bc0e326dcea1eae2"
+        },
+        {
+          "resource": "repo://scripts/opentofu-migrate.sh",
+          "version": "repo-file-v1:sha256:d8e33bd151db700cab8ee54c07ea9772405ffd3bd9ca5182d3f3087cf68748cf"
+        },
+        {
+          "resource": "repo://tests/integration/README.md",
+          "version": "repo-file-v1:sha256:6a98f244d097a6b89c921a6fc6dfa170402a276a1d4271ddf14b69ad90158df5"
+        },
+        {
+          "resource": "repo://tests/terratest/README.md",
+          "version": "repo-file-v1:sha256:e6172f814513554d696970a4b528d72e6b2b78e1b8f60d5f33989ed984d021ad"
+        },
+        {
+          "resource": "repo://tests/unit/README.md",
+          "version": "repo-file-v1:sha256:42bea2bf090fc8c37e0fb98c7db675620de81b89108b401c8c2469eba3b1427b"
+        }
+      ]
+    },
+    {
+      "id": "claim_0d8a5cdf2bd643828f5459cb368eaf75",
+      "statement": "Proxmox API/SSH, Scalr services and registry, cloud APIs, VCS and agents are integration boundaries rather than implementations in this repository; downstream application/cluster bootstrapping and aspirational AWS comments are not implemented infrastructure capabilities.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        },
+        {
+          "resource": "repo://examples/microk8s-cluster/main.tf",
+          "version": "repo-file-v1:sha256:0ea855606c51fa9914a69aab7a2550e2053b825a490cda522cbe54fc4fa517c3"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_50ef4e1cbf8046a482fdc86324464752",
+      "statement": "Changelogs record the move to root-level infrastructure/modules and the VM 1.0.1 template ignore_changes fix for inconsistent-result errors, which remains in current local HCL.",
+      "evidence": [
+        {
+          "resource": "repo://CHANGELOG.md",
+          "version": "repo-file-v1:sha256:dec4af8d01db66755d5251b355dfc66af604a1f52035908bd70e3b9c040c14a0"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/CHANGELOG.md",
+          "version": "repo-file-v1:sha256:409dceacb23932722831631e03a07f0fd3bd47de4df9ef1eb11d231b23f823d6"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_eb2354c7e2254972ac11db14dbde6172",
+      "statement": "The audit's duplicate mise tool-key observation is historical and no longer matches current .mise.toml, but formatting, validation, and docs-check tasks still target the obsolete terraform working directory.",
+      "evidence": [
+        {
+          "resource": "repo://.mise.toml",
+          "version": "repo-file-v1:sha256:ff8bb39c925fc62617396999765aaf566278d6ebc57e9d7fcea7b4eeccbb5306"
+        },
+        {
+          "resource": "repo://CHANGELOG.md",
+          "version": "repo-file-v1:sha256:dec4af8d01db66755d5251b355dfc66af604a1f52035908bd70e3b9c040c14a0"
+        },
+        {
+          "resource": "repo://docs/audits/AUDIT_REPORT_2026-04-28.md",
+          "version": "repo-file-v1:sha256:f9808eb4ae064a3d10820c981633ed9644c683fcb405bbf7c9fdbffba8cdeed4"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T08:01:26.797Z"
+  }
+}

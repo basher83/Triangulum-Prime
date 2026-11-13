@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:551309153703177f1e21e987563a879945d7352bbfa184886b5e2e21a5aab2ec",
+  "claims": [
+    {
+      "id": "claim_ec5563ce205f42a5b9563eb1fc20f047",
+      "statement": "The management root creates Scalr environments, workspaces, provider configurations and variables in an existing account; deployment workspaces have separate state, while the management remote backend is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        },
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L1-L13",
+          "version": "repo-lines-v1:sha256:4c82c392050becc1e82e28eba4fdd51d7e04b44492f3eb892cba473872cb22ae:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNDkyM2Y3ZWQxMDM2MjAzMzUzYWRjNWQxODI3YWNkNTkwOGI0NWE1MTY2Mjc3MmUzMDdiYjc4NTcyYjA0MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyMjJkZGI4ZWVjYjVkODJlZTkwNjdkNGIyZmNhY2ZmOTQ1MDZmNzZhODM2OGVkZDVlZmY0ZTc5MGQ5NTVmNDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjA2ZjgyOGIxNDNjMTc3N2VhNGQ5OGUyNzhhZDQ0ODIyMjA4OTg2OGNmZWZhZTNlMGU4NjM4NWNiOGYxNzQ4ZjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5256763f8c884d1fa391e7bea966a577",
+      "statement": "Environment YAML is discovered via fileset using environments_data_path, decoded with yamldecode and flattened into an environment-name map and an environment/workspace composite-key map used for resource for_each.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf#L16-L20",
+          "version": "repo-lines-v1:sha256:d53e3b49cab45a1eb7b5dd0b2e8ae762573e06cff7d0b9d6cedc85efa86f6cbe:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOWVjNzRlYzZmN2E4Yjk4MDdhNGZmY2E2MzYxMDBmYzIxY2QyMTM0NDg0ZTVkMmNkNDFiYWRjOTNjYzBlMzYzMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmOGJkOTRkNWRhOTkzZmMxMTMzNDk4N2IzNmI2ODBmYTE1MzZhN2MzOTUwODJkNGFjNDE0ZDg3MzAzODk4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTQ0ZGM2NmM2YjgyOTAwZDQ0NGEyNGVlNDA0MGIxNDFhMjhhODk4YzM0YzlhM2Y2ZTdiNGQ4OGIwZGE5ZDEzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTNhMDcyZDExODQxZDEzZjY0M2E4MTFiNThmZWU4NTdmNGJkOTg5MDZhZDc3N2E3OTQ0MjI1NTlkNDlhZDA4OCJ9"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L5-L37",
+          "version": "repo-lines-v1:sha256:136ebeec6176eca5de5400eb3aa447dba7bf6a39b388164662c11cde1aed1cd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwYjM4M2IxNTQzYjkxYWRlNzI1MmMwOTZjZjBlNDQ5MDEwODQ5NzczMGVhNmNkMTAyM2FjZjAyZjI3ZmY0ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1NGMzNzUyZjQwN2U5OWQ5MjNiMzI0MTA3ZWQ2ZjgzNDA1ODVlNDFjYWVhYTIxOTJlMTYyYzYxZTQyNjc4OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMjIyNTZjYzY4MDNjODYyNzRjZDhjOGQwMjViYzQ5ODk5Zjc0ZDhjN2IyNWZiNDQ3ZDZmMjU3OTZlOTJjNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4N2MwZDBlYWRmMDlkMDRkMzMwYjJjMGFlNjc3MzZjZTk5MjkzYjBkYWNlNjNjMzg0MTdlNDRiYjg0ZGRiYzIifQ"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf#L203-L207",
+          "version": "repo-lines-v1:sha256:328876a5da7842400d5b423ce454af9df8316434461151fcc9a7d372ae4c8643:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjFiNzBhZmYyZTE0MjA4ZTY5ZmExMGI2MWE1MjcyMTdmZDRkN2EzYWNmMTJjYjI2NTk2OGIzODE5ZDY4MTZkZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDQyYjc2YWZlZWMyMTQ1NmNlM2I5NDJiYzhlMThiZGJiZjUwMTE1OTVhOTFmZDIwMWI1OTY1MzQxMDQwMGQ4ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L39-L43",
+          "version": "repo-lines-v1:sha256:1b53b6494a88fd0e6dde9cf01c57507ddd113386e1b1bac7474534cc614e287e:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTI1NzFiYjU2YmQyNmEyNjk3YjMxMmZiYzU5Yzk3OWI1NTA5OWE2NDJkZDJjNGFiMjIwMWExOWY3ZDczNGM4ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWU0ZjQxZThlMjhiNjQ5YzU2NzRmMjBlNTE1Nzg4ODY4MjkzMGExZjViNGY4M2FkMzY1YmJlZmJmMTllMDI4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBhNjBjN2FlMTdhMjYyY2NmMWZhNjBhZDdhOThlYjBlZDEwZjEyNDJkOWNiMGI0MWM5YWZiYjQ3MzUxYjAzNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c3b2a86f1af41afbc6f4a6da1a04623",
+      "statement": "Resource identities depend on environment names, composite workspace names and workspace/variable keys, not YAML filenames; renames, moves and deletions change the corresponding desired for_each instances, requiring plan and state-migration review rather than assuming in-place renames.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf#L5-L37",
+          "version": "repo-lines-v1:sha256:136ebeec6176eca5de5400eb3aa447dba7bf6a39b388164662c11cde1aed1cd4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwYjM4M2IxNTQzYjkxYWRlNzI1MmMwOTZjZjBlNDQ5MDEwODQ5NzczMGVhNmNkMTAyM2FjZjAyZjI3ZmY0ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1NGMzNzUyZjQwN2U5OWQ5MjNiMzI0MTA3ZWQ2ZjgzNDA1ODVlNDFjYWVhYTIxOTJlMTYyYzYxZTQyNjc4OGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYxMjIyNTZjYzY4MDNjODYyNzRjZDhjOGQwMjViYzQ5ODk5Zjc0ZDhjN2IyNWZiNDQ3ZDZmMjU3OTZlOTJjNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjE4N2MwZDBlYWRmMDlkMDRkMzMwYjJjMGFlNjc3MzZjZTk5MjkzYjBkYWNlNjNjMzg0MTdlNDRiYjg0ZGRiYzIifQ"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf#L27-L30",
+          "version": "repo-lines-v1:sha256:35430cb5b55607a9d7b9050c0bf1c096684dbf1a8a6cc38758b0b76cb0aed0a5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjUwZTgzNmM0OGNjZmRmNTE1NGNlNzI2MWU5NjkwZDc1N2U0NTcwZTAwMzk4MjEzNWE2MDc2ZjRiMjlkNTE2NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWMxMmNlMTc1NTJjZWJkNDRjZWFkOGMwN2FhMTUwN2VhMDQwNjA0MmZkOTkyYzU0Y2E5ZTAzMzVkNTAxODMzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDFiMTU3NmYyNDBlODM5MGNlOWJlYzE0ODQwYTY4NzBjMGZkZjI2OGQxMzY1OWNjYjllZWJhMjQ3ZjU0ZmExOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzg5MDQyZGVmMzhlMzUwMDNhMmI4MzlhYjg2YzFhN2E4YjUyYTYyODkyNDFmYWJmNDE2ODdiODYyYzg1ZWNmNyJ9"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L114-L140",
+          "version": "repo-lines-v1:sha256:901c641dc5d237e1badbbe8d067a458b25ed91baaf78aa13b712eb2d4648ae81:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZmY2ZGNhOTFhZDVmZGU2MDg4NTdhNTZkNmZhNjljYzBiNDJhYjdiYzE2ZjYwZjU1MDQxZDg1NzFjNDZkN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhZmMzNDVjODkxMzMzMDg2M2NjYWJjODg1ZDE5NmI0NzkwMTlmMjE5ZWZiYmE3YjRjNWRiNmVlOGY2ZDBiMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZjY1NTllY2VjOGE4NjFmMTdhZjZjYmE3YTZiZjFjODQ2NTdhYTE1ZDc4YTlmZjI3NWYyZDMzNjljOTU1ZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d0b74a52a752469e8c7097dd48ae1f5b",
+      "statement": "Workspace normalization defaults auto_apply to false, execution_mode to remote, iac_platform to opentofu, terraform_version to null and var_files to an empty list; description and run_operation_mode are normalized but not assigned to the workspace resource.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf#L34-L79",
+          "version": "repo-lines-v1:sha256:4a0cf7da528f789e0d1ad551a3bf3cdc65292041f77979d26e4ef2e3539f251b:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlNmRhY2IyMDIyZjRkNGViZjk2MmMwOGI3MjcwZDU3M2U5M2M4OTcxZTAxMzMyMGViZTBkNGI4MWZlODIyZDIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwYWQwZjg0OTk2N2FmMTE0MmEyMDE2MDlkYmIyZThhNGY4YjI4YjIzOTEwYjRlYzBkZGE4Njg4M2EwYzgyN2YiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM2MWY5NzhmYzA5ZWIxNjE1MGZkZjY3OWFiY2NkYTg3OGIyYzBlZDY5M2NiMjg3MGUwZmE4NTg1N2ZiNDEzNTcifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L39-L108",
+          "version": "repo-lines-v1:sha256:3444d39087b06ef1886918395fbd9417f5bb06fbf54066514d78a02b9509f42c:eyJzZWxlY3RlZExpbmVDb3VudCI6NzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlNGY0MWU4ZTI4YjY0OWM1Njc0ZjIwZTUxNTc4ODg2ODI5MzBhMWY1YjRmODNhZDM2NWJiZWZiZjE5ZTAyODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmOTExNTZjMTIzZTY3MmZkMGJmMDU3M2I2M2QxYThlOWM1ZTRmZGQ1Y2YwYjY5ZTExZWZiYTRkOTc0YTk3ZGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f708913246b246f28ce00756b2387acd",
+      "statement": "working_directory supports an absent-field fallback to deprecated vcs_repo.path; VCS trigger_patterns take precedence over explicit trigger_prefixes, otherwise the effective directory supplies a default prefix.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml#L15-L40",
+          "version": "repo-lines-v1:sha256:5e18084c29c0ff8845b9ec31895c57352b6119eff39d441e3c337dc122450ff0:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIzYWEwMGIxYWM4MmMzZGU1ZDI1NjQ1MDg0NTBjYjA0MDQ0YjVjYTRmNDlhM2ZlZWI2YmQ3YzBhYTlmZTc5OTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMyYzQ4NThlMjJjYzJjOTY3YjQyMTUwZmE1NTA1NjJhMmM4MzljMmNlYmNhYWI5MWNhYmRmNmY0ZGEwMjAwMjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1YjEyYWQ0NzQ0MmYzMTdkMjkzMWJiNzkzYzBlZmU2ODcxMmRhMTEzNDFhZGRhMTkwZWM2NjFkMDNjNmM1NDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3MmZmOTkwNmE3YzI5N2EwODUyZGFmNmI3YjQ0MDE5M2VlZjVmNWM5ODA2ZWMwYjExMzcyZDM0OTYyZmI4YmMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L46-L65",
+          "version": "repo-lines-v1:sha256:27de5fbb6c0d09af8d5c98574e78e4b296b6ed65aa2f358bbf77bb80df5bcbe1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3YTE0YWVhNTU2OTU2OTcxZGRlY2IzNzYwYmVjYmQ0MjAyMTc0NTYzMjI5ZDRjNTgyNGZlMzI1OGZkNGI5ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MGY4NGRjNDdlYzU4ODJjZjRlOWRjNTcyMjRlZjkyYWIwZDdiZDAxZDYyZmY3MDQyMDBlZGExYmEwNWI3MjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE1NGIxMDYwOTM3MjgzZGU3MmY4YjY3MTViNDc3MGYzYjc4NWJkMGU1ODc3MzA2YWNhMjkwMGE2OGEwMjllOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjMDJmNzFjNWRiYjQwMzBmODFiZDM2NzI5MTI1YjA3NmE3ODE2YTlkYWM1NmY0NWI3YTgyYmExODIyNzc2Y2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0dc267063d45455a9621aaafd18b5861",
+      "statement": "Current YAML defines nine homelab and five cloud workspaces, all remote with auto_apply false and version 1.10.0; all VCS blocks are commented out and no active working_directory is set, so commented paths do not establish working directories or VCS attachments.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L46-L65",
+          "version": "repo-lines-v1:sha256:27de5fbb6c0d09af8d5c98574e78e4b296b6ed65aa2f358bbf77bb80df5bcbe1:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY3YTE0YWVhNTU2OTU2OTcxZGRlY2IzNzYwYmVjYmQ0MjAyMTc0NTYzMjI5ZDRjNTgyNGZlMzI1OGZkNGI5ODkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MGY4NGRjNDdlYzU4ODJjZjRlOWRjNTcyMjRlZjkyYWIwZDdiZDAxZDYyZmY3MDQyMDBlZGExYmEwNWI3MjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE1NGIxMDYwOTM3MjgzZGU3MmY4YjY3MTViNDc3MGYzYjc4NWJkMGU1ODc3MzA2YWNhMjkwMGE2OGEwMjllOWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjMDJmNzFjNWRiYjQwMzBmODFiZDM2NzI5MTI1YjA3NmE3ODE2YTlkYWM1NmY0NWI3YTgyYmExODIyNzc2Y2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d866560c9582498683513c7dfccaa9fc",
+      "statement": "Provider configurations are account-scoped, linked to all managed environments and created from Terraform inputs: one per Proxmox cluster, plus conditional DigitalOcean, Hetzner and Infisical configurations; additional YAML-driven provider resource creation is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_72595eb24f40493bb4374efd1985b4af",
+      "statement": "All active custom provider configurations disable shell-variable export; Proxmox arguments conditionally include authentication and SSH settings, and cluster validation requires an API token or username/password without enforcing exclusivity.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf#L27-L228",
+          "version": "repo-lines-v1:sha256:066d4fa2bd08de260580c2f086575df34b58d35f807b566788711d0ac0a9b56c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAyLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI2NTBlODM2YzQ4Y2NmZGY1MTU0Y2U3MjYxZTk2OTBkNzU3ZTQ1NzBlMDAzOTgyMTM1YTYwNzZmNGIyOWQ1MTY0IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0MTJjYTM0NWNjZjc1YmY5YzA4MDZiY2U2OTViZThkZTgwOGI3OTk4NDI1MWE3YTU0ZDIwMmNmNjEwMWRkNDUxIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI0MWIxNTc2ZjI0MGU4MzkwY2U5YmVjMTQ4NDBhNjg3MGMwZmRmMjY4ZDEzNjU5Y2NiOWVlYmEyNDdmNTRmYTE4IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlY2Q5NWQ3YzNlNmU3MGMzYWU1NDFjYWJkNjg3NTU2MGFiNmNmYWY2NjFlZmFmMzZjMDgyNjViOTU1NmUwMjNmIn0"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf#L70-L91",
+          "version": "repo-lines-v1:sha256:db5ca90aed09f653c56543f7aacfadc340eeb3e4e63ed849f242e0d825b9a022:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhN2MwZTUyNDlhYWI3YTIwMTEyNDE4OGM0MDk0ZDE5MzY5NTIwOGI4Y2I3NTg5NzE5MDdhMzU0OWVlMjIxY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5MzBhYzgxZGE1NDJjZGI1ZDc0Yjk2NGE4OTU0NTNiZGM3Mjc0ODQ5YTIxNjZhNWMxNzEzZjYzYzcwZmI1ZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NDA1MjQxNWEzMWExYzU3MjMzMDY4N2FlNjNlMzQ5MTY4ZTI2MTI4ZTc5NmM3NWM2MzY2MzdkOTE0MjFmN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmOWM3YWQ0ODQzZTNmOGIwYTg5OWM1OWJjMzA0NzIxZjQzNDJjNjNjMDcwZTZmYjA0NjkwMmQ1ZTg2Mjc4ODEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2640b721769446bbb8b6f4ced461652d",
+      "statement": "A non-null workspace provider_configs list replaces environment defaults, including an empty list; unknown names are filtered out against the created provider_config_map.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf#L89-L127",
+          "version": "repo-lines-v1:sha256:ee510633b7ea63b4b487f4f120c5edf427a7065cdaf4f364bd85793990e8f084:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyZTQ4Mjk3Zjg1M2IwYTg1YmU0ZTRmZDc5MDg3YzM1MTlmMDk2NjIxODk4NjQ1ZWZmYTRmMmQ0ZWNkOTdiZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlZTI0NzMxMGExZDUwMWUyMDg1ZmYwYjQzNzRkNGQzMDJjNDJkZTljMjJjMjVmZTAwMjMwYTRlMTEyYTQ5NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e0a9a07fe3ea492ab4b473e12ce3ee16",
+      "statement": "Explicit workspace provider attachments are always unaliased; inherited Proxmox attachments receive cluster-suffix aliases regardless of count, and inherited non-Proxmox providers are unaliased.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf#L89-L105",
+          "version": "repo-lines-v1:sha256:b2c7485b3736d9438a8666a8e194cf964e89dd78840fef456e579479fdd835f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyZTQ4Mjk3Zjg1M2IwYTg1YmU0ZTRmZDc5MDg3YzM1MTlmMDk2NjIxODk4NjQ1ZWZmYTRmMmQ0ZWNkOTdiZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlZTI0NzMxMGExZDUwMWUyMDg1ZmYwYjQzNzRkNGQzMDJjNDJkZTljMjJjMjVmZTAwMjMwYTRlMTEyYTQ5NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZTRhMDdmMGQ5NGIyOGVkYjQxNWRkOTIxZGYyMTEzMjI0ZDhmOGZmYTZmY2FiZTA4YWRlNTk1YmVlYzQxM2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ee9ca393acb94c89ac5f61e7ab871af0",
+      "statement": "Homelab inherits Nexus, Matrix and Quantum provider names in that order except template workspaces that explicitly select one cluster; cloud's empty defaults and absent overrides select no provider attachments.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/data/environments/cloud.yaml",
+          "version": "repo-file-v1:sha256:768e3344d5d3300034b1a5bbb92866569d8e447c0c8f2b51449e7ef0bc52ae16"
+        },
+        {
+          "resource": "repo://scalr-management/data/environments/homelab.yaml",
+          "version": "repo-file-v1:sha256:3b7af54c7d374141ac900cdc76991cc7e42e54be33173a20bf91dd115059c3b4"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L89-L105",
+          "version": "repo-lines-v1:sha256:b2c7485b3736d9438a8666a8e194cf964e89dd78840fef456e579479fdd835f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyZTQ4Mjk3Zjg1M2IwYTg1YmU0ZTRmZDc5MDg3YzM1MTlmMDk2NjIxODk4NjQ1ZWZmYTRmMmQ0ZWNkOTdiZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlZTI0NzMxMGExZDUwMWUyMDg1ZmYwYjQzNzRkNGQzMDJjNDJkZTljMjJjMjVmZTAwMjMwYTRlMTEyYTQ5NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZTRhMDdmMGQ5NGIyOGVkYjQxNWRkOTIxZGYyMTEzMjI0ZDhmOGZmYTZmY2FiZTA4YWRlNTk1YmVlYzQxM2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_926446aac5524a8e8e201f3d385542d8",
+      "statement": "Native environment default_provider_configurations and policy_groups assignments are commented out; provider-default inheritance is implemented in locals and applied as workspace attachment blocks.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf#L16-L33",
+          "version": "repo-lines-v1:sha256:f46dbf250a7d2d849832c61010051f9228b0a40f10b46a0508dba98f12f5d998:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjllYzc0ZWM2ZjdhOGI5ODA3YTRmZmNhNjM2MTAwZmMyMWNkMjEzNDQ4NGU1ZDJjZDQxYmFkYzkzY2MwZTM2MzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU0NGRjNjZjNmI4MjkwMGQ0NDRhMjRlZTQwNDBiMTQxYTI4YTg5OGMzNGM5YTNmNmU3YjRkODhiMGRhOWQxMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5MzE3ZDAxYTcxZGJlYTMzMTMxYzc5MWMyYjNiYTAzNThkZTk1OTY4ZWJlMzZiOGRmMWI3OTRjMTc1ZmMzMzMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L89-L105",
+          "version": "repo-lines-v1:sha256:b2c7485b3736d9438a8666a8e194cf964e89dd78840fef456e579479fdd835f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyZTQ4Mjk3Zjg1M2IwYTg1YmU0ZTRmZDc5MDg3YzM1MTlmMDk2NjIxODk4NjQ1ZWZmYTRmMmQ0ZWNkOTdiZDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNlZTI0NzMxMGExZDUwMWUyMDg1ZmYwYjQzNzRkNGQzMDJjNDJkZTljMjJjMjVmZTAwMjMwYTRlMTEyYTQ5NWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0ZTRhMDdmMGQ5NGIyOGVkYjQxNWRkOTIxZGYyMTEzMjI0ZDhmOGZmYTZmY2FiZTA4YWRlNTk1YmVlYzQxM2YifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L87-L95",
+          "version": "repo-lines-v1:sha256:ed4f7a4339443940bd5e60b34d24adc97d7f47cd5b20cced285c00203a408748:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5M2Y0MGUzNzgxZWI4OTZjODJkMDQ2YTA4MDY3YTExZTM1Y2RmMmYxZGZhZjI2ZmVhOTBiOGRiNjY3NjQxMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjRhZTQ2MzY1NmMyNjNlZDQ3MGYwYTM4OGEyYWI1MjZlMzdjNGJmY2M0ZTdkMTc0MjYxNDgxMDk0MmYzZTI1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTg5YmEwMTZiNTQxMzdiNTVhOWEwYzZmMmVlM2Q5YjZiNzBiZjJmODdjZGE2MTE3YzY4MjM1OWQwYjc1NjU5MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_009b39830592432fa1914fbc3c783235",
+      "statement": "Four Terraform-category environment variables are created only when homelab exists: the sensitive input SSH key, SSH username terraform, insecure true and SSH agent false; generic environment-level YAML variables are not normalized.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf#L45-L92",
+          "version": "repo-lines-v1:sha256:1c4aa4d03e34696238981093e9314f57070432231eda578d0d734db3ae86246e:eyJzZWxlY3RlZExpbmVDb3VudCI6NDgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3MTYwZjZiOGQ2ZWRhNjVjYzVjNGVlMjhlYjA1M2IyOGM3MTM1MDA5NzZjNmUyNzA1MTVmNmE5MjI4ZjQzYzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1YjM0YzAwZDBmZDU1ZDI2Y2JhNGJjNDI1NDQ5NTJhZjZiMjg2ZTlhYjhkNmMzOGU0MjViOWUzMDMxYWFiZjIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf#L12-L21",
+          "version": "repo-lines-v1:sha256:8b02b75131c6cd2fb61a1c1dc5ae99ad210d3770c2645cbe60991c14d4f1b194:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhN2EzY2ExNzgzMjEyNDQ3MGEwNTc0YjAwMjNjZTA0NTg0NDUxYWI1NDE1NTg2ZmMxMmIwMjQ4MGIwYjQzM2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEzYWMyNjJjNzMyYzcyNmI2YjIxNzJhNGIxNGJhMzNkZTk0MDBlNTJiZWI1YjBkMjk4NmZjMDlkZWVlYjRiNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM0ZTFkYWU3NjE1ODNiNTk0ZDIwNzVjZGJkYjQ3ZjFkMzhiNGEzYzQwYjIxZDA0OTk5NzQzODI4ODNhZDdjNDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2cd0f9cabb62412d8ebf756fe2530008",
+      "statement": "Workspace YAML variables create keyed Scalr variable resources with Terraform category by default and optional sensitivity, finality and HCL flags; environment_variables actively create shell-category resources despite documentation's not-used convention.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/docs/ARCHITECTURE.md#L109-L118",
+          "version": "repo-lines-v1:sha256:2ecce208006946c61a05843699c501aca04e844e969c74f5c1064602efc8e335:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjlhZjBmN2NmZTIzOTFhN2YyZjE2NjZiNTc1ZWM5NzhiNWQyNzAwOGRkNGI2NDcxM2NkZjYzNTE3ZGQxZjM5ZjQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJiYzc0MWYwM2Q3NThjZGU0OTE2YjI0NmM0N2E1ZTE1NjIwNTJiYmU2YzcxYjAwYTY1NDhlYjI5OGQzZTcwZjMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L114-L140",
+          "version": "repo-lines-v1:sha256:901c641dc5d237e1badbbe8d067a458b25ed91baaf78aa13b712eb2d4648ae81:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZmY2ZGNhOTFhZDVmZGU2MDg4NTdhNTZkNmZhNjljYzBiNDJhYjdiYzE2ZjYwZjU1MDQxZDg1NzFjNDZkN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhZmMzNDVjODkxMzMzMDg2M2NjYWJjODg1ZDE5NmI0NzkwMTlmMjE5ZWZiYmE3YjRjNWRiNmVlOGY2ZDBiMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZjY1NTllY2VjOGE4NjFmMTdhZjZjYmE3YTZiZjFjODQ2NTdhYTE1ZDc4YTlmZjI3NWYyZDMzNjljOTU1ZTMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L216-L244",
+          "version": "repo-lines-v1:sha256:bac92ad6decad6b27569fbb8130df156f249a49a5e31dea8287d75855a5b6fec:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNDkyM2Y3ZWQxMDM2MjAzMzUzYWRjNWQxODI3YWNkNTkwOGI0NWE1MTY2Mjc3MmUzMDdiYjc4NTcyYjA0MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU4MDIzZDFkNWZlMzk5M2M4NTc1NzEwZjNjZWY1YzJiZTRiZWE5OGEyNTVkZjBjMmNkNjRjMzhjM2UxZGIzNWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_587da9d8276241a985bafa755f71d367",
+      "statement": "Generated workspace Proxmox endpoint/username/password variables select the first attached Proxmox configuration via a reverse ID map, not one triplet per alias; username/password are sensitive and read cluster username/password even when API-token authentication is used.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/variables.tf#L70-L91",
+          "version": "repo-lines-v1:sha256:db5ca90aed09f653c56543f7aacfadc340eeb3e4e63ed849f242e0d825b9a022:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNhN2MwZTUyNDlhYWI3YTIwMTEyNDE4OGM0MDk0ZDE5MzY5NTIwOGI4Y2I3NTg5NzE5MDdhMzU0OWVlMjIxY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5MzBhYzgxZGE1NDJjZGI1ZDc0Yjk2NGE4OTU0NTNiZGM3Mjc0ODQ5YTIxNjZhNWMxNzEzZjYzYzcwZmI1ZjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU2NDA1MjQxNWEzMWExYzU3MjMzMDY4N2FlNjNlMzQ5MTY4ZTI2MTI4ZTc5NmM3NWM2MzY2MzdkOTE0MjFmN2IiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFmOWM3YWQ0ODQzZTNmOGIwYTg5OWM1OWJjMzA0NzIxZjQzNDJjNjNjMDcwZTZmYjA0NjkwMmQ1ZTg2Mjc4ODEifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L151-L210",
+          "version": "repo-lines-v1:sha256:d754798c7d13f9ad87686fc7062dff723e43bd56da23838c30b1438b1144e019:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU4YzhlODU2NTBmZmEwYzE3NDVmZWNhMWU3M2EyOWI3MmFmMDc0MzVmNWQyMzg2YjUxNDc1ZjYyNTQ0ZWVhOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NTZkN2Q1M2FjYWZjMTNkYjBmNDBkN2Q3NWFlNTY1MDAyZDZkOGQ2N2JjZmE5OGM4MGE5YWMzOGExNzJkMjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijg2ZTk1ZGMxN2NmYzIyNjYxYWY2Y2Q2ZTQyYjhmYjM2Y2IwNzBkZTE3OTU0OWQyMDU3OTQyNmQ4YWQwN2NmMjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMGRmNmMwYjA5MDA3MWRjYTJiMGRiY2I5ZmQ5NWYzYTc5MmFjNjFjYTE5MGU4MWNlM2Q3N2Y0NTVjZTljZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1ab3754d45ba4c808ee2fc1fb4cab05c",
+      "statement": "Generated Proxmox variables and YAML variables are independent resources targeting workspace keys, so manually duplicating generated keys risks multiple resources managing the same workspace variable.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L114-L140",
+          "version": "repo-lines-v1:sha256:901c641dc5d237e1badbbe8d067a458b25ed91baaf78aa13b712eb2d4648ae81:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdmZmY2ZGNhOTFhZDVmZGU2MDg4NTdhNTZkNmZhNjljYzBiNDJhYjdiYzE2ZjYwZjU1MDQxZDg1NzFjNDZkN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhZmMzNDVjODkxMzMzMDg2M2NjYWJjODg1ZDE5NmI0NzkwMTlmMjE5ZWZiYmE3YjRjNWRiNmVlOGY2ZDBiMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzZjY1NTllY2VjOGE4NjFmMTdhZjZjYmE3YTZiZjFjODQ2NTdhYTE1ZDc4YTlmZjI3NWYyZDMzNjljOTU1ZTMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L179-L210",
+          "version": "repo-lines-v1:sha256:67d2caed191bab35176069cdbd7fa58b8c46c3a5bf049ce15a45c3308775289c:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc3NTZkN2Q1M2FjYWZjMTNkYjBmNDBkN2Q3NWFlNTY1MDAyZDZkOGQ2N2JjZmE5OGM4MGE5YWMzOGExNzJkMjIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNmZTk1MjY3NDg0ZWU1ODM2YjkzZGU4OWU1Yzc4NjdiZTYxNjM1MmM4ZTc5MGE1YTM1ZTExMmZlOTQyYWI4ODEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjgxMGRmNmMwYjA5MDA3MWRjYTJiMGRiY2I5ZmQ5NWYzYTc5MmFjNjFjYTE5MGU4MWNlM2Q3N2Y0NTVjZTljZTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_662ba2b0f2dc4339a6e61ade92ba5103",
+      "statement": "Hooks are optional nested workspace blocks supporting pre_plan, post_plan, pre_apply and post_apply rather than independent resources.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L97-L108",
+          "version": "repo-lines-v1:sha256:8e1a59e818f86dcb0d5867de6c56b7ea7963a5460e3c9f195a0ae3440a0fe414:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMyMjU3NjAzNTM4OWM3OWUwZjJhNWIwNjc5MTI0ZTEzMTEzOWFiZTU0ODc5MzZiZTRjMDhlN2RmODg0OWYxODUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNmOTExNTZjMTIzZTY3MmZkMGJmMDU3M2I2M2QxYThlOWM1ZTRmZGQ1Y2YwYjY5ZTExZWZiYTRkOTc0YTk3ZGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7019cc67cba4ced90b0fd751fab729c",
+      "statement": "VCS providers are pre-existing lookups by ID in the account; workspace VCS blocks require both active vcs_repo configuration and a non-null vcs_provider_id, and branches default to main.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf#L50-L65",
+          "version": "repo-lines-v1:sha256:ca3ccc867ccec9820ce8d4e5625dcefd11a9abf74ab665a6a68fd81b3513ea06:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmNDFhNmI3ZTMxZGJmNDRkOTg4MWMyMjA0OTE1NjRiMTUxNjU5Y2NlN2NkMDk0ZDg5ZTk1OGQ0NGZiOWQ0OWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1MGY4NGRjNDdlYzU4ODJjZjRlOWRjNTcyMjRlZjkyYWIwZDdiZDAxZDYyZmY3MDQyMDBlZGExYmEwNWI3MjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjI3ZWY5NzJiYjY1NTg2NDBhM2Y4YWM3MTVjOGI1MThlYTU2Njg2MTJiMzFhN2NlYjY4MjU4OWE0NDM1MzI4NWMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZjMDJmNzFjNWRiYjQwMzBmODFiZDM2NzI5MTI1YjA3NmE3ODE2YTlkYWM1NmY0NWI3YTgyYmExODIyNzc2Y2IifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L18-L22",
+          "version": "repo-lines-v1:sha256:0bf025845ae4bdeb1cbf680af650a449e9835ddded03ace9e92608644ccb3968:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjZmOGJkOTRkNWRhOTkzZmMxMTMzNDk4N2IzNmI2ODBmYTE1MzZhN2MzOTUwODJkNGFjNDE0ZDg3MzAzODk4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWM4ZDkwNDA4YmVmODA4YjhjOWI4ZjNlMzNmMjNhMTY4OWY3Y2ZhNjdlY2VhYTcwMzlhN2QxY2YyNjUzZjQ3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTk3NGExYjY4MTJmOTI3MmNlYmUzNGQwMjg4MmFmZDFjZjY1NDkxYTcwOGNjZDBiOTY4ZTY2NThjYTY2MTdhYyJ9"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L61-L85",
+          "version": "repo-lines-v1:sha256:8fc50c6459acae153ab9d3f39ab78407318f3c6e39e4e890a2e89308a59307ca:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzZDJiZmUxYjBlNDkzMWUzMTQyYWQ0YzE0NzYzMzQ4ZDdlM2QwOWE5ZDJlMmJhZGY1OWYyYzViM2M5MDc1NjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4ZjRjYzFiZDY2N2YzMTY0ZTI5NjRiYmY3YTBmZGI0OGJiZDNlNjYzYTc0M2MwZWZmYTQ4YWRjNGFkODk4MTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ae35a1439f354840b4d6251aa9ad256e",
+      "statement": "Agent selection prefers workspace agent_pool_id, otherwise uses a pre-existing pool looked up only when both default pool name and environment inputs are non-null, and only attaches it to matching-environment workspaces; the lookup requires that managed environment key.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/variables.tf#L186-L196",
+          "version": "repo-lines-v1:sha256:df2e49bbf5ae8ba1cadc910572b2c95e59c8284632c282a9e094ce12c48434e6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkZDFhODFiM2ExMDMyZDk3OWUwZDAwYThmODMxNTRmYzVlMTcxNGMxZmZmOWE4ODYzNGE1N2ZkMjFmZGY2ODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYzOTZmYzdhZTY5NGRhNGI3MDIyYzI2NjA4ODkyMTFmMDM2NmY3NmNhYWMyMzZmYWU2ZmUyYjdhYjJjZTYzZTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NzRhMWI2ODEyZjkyNzJjZWJlMzRkMDI4ODJhZmQxY2Y2NTQ5MWE3MDhjY2QwYjk2OGU2NjU4Y2E2NjE3YWMifQ"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L28-L33",
+          "version": "repo-lines-v1:sha256:f0361d4d5b31bb72e024664de2d4f7ae77d1ed83e570b50b6bfa0460e125ce6f:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDMwMjY5N2NkZWI0MTQyMWNiZmNlZjYxNjljMzFmOGQ0ZTBmNDE4OWFjM2U0YmVkMDM0NGQ3ZDcyYjkwNDU4NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTZhZTE1NjFhZGI0MjcxNWVlOTNkMDgzNWJjMjQ3YTQyZmFkN2FmOTBhMzc0OWVkZDhlNDQ1NTVjODU5ZGQwNSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTk3NGExYjY4MTJmOTI3MmNlYmUzNGQwMjg4MmFmZDFjZjY1NDkxYTcwOGNjZDBiOTY4ZTY2NThjYTY2MTdhYyJ9"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L64-L68",
+          "version": "repo-lines-v1:sha256:282cedb7461dc84656bc65819b01d1c39ff56f507dd1bd4975f8f61ab86711c4:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTFjNmJkMDMzNDQ1OTIyMWU3MTg5NzA2NDIxMzYyNmRjZDM0NTJiM2NiMTM2ZjA0YjlkYThjOWEzZTMyOGQxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzg0ZWEzMmJhNjBhMWU2MmQ1NjhhNWY1ZTAwYWQ2ODUxZTA3YzE5NmE0MWMwYjRjNmRmNTFkZGY2MDEwNGNmMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDc4MmUzMDM4NThjZDBjOTBkYjFkYzM0YzAzY2QwZmUxYThiOGNhMjIyMDI4OGY1ZjYxOTZjYTdiODY0MDUwYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_765a593b8a224c6da884b9958551371a",
+      "statement": "Outputs expose environment IDs, composite-key workspace IDs/details, environment groupings and sensitive provider maps and summary counts/names.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/outputs.tf",
+          "version": "repo-file-v1:sha256:386c5e16b0f144dd261b2a804f57231c7ea4aa12121b9bcbce443edcaa8ab25a"
+        }
+      ]
+    },
+    {
+      "id": "claim_87e91f6dfcec4ceda0518da1023432c8",
+      "statement": "The documented management entrypoint uses tofu init and tofu plan before tofu apply, and account_id validation requires an acc- prefix.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/main.tf#L8-L11",
+          "version": "repo-lines-v1:sha256:c7f7bd4644beb292dabb254f538f9f053ef5fe4c0ce4ef1fccec5c5c77dfe817:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDg3OTczYjExZGUwNThmNzI0OTBiOTBhMDFiOGUxODQ5MmUyM2VhNjc4MDc4ZTM4ZjA1MGY0YzZkN2IxMWIzZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmFmNWFiMzhmZjIyMjhmY2ZmNWU4ZTM1NWIxYTU3MjY4MDc0NGM2OTg2MTMwYjQ0OGMzMmM5MTM1ZWRhYmIxOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjBkYWJlODhmOWNkNmU0MWU5NTIxY2Y4MGQ0NDI5ZjJmYzk3Nzk3MTIxMTk1ZTQzYTk2YTQ1NGQyOTUxZDQxNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjVkMjQxYzhhMmMyMGY1MDhmMjFhYzdiZDRmZTRhNTE4ODNlYTFmOWNmOTFiYzdjN2I1ZDEwNTdkZTg5NzM4OCJ9"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf#L5-L14",
+          "version": "repo-lines-v1:sha256:77fc31b2c22585a4957742409385da63d220fad30704c4e4425da0ded12ae1cf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIxMDk2MGJlYzdmN2EwMmVkYjgyZjY0NmIxNGI1ODQwOWE4NjQ2YzA3Y2Q0ZGFiOGY3NTM0M2NhOGFiOGM4NGQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM5MzQ0NWJkMzQ0MmQwNWFiOTQ4OWUzZjM0OTZmNDhjYTJiMjMzNGI3NjY1NjY1MTAxYTI4NjdiNTRjM2Y4ZjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ3NjhmMzQyM2FjNzMwMzA1YWM1OWZiMGQxYmFmMmMxMTdhYTQxZWI1YWIwMDMyMTUyZmNlYmY1ZDQ5NmVlNTkifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T08:01:26.797Z"
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:acce671cd6423d66d05e8b7c0516c34618862b0947cbe11ae9b3e4fc2d8c1196",
+  "claims": [
+    {
+      "id": "claim_8a5ea7e4f62f4980aa5ec91ce67dd6f7",
+      "statement": "Scalr management uses an empty Scalr provider relying on SCALR_HOSTNAME/SCALR_TOKEN or CLI credentials, while its remote backend is commented out by default.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/main.tf",
+          "version": "repo-file-v1:sha256:6fff434eed6fa51ff1a9258a9251dec78a169bafcbcece556aa62bce62f68758"
+        }
+      ]
+    },
+    {
+      "id": "claim_8c6b55a9374e42d0b6473080ad660792",
+      "statement": "The template root has an active Scalr remote backend selecting the-mothership.scalr.io, homelab, and vm-templates-nexus, with CLI login documented as a prerequisite.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/backend.tf",
+          "version": "repo-file-v1:sha256:bf4b09d43d0ed382a1966109e4c43b0dd7aaf2d820324d98aefaf4e4b2438924"
+        }
+      ]
+    },
+    {
+      "id": "claim_14e7e0d232884863b8f8efa7eacd948f",
+      "statement": "The Ubuntu template depends on private registry module the-mothership.scalr.io/proxmox/vm/bgp version 1.0.1, so initialization needs registry access independently of Proxmox credentials.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4d6ae6c193641ae9d5f28622185d1a1",
+      "statement": "Local single-VM and URL-template examples explicitly set endpoint and insecure policy while leaving API authentication to PROXMOX_VE_USERNAME/PROXMOX_VE_PASSWORD or PROXMOX_VE_API_TOKEN; the URL-template example enables SSH agent authentication with a separate OS username.",
+      "evidence": [
+        {
+          "resource": "repo://examples/single-vm/provider.tf",
+          "version": "repo-file-v1:sha256:b97f4caa3bf7b27b00af8c7eba9e17033b7ff66c2d04fd66d81b8c701be904c5"
+        },
+        {
+          "resource": "repo://examples/template-from-url/provider.tf",
+          "version": "repo-file-v1:sha256:7bb19c9eaf7d72b4b866b24b2d86d149c8e9ea53519a54ab234e808f1c9ed159"
+        }
+      ]
+    },
+    {
+      "id": "claim_d3af4fcf59b944a499cddc50cf2d3e49",
+      "statement": "Management creates a custom bpg/proxmox configuration per cluster, linked to all managed environments, emits non-null API and SSH arguments conditionally, and disables shell-variable export.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        }
+      ]
+    },
+    {
+      "id": "claim_d79f5eb619e242d48ed96a104f582291",
+      "statement": "Cluster validation permits token-only authentication or username/password and does not require exclusivity, but generated workspace credentials only propagate endpoint, username, and password, leaving a token-only gap for the template provider's explicit username/password inputs.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf",
+          "version": "repo-file-v1:sha256:abe919ffe03d220eeebabca087dc021e217773b9ede0644be6a15f778a6a3f87"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf",
+          "version": "repo-file-v1:sha256:3641a3cc20cdbff41a11bd7f9d036d679c3b7ed87b4ea72855674359b205f25d"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf7867c33a4c4eb29e1f49ca483188ef",
+      "statement": "Workspace Proxmox credential generation reverse-maps attachments and selects the first known proxmox-prefixed configuration rather than generating credentials for every attached cluster.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L149-L214",
+          "version": "repo-lines-v1:sha256:b2a19e792e3a9c15e9cdf31c3c432fa833d2225e0fbe02db5837c62721a5c3f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNlNzJkNjI2NmIyZmY4MTcxZTFiYzg2MzZkZTE4ZWRlZWI1OTdjODM5NDdlMzk4Y2FhYWRhMzhmNTNiMTQ4MjkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjllZTE4MjBmN2YxMmEwNTFmYTk3ZjljYzI2ZGNmZTg5ZGQ0ZTgwYjQ5YzlmYWU5M2RkMWYxMzI3MDY4NjkxYmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b300af3b98f74f8897df3c3689c6f27b",
+      "statement": "Workspace-specific provider_configs override inherited environment defaults, unknown names are filtered, and environment resource default-provider assignment is commented out.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        },
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        }
+      ]
+    },
+    {
+      "id": "claim_dca2dd32354c493ba8205ce48eab89a2",
+      "statement": "The template provider explicitly consumes Terraform endpoint, username, password, TLS, SSH-agent, SSH-user, and private-key variables, contrary to comments implying configuration is solely injected.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/provider.tf",
+          "version": "repo-file-v1:sha256:ce010fa3c1499c4b912faf568ffdde76094721d6fe41c759ba96862c6508ebe4"
+        }
+      ]
+    },
+    {
+      "id": "claim_2dcd9332628845938a65fe6265805363",
+      "statement": "Management supplies homelab Terraform-category variables for a sensitive SSH key, SSH user terraform, disabled SSH agent, and insecure TLS; the template root also defaults insecure TLS to true.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf",
+          "version": "repo-file-v1:sha256:abe919ffe03d220eeebabca087dc021e217773b9ede0644be6a15f778a6a3f87"
+        },
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        }
+      ]
+    },
+    {
+      "id": "claim_f47d38540f3447ce8c788450f2e92f6b",
+      "statement": "Custom provider SSH private-key injection requires ssh_agent to be false and the separate proxmox_ssh_key input non-null; host SSH user and qm/pvesm privileges must be supplied externally.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf#L55-L92",
+          "version": "repo-lines-v1:sha256:b985befb670172b277ebd749bde8cd1c96d9cf0727f4d4709a87f5b8e6602a19:eyJzZWxlY3RlZExpbmVDb3VudCI6MzgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY2YzJmNDgwYWVhY2Q0YTgxYWZkZmFkYzRiMjMyYmYzZTVhZTU2NjQxMWQ0M2E5ZWE2YmJmNjY4MGQ3MTY0MDEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFjMjA0YzgyY2Q3OTBlZmIyMWY5YWM5Mzg1ZmE1OTRlNzViODUwMDZkNDU3NGM1NDQ2MWE0MTRhZDgwYjk2NzYifQ"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf#L68-L106",
+          "version": "repo-lines-v1:sha256:a360f4be323b83986ba2092f50b8c28cf26bffa625a856a42af5f0c61f1a96f0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0ZDNmZTIwZmFmOGQ5M2M3N2U3NzFiNWYwYWUyYjU4MjMzODU5ODVmODcyN2VjZWUzZjNjZGM3OTRlOWYwMWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkZDFhODFiM2ExMDMyZDk3OWUwZDAwYThmODMxNTRmYzVlMTcxNGMxZmZmOWE4ODYzNGE1N2ZkMjFmZGY2ODkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFmYjNkNzYzZTgwZjAyZDc5NzJmZDE1ZjIyZjcyOTE5YTQzMmUyNTBkMzczZGY0ZTkwYjE0NmUwNjdhZTU5ZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk1YjM1YjcwNDNjMjZkMmRjMTg4ODY3YjNjYjBkMGE5NTc5MzU5YjExYzExY2IyYjNlMWI4NWRiNGU0ZDc3MjMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9c3daf6c83fe4b6b8e92ac37bd811175",
+      "statement": "Agent pools are looked up, not created: both pool name and environment are required, explicit workspace agent_pool_id overrides the default, and the default only applies to matching workspace environments.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L25-L69",
+          "version": "repo-lines-v1:sha256:4478686d41e50efd79185dd65e93ea46e353330156c8ee45242d59f87c79999c:eyJzZWxlY3RlZExpbmVDb3VudCI6NDUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNDkyM2Y3ZWQxMDM2MjAzMzUzYWRjNWQxODI3YWNkNTkwOGI0NWE1MTY2Mjc3MmUzMDdiYjc4NTcyYjA0MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU2MjY3OTM1ZmM2MzM0NjVkODQ4YjQwYTRlZDY5NjdlN2I3YTMyM2Y4MWNkNTNjMTEwYWUyMTAyOTY4N2FhMTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZlMDVlMGQ2ZWZhNDk4NGE1MDQ0ZDdlMzI1N2U2NTBlOWU1ZGIyN2YyZDk2ZDA4ZjdjYjQwZTkwNTg5ODBiMjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE0ZDAxZGEyZTAwYjgxMTNjODg4ODFlMjRiODQ5MTZiNjg0OTFjOTExODliMTVhNTM1Y2M5NDc1OTM2NjIyNTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f8ec5a84eeb149489ddfb4913d8c593a",
+      "statement": "Workspace execution mode defaults to remote through YAML normalization and is passed separately from agent-pool selection; VCS configuration requires both repository settings and an existing vcs_provider_id lookup.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/locals.tf",
+          "version": "repo-file-v1:sha256:f9bba5f17078237cd8da12e24e4dd4ef26da2c63c2b57db824cd322b884009d2"
+        },
+        {
+          "resource": "repo://scalr-management/workspaces.tf#L15-L85",
+          "version": "repo-lines-v1:sha256:95622bbc8a97e1a6c53b3354468417f75c87fafd3fd8d0afa69756cab056ed87:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjViNDkyM2Y3ZWQxMDM2MjAzMzUzYWRjNWQxODI3YWNkNTkwOGI0NWE1MTY2Mjc3MmUzMDdiYjc4NTcyYjA0MTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTNmNDBlMzc4MWViODk2YzgyZDA0NmEwODA2N2ExMWUzNWNkZjJmMWRmYWYyNmZlYTkwYjhkYjY2NzY0MTMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkYjkxZjAwNzJhOGI2NjE4YTRiMWQyYTRjMDAyMzc1NGI3YTcwMzZhMGRhZjhmNTQ1ZjRjZTEyMzgwNmM1NGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4ZjRjYzFiZDY2N2YzMTY0ZTI5NjRiYmY3YTBmZGI0OGJiZDNlNjYzYTc0M2MwZWZmYTQ4YWRjNGFkODk4MTYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9e16e4f4b9034877bf93a0625af8065f",
+      "statement": "DigitalOcean configuration is gated on digitalocean_token with optional Spaces arguments, Hetzner on hetzner_token, and Infisical on infisical_client_id with host and machine-identity credentials; these custom configurations do not export shell variables.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf#L130-L230",
+          "version": "repo-lines-v1:sha256:09119bf07ca42e572164bf2ec5a515e3c6ad0f9c0d300694994f2082712f649d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAxLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI1YjQ5MjNmN2VkMTAzNjIwMzM1M2FkYzVkMTgyN2FjZDU5MDhiNDVhNTE2NjI3NzJlMzA3YmI3ODU3MmIwNDEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI1YjQ5MjNmN2VkMTAzNjIwMzM1M2FkYzVkMTgyN2FjZDU5MDhiNDVhNTE2NjI3NzJlMzA3YmI3ODU3MmIwNDEyIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJmYjU4MGU5NjRmODNhNDczZjQzZDQ0Mzg0NjI5NDlkNjhiNTYwMGZkYTc4N2YxNjM3NDVkMDBkZTg5Y2JmMzZhIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJjYWVmMWI5M2EwY2JhNTBhZmQ1YmY3YTYwZTU3NTNiNGE5ZTYxZjE3OWIzYzdhYWY1ZTQ1OTBiY2ZjMzNlY2M4In0"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf#L127-L180",
+          "version": "repo-lines-v1:sha256:e0f1e5fb606bd0f77678cb5806d91562576937ca160cadcb1a0bebcad0c1c708:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0MjM1ODQ4ZjYyMDQwZjBhYzhhMmE1NmM5NDRhOWE1YTNjNmI2MTg1ZGEwN2MxNDM5ZTI5MmY5YzVlMzk0ZDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2MTljYmU4YThhZjE5ZTIwNDk2M2E4NjM2OGExYTMxNmNkYzlkNTIyZWI3NzE0MmRmNDQ4M2EwMzczN2MxNmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU1NDdiZWQ1MGI5Y2E1MTg2ZDc3NmU0MTgzOWY2YWEzZjI5YjljMTg3NjU3OGQ0MjY4MjA5YTJiYjExYjBiNTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE5NzRhMWI2ODEyZjkyNzJjZWJlMzRkMDI4ODJhZmQxY2Y2NTQ5MWE3MDhjY2QwYjk2OGU2NjU4Y2E2NjE3YWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4b487348fb6496fb566f9033d4d293c",
+      "statement": "Image provisioning creates a node-scoped download resource then uses its file ID for disk import; the template uploads a snippet and requires file-based image storage separately from VM disk storage.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf#L27-L61",
+          "version": "repo-lines-v1:sha256:aeb2d9da74008e59406d21ea7bb65b974fda1a19cd355c66609c64a8446e59b4:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjMDBhYmE1NTBmYzM2MDEwZDRkMWQ2NzcxMzRiNGEzNmNkYThlMWMxMzY0ZWIyNmFlZTMxOTM1NDhiZWFkZjUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3ZTU3ODhkNWQ5ZDczZDI0YTgxZGJjMGE1YTc0YmZhODJjOWMzYjNhZjk5ZTUyYWY3OTZlOTBiNDY4YThhM2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjZWIxODJjNGUyM2QyZDU4Y2VmZDc2OGY5NjVhNzUwNGY1Y2JkMmUzZjI0MTVlNzUyNmNkMjgzNmEyZTNhNTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJiYzc2MjhlMzUzMDE2YWY3ZmU2MzU5ODhhYjY0NTBhM2YzM2NlYTM0N2I0ZjBlYjc4Zjk3Y2Q2NDA0NjdjMDEifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L132-L146",
+          "version": "repo-lines-v1:sha256:66ce9ff56ef06d8e8ea0b8ddb2fd7adbd0720b83a77f6b986382c819148e7dd7:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRjY2UxYWZmZDYzNTc4ZWQxZjE0YzNjNzBmMDJiODJkZTY5NGI1NjUzOGZhOGI5MmE4ZmQxNDNiZDEzYjNjNTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQyMTViMjBiMmE1NTUzYmIxODMwODg3ZWQxNjM5MjlmMTM3OGM4NzhhMTliYTkxYjE3ZmUwNDljOTRhNDNjOWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZkMTc1ZTc1NjRiODI4YWVjZmMzN2JmMGJiMWQyNTc4ZTM3NjhjZWY1NzFiNDcxODhjZjlkZjE5ZDgxYWViZmQifQ"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf#L9-L25",
+          "version": "repo-lines-v1:sha256:539f28f1d7e14e7442efd376daaca42fe2a1bb6577a89650f974fd38df33dd57:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY2OTNiZjc3MGM0MDFhNWMzYmU3MzRlMWUxOTg4Mjg4MmIzMjRhNjlhNGQxMzdmMTljYTljMjliNTZiODRkN2EiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgyYjBmYzI0ZmI2ZTQzZGZjMmYxOWRlNTNmNmFiYWY5ZTFkMTIxMWFiYjcyOGE2YWJhZjdhZGI3Y2Q0OThiNDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2MDM5ZDIyNWZmMjkwZDBjMDM4MWE4ZDRlYjA5YjVmNDdhMmY1ZWVjNjQ2ODNhMWQyNzdjOTZjNmZmM2UwZDkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f9af28b45a8f4d498db5890bbbdcc8fe",
+      "statement": "VM provisioning consumes existing bridges, VLAN IDs, storage and DNS server inputs, configuring VM devices and cloud-init rather than provisioning host networking, DNS services, storage backends, or SSH accounts.",
+      "evidence": [
+        {
+          "resource": "repo://deployments/homelab/templates/ubuntu-24-cloudinit/main.tf",
+          "version": "repo-file-v1:sha256:63b812c39b17c91adf75cadaa5a09b65fd2a61766b688e365bf835cd6ff55149"
+        },
+        {
+          "resource": "repo://deployments/homelab/templates/variables.tf",
+          "version": "repo-file-v1:sha256:abe919ffe03d220eeebabca087dc021e217773b9ede0644be6a15f778a6a3f87"
+        },
+        {
+          "resource": "repo://terraform-bgp-vm/main.tf",
+          "version": "repo-file-v1:sha256:6b9a395c2d76adf83ad65c2ab30ff749f19a6f4417fd773d420cde3045aad2a8"
+        }
+      ]
+    },
+    {
+      "id": "claim_4185cd006443471ea1fc1838e3ad59ff",
+      "statement": "SSH setup guidance has schema and format caveats: it shows a cluster ssh_private_key field absent from the declared schema and labels an ed25519-generated OpenSSH key as PEM, while current HCL reads a separate proxmox_ssh_key input and manages a Terraform-category homelab variable rather than the guide's shell-category key.",
+      "evidence": [
+        {
+          "resource": "repo://scalr-management/SSH_KEY_SETUP.md",
+          "version": "repo-file-v1:sha256:194e3c7ea7106afa5bce22da761676d8914017cf895bdf19721cf1995c06d56e"
+        },
+        {
+          "resource": "repo://scalr-management/environments.tf",
+          "version": "repo-file-v1:sha256:d733a3773fce352a149927e90ebc06d82dfb5116b0afb68ae281c509de9a9358"
+        },
+        {
+          "resource": "repo://scalr-management/provider-configurations.tf",
+          "version": "repo-file-v1:sha256:d186fb1d90fd4e8b87264cc569851d8a8a756ab12c396d98e9ee827638a64d47"
+        },
+        {
+          "resource": "repo://scalr-management/variables.tf",
+          "version": "repo-file-v1:sha256:c0e698e4a0b43d6f4af47808d906fa28d08f0748b5ef509ef744b12253f58aad"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.9.0",
+    "at": "2026-11-12T08:01:26.797Z"
+  }
+}
